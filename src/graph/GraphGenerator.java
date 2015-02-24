@@ -8,41 +8,7 @@ import java.util.Random;
  * Created by seal on 2/23/15.
  */
 public class GraphGenerator {
-    class Node {
-        private int nodeNumber = -1;
-        private int connectedWith = -1;
-        private int supply = 0;
-        private int demand = 0;
-        private int capacity = 0;
 
-        Node(int nodeNumber, int val) {
-            this.nodeNumber = nodeNumber;
-            setSupplyOrDemand(val);
-        }
-
-        public void setCapacity(int capacity) {
-            this.capacity = capacity;
-        }
-
-        public void setConnectedWith(int connectedWith) {
-            this.connectedWith = connectedWith;
-        }
-
-        public void setSupplyOrDemand(int val) {
-            if (val == 0) throw new IllegalArgumentException("Must have some value");
-            else if (val < 0) setDemand(val);
-            else setSupply(val);
-        }
-
-        private void setSupply(int supply) {
-            this.supply = supply;
-        }
-
-        private void setDemand(int demand) {
-            this.demand = demand;
-        }
-
-    }
 
     public List<Node> graphGenerator(int node, int supply, int demand, int percentageOf) {
         Random random = new Random();
@@ -59,6 +25,26 @@ public class GraphGenerator {
                 double mean = mean(demandNode, demand);
                 nodeList.add(new Node(i, generateSupplyOrDemand(mean, mean, random)));
             }
+        }
+
+        int edge = node + (random.nextInt(node / 2) + 1);
+
+        for (int i = 0; i < edge; i++) {
+            int u = random.nextInt(node);
+            int v = random.nextInt(node);
+            if (u == v) {
+                i--;
+                continue;
+            }
+            if (u > v) {
+                int swap = u;
+                u = v;
+                v = swap;
+            }
+            double mean = mean(demandNode, demand);
+            int capacity = generateSupplyOrDemand(mean, mean, random);
+            nodeList.get(u).setConnectedWith(v);
+            nodeList.get(u).setCapacity(capacity);
         }
 
         return nodeList;
