@@ -1,8 +1,9 @@
-import graph.*;
+import graph.Edge;
+import graph.GraphGenerator;
+import graph.Node;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,33 +28,33 @@ public class TestMain {
 //        PrintWriter out = new PrintWriter(path + str + String.valueOf(v) + ".txt", "UTF-8");
         for (int i = 0; i < 50; i++) {
             GraphGenerator generator = new GraphGenerator();
-            generator.graphGenerator(i, 50, 11000, 6000, 40);
+            List<Node> nodeList = generator.graphGenerator(50, 11000, 6000, 40);
+            print(i, nodeList);
         }
 
     }
 
-    public static void print(int v) throws IOException{
-        GraphGenerator generator = new GraphGenerator();
-        String path = "/home/seal/IdeaProjects/SmartGridOptimization/output/";
-        String str = "g50-";
+    private static void print(int testCase, List<Node> nodeList) {
+        try {
+            String path = "/home/seal/IdeaProjects/SmartGridOptimization/output/";
+            String str = "g50-";
 
-        PrintWriter out = new PrintWriter(path + str + String.valueOf(v) + ".txt", "UTF-8");
-        List<Node> list = generator.graphGenerator(1 ,10, 11000, 6000, 40);
-
-        out.println(list.size());
-        for (int i = 0; i < list.size(); i++) {
-            out.print(list.get(i).getSupplyOrDemand() + " ");
-        }
-
-        out.println();
-
-        for (int i = 0; i < list.size(); i++) {
-            List<Edge> edges = list.get(i).edges();
-            for (int j = 0; j < edges.size() - 1; j++) {
-                out.println(i + "  " + edges.get(j).getConnectedNode() + "  " + edges.get(j).getCapacity());
+            PrintWriter out = new PrintWriter(path + str + String.valueOf(testCase) + ".txt");
+            out.println(nodeList.size());
+            for (int i = 0; i < nodeList.size(); i++) {
+                out.print(nodeList.get(i).getSupplyOrDemand() + " ");
             }
-        }
+            out.println('\n');
+            for (int i = 0; i < nodeList.size(); i++) {
+                List<Edge> l = nodeList.get(i).edges();
+                for (int j = 0; j < l.size(); j++) {
+                    out.println(i + " " + l.get(j).getConnectedNode() + " " + l.get(j).getCapacity());
+                }
+                out.println();
+            }
+            out.close();
+        } catch (IOException e) {
 
-        out.close();
+        }
     }
 }

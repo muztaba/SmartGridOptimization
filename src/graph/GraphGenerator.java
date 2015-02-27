@@ -1,7 +1,5 @@
 package graph;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Random;
 public class GraphGenerator {
     List<Node> nodeList = new ArrayList<>();
 
-    public List<Node> graphGenerator(int testCase, int node, int supply, int demand, int percentageOf) {
+    public List<Node> graphGenerator(int node, int supply, int demand, int percentageOf) {
         Random random = new Random();
 
         int supplyNode = (node * percentageOf) / 100;
@@ -53,7 +51,7 @@ public class GraphGenerator {
                 continue;
             }
 
-            int capacity = generateSupplyOrDemand(meanDemand, meanDemand, random);
+            int capacity = generateSupplyOrDemand(meanDemand, meanDemand / 3, random);
             nodeList.get(i).setConnectedWith(lastIndexValue,capacity);
             list.remove(list.size() - 1);
         }
@@ -99,32 +97,7 @@ public class GraphGenerator {
 //            }
 //            System.out.println();
 //        }
-        print(testCase);
         return nodeList;
-    }
-
-    private void print(int testCase) {
-        try {
-            String path = "/home/seal/IdeaProjects/SmartGridOptimization/output/";
-            String str = "g50-";
-
-            PrintWriter out = new PrintWriter(path + str + String.valueOf(testCase) + ".txt");
-            out.println(nodeList.size());
-            for (int i = 0; i < nodeList.size(); i++) {
-                out.print(nodeList.get(i).getSupplyOrDemand() + " ");
-            }
-            out.println('\n');
-            for (int i = 0; i < nodeList.size(); i++) {
-                List<Edge> l = nodeList.get(i).edges();
-                for (int j = 0; j < l.size(); j++) {
-                    out.println(i + " " + l.get(j).getConnectedNode() + " " + l.get(j).getCapacity());
-                }
-                out.println();
-            }
-            out.close();
-        } catch (IOException e) {
-
-        }
     }
 
     private int generateSupplyOrDemand(double mean, double uc, Random rand) {

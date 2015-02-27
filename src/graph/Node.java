@@ -1,5 +1,7 @@
 package graph;
 
+import graph.Edge;
+
 import java.util.ArrayList;
 import java.util.List;
 
