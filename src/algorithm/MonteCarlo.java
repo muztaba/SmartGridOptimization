@@ -7,32 +7,36 @@ import java.util.List;
  * Created by seal on 2/25/15.
  */
 public class MonteCarlo {
-    int[][] matrix;
-    public void monteCarlo(List<Node> nodeList) {
-        matrix = new int[nodeList.size()][nodeList.size()];
+    int[][] flowMatrix;
+    boolean[][] connectionMatrix;
 
-        // Initialize matrix with the capacity of the link.
-        initMatrix(nodeList);
+    public void monteCarlo(List<Node> nodeList) {
+        flowMatrix = new int[nodeList.size()][nodeList.size()];
+        connectionMatrix = new boolean[nodeList.size()][nodeList.size()];
+
+        // Initialize connectionMatrix with the connection between node.
+        initConnectionMatrix(nodeList);
+
+        //
+
 
     }
 
 
     /**
-     * Initialize the matrix with capacity of the link between two node for i to j
-     * and j to i keep the negative value. Positive incoming link and negative means
-     * outgoing connection.
-     * @param list
+     * connectionMatrix is boolean 2-D matrix where store the connection between
+     * two node. To initialize the boolean matrix we get the connection from the
+     * nodeList where each node has the containers to hold the connection to others
+     * node.
      */
-    private void initMatrix(List<Node> list) {
+    private void initConnectionMatrix(List<Node> list) {
         for (int i = 0; i < list.size(); i++) {
             Node node = list.get(i);
-
             for (int j = 0; j < node.edges().size(); j++) {
-                int connectedNode = node.edges().get(i).getConnectedNode();
-                matrix[i][connectedNode] = node.edges().get(i).getCapacity();
-                matrix[connectedNode][i] = node.edges().get(i).getCapacity();
+                int connectedWith = node.edges().get(j).getConnectedNode();
+                connectionMatrix[i][connectedWith] = true;
+                connectionMatrix[connectedWith][i] = true;
             }
         }
-
     }
 }
