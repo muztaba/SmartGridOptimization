@@ -1,5 +1,8 @@
+import algorithm.MonteCarlo;
+import com.sun.org.apache.bcel.internal.generic.LSTORE;
 import graph.Edge;
 import graph.GraphGenerator;
+import graph.GraphInput;
 import graph.Node;
 
 import java.io.IOException;
@@ -23,21 +26,36 @@ public class TestMain {
 //            print(1);
 //        }
 
-        String path = "/home/seal/IdeaProjects/SmartGridOptimization/output/";
-        String str = "g50-";
+        String path = "/home/seal/IdeaProjects/SmartGridOptimization/input/graph.txt";
+        String str = "";
 //        PrintWriter out = new PrintWriter(path + str + String.valueOf(v) + ".txt", "UTF-8");
-        for (int i = 0; i < 50; i++) {
-            GraphGenerator generator = new GraphGenerator();
-            List<Node> nodeList = generator.graphGenerator(50, 11000, 6000, 40);
-            print(i, nodeList);
-        }
+        GraphGenerator generator = new GraphGenerator();
+        GraphInput input = new GraphInput();
+        List<Node> nodeList = input.readGraph(path);
+        print(1, nodeList);
+        MonteCarlo solve = new MonteCarlo();
+        solve.monteCarlo(nodeList, 1000);
 
     }
 
+    private static void printGraph(List<Node> graph) {
+        System.out.println(graph.size());
+        for (int i = 0; i < graph.size(); i++) {
+            System.out.print(graph.get(i).getSupplyOrDemand());
+        }
+        System.out.println();
+        for (int i = 0; i < graph.size(); i++) {
+            for (int j = 0; j < graph.get(i).edges().size(); j++) {
+                List<Edge> list = graph.get(i).edges();
+                System.out.println(graph.get(i).nodeNumber + " " + list.get(j).getConnectedNode() + " " +
+                list.get(j).getCapacity());
+            }
+        }
+    }
     private static void print(int testCase, List<Node> nodeList) {
         try {
             String path = "/home/seal/IdeaProjects/SmartGridOptimization/output/";
-            String str = "g50-";
+            String str = "graphOutput.txt";
 
             PrintWriter out = new PrintWriter(path + str + String.valueOf(testCase) + ".txt");
             out.println(nodeList.size());

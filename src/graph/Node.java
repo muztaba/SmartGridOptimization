@@ -9,7 +9,7 @@ import java.util.List;
  * Created by seal on 2/24/15.
  */
 public class Node {
-    private int nodeNumber = -1;
+    public int nodeNumber = -1;
     private List<Edge> connectedWith;
     private int supply = 0;
     private int demand = 0;
@@ -32,6 +32,8 @@ public class Node {
         connectedWith = new ArrayList<>();
         setSupplyOrDemand(val);
     }
+
+
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
@@ -60,4 +62,11 @@ public class Node {
         this.demand = demand;
     }
 
+    public int getSupply() {
+        return supply;
+    }
+
+    public int getDemand() {
+        return demand;
+    }
 }
