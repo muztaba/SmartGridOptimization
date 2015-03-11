@@ -21,6 +21,7 @@ public class GraphInput {
     public List<Node> readGraph(String path) throws IOException {
         in = new InputReader(new File(path));
         int nodeNumber = in.nextInt();
+        int edges = in.nextInt();
         List<Node> graph = new ArrayList<>(nodeNumber);
 
         for (int i = 0; i < nodeNumber; i++) {
@@ -28,7 +29,6 @@ public class GraphInput {
             graph.add(new Node(i, node));
         }
 
-        int edges = in.nextInt();
         for (int i = 0; i < edges; i++) {
             int u = in.nextInt();
             int v = in.nextInt();

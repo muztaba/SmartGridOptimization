@@ -1,3 +1,4 @@
+import algorithm.Gibbs;
 import algorithm.MonteCarlo;
 import com.sun.org.apache.bcel.internal.generic.LSTORE;
 import graph.Edge;
@@ -14,45 +15,18 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException{
-//        PrintWriter[] out = new PrintWriter[50];
-//        for (int i = 0; i < out.length; i++) {
-//            out[i] = new PrintWriter(path + str + String.valueOf(i), "UTF-8");
-//        }
-
-//        for (int p = 0; p < 50; p++) {
-
-//        }
-//        for (int i = 0; i < 50; i++) {
-//            print(1);
-//        }
-
-        String path = "/home/seal/IdeaProjects/SmartGridOptimization/input/graph.txt";
-        String str = "";
-//        PrintWriter out = new PrintWriter(path + str + String.valueOf(v) + ".txt", "UTF-8");
-        GraphGenerator generator = new GraphGenerator();
-        GraphInput input = new GraphInput();
-        List<Node> nodeList = input.readGraph(path);
-        print(1, nodeList);
-        MonteCarlo solve = new MonteCarlo();
-        solve.monteCarlo(nodeList, 1000);
-
+//        printGraph(1, new GraphGenerator().graphGenerator(5, 500, 300, 40));
+        GraphInput in = new GraphInput();
+        List<Node> graph = in.readGraph("/home/seal/IdeaProjects/SmartGridOptimization/output/graphOutput.txt1.txt");
+        checkGibbs(1, graph);
     }
 
-    private static void printGraph(List<Node> graph) {
-        System.out.println(graph.size());
-        for (int i = 0; i < graph.size(); i++) {
-            System.out.print(graph.get(i).getSupplyOrDemand());
-        }
-        System.out.println();
-        for (int i = 0; i < graph.size(); i++) {
-            for (int j = 0; j < graph.get(i).edges().size(); j++) {
-                List<Edge> list = graph.get(i).edges();
-                System.out.println(graph.get(i).nodeNumber + " " + list.get(j).getConnectedNode() + " " +
-                list.get(j).getCapacity());
-            }
-        }
+    private static void checkGibbs(int testCase, List<Node> graph) {
+        Gibbs solver = new Gibbs();
+        solver.gibbs(graph, 100);
     }
-    private static void print(int testCase, List<Node> nodeList) {
+
+    private static void printGraph(int testCase, List<Node> nodeList) {
         try {
             String path = "/home/seal/IdeaProjects/SmartGridOptimization/output/";
             String str = "graphOutput.txt";
