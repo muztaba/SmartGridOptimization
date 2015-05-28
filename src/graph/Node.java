@@ -23,7 +23,7 @@ public class Node {
         return connectedWith.size();
     }
 
-    public boolean isConnected(int index) {
+    public boolean isConnected(int index){
         return connectedWith.contains(index);
     }
 
@@ -32,8 +32,6 @@ public class Node {
         connectedWith = new ArrayList<>();
         setSupplyOrDemand(val);
     }
-
-
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
