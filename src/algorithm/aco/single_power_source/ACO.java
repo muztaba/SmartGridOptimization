@@ -17,6 +17,10 @@ public class ACO implements Run {
     private Set<Integer> visited;
     private List<Node> graph;
     private int source;
+    private Ant ant;
+    public static final int primaryIteration = 1000;
+    public static final int secondaryIteration = 1000;
+
     public ACO(String filePath, int source) {
         GraphInput readGraph = new GraphInput();
         try {
@@ -34,6 +38,13 @@ public class ACO implements Run {
     @Override
     public void run() {
         // For the primary ants.
+        for (int iteration = 0; iteration < primaryIteration; iteration++) {
+            setupAnts();
+        }
+    }
 
+    private void setupAnts() {
+        ant = new Ant();
+        ant.nextNode(source);
     }
 }
