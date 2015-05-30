@@ -31,8 +31,8 @@
       <file leaf-file-name="ACO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74814814">
-              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.6537037">
+              <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -589,7 +589,7 @@
       <workItem from="1432736315597" duration="4586000" />
       <workItem from="1432796444105" duration="3304000" />
       <workItem from="1432820526175" duration="9564000" />
-      <workItem from="1432980649646" duration="7138000" />
+      <workItem from="1432980649646" duration="7148000" />
     </task>
     <task id="LOCAL-00001" summary="writing GraphGenerator">
       <created>1424707726676</created>
@@ -669,11 +669,17 @@
       <option name="project" value="LOCAL" />
       <updated>1432989996506</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="still  working in aco for single source power.">
+      <created>1432990137599</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1432990137599</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24592000" />
+    <option name="totallyTimeSpent" value="24602000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
@@ -1225,8 +1231,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74814814">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.6537037">
+          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
           <folding />
         </state>
       </provider>
