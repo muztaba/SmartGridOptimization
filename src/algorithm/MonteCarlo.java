@@ -26,7 +26,7 @@ public class MonteCarlo extends Algorithm {
             if (checkValidity(graph)) {
                 // If the graph stable with the generated flow then calculate the total load shedding of the demand
                 // node.
-                int graphTotalLoadShedding = totalLoadShedding(graph);
+                double graphTotalLoadShedding = totalLoadShedding(graph);
                 System.out.println(graphTotalLoadShedding);
             }
 
