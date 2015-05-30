@@ -16,17 +16,17 @@ import java.util.StringTokenizer;
  *  Positive value mean supply and negative value for demand.
  */
 public class GraphInput {
-//    private Scanner in;
-    InputReader in;
+    List<Node> graph;
+
     public List<Node> readGraph(String path) throws IOException {
-        in = new InputReader(new File(path));
+        InputReader in = new InputReader(new File(path));
         int nodeNumber = in.nextInt();
         int edges = in.nextInt();
-        List<Node> graph = new ArrayList<>(nodeNumber);
+        this.graph = new ArrayList<>(nodeNumber);
 
         for (int i = 0; i < nodeNumber; i++) {
-            int node = in.nextInt();
-            graph.add(new Node(i, node));
+            double use = in.nextDouble();
+            graph.add(new Node(i, use));
         }
 
         for (int i = 0; i < edges; i++) {
@@ -35,7 +35,6 @@ public class GraphInput {
             int capacity = in.nextInt();
             graph.get(u).setConnectedWith(v, capacity);
         }
-
         return graph;
     }
 
