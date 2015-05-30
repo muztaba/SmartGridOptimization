@@ -11,10 +11,10 @@ public class Ant {
     private int power;
     private int currentNode;
     private boolean powerEmpty;
-    private Deque<Integer> trackNode;
+    private Deque<Integer> tour;
 
     public Ant() {
-        trackNode = new ArrayDeque<>();
+        tour = new ArrayDeque<>();
     }
 
     public void setPower(int power) {
@@ -35,6 +35,6 @@ public class Ant {
 
     public void nextNode(int nextNode) {
         this.currentNode = nextNode;
-        trackNode.addFirst(nextNode);
+        tour.addFirst(nextNode);
     }
 }
