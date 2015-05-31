@@ -6,10 +6,7 @@ import graph.GraphInput;
 import graph.Node;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by seal on 5/28/15.
@@ -29,6 +26,10 @@ public class ACO implements Run {
     private Set<Integer> visited;
     private List<Node> graph;
     private List<Double> powers;
+    // Store the value of all connected node demand and capacity.
+    // This will calculate when the next node chose with probability. It can reduce some
+    // calculation
+    private Map<Integer, Double> denominator;
     private Ant ant;
 
     public ACO(List<Node> graph, int source) {
@@ -39,6 +40,7 @@ public class ACO implements Run {
         this.visited = new HashSet<>(graph.size());
         // powers is arrayList that store the distribution of power within the source's edges.
         this.powers = new ArrayList<>(graph.get(source).degree());
+        this.denominator = new HashMap<>(graph.size());
     }
 
     @Override
@@ -90,13 +92,15 @@ public class ACO implements Run {
         int nextNode = -1;
         double n = 0.0;
         double maxProbability = 0.0;
-        int indexArray = 0;
         List<Edge> edgesList = graph.get(currentNode).edges();
-        for (Edge i : edgesList) {
-            n += i.getCapacity() * graph.get(i.getConnectedNode()).getDemand();
+        if (!denominator.containsKey(currentNode)) {
+            for (Edge i : edgesList) {
+                n += i.getCapacity() * graph.get(i.getConnectedNode()).getDemand();
+            }
+            denominator.put(currentNode, n);
         }
         for (Edge i : edgesList) {
-            double temp = pow(i.getCapacity(), AlPHA) * pow(graph.get(i.getConnectedNode()).getDemand(), BETA) / n;
+            double temp = pow(i.getCapacity(), AlPHA) * pow(graph.get(i.getConnectedNode()).getDemand(), BETA) / denominator.get(currentNode);
             if (temp > maxProbability) {
                 nextNode = i.getConnectedNode();
                 maxProbability = temp;
@@ -125,4 +129,5 @@ public class ACO implements Run {
             powers.add(temp);
         }
     }
+
 }
