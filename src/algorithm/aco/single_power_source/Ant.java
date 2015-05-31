@@ -8,7 +8,7 @@ import java.util.Stack;
  * Created by seal on 5/28/15.
  */
 public class Ant {
-    private int power;
+    private double power;
     private int currentNode;
     private boolean powerEmpty;
     private Deque<Integer> tour;
@@ -17,7 +17,7 @@ public class Ant {
         tour = new ArrayDeque<>();
     }
 
-    public void setPower(int power) {
+    public void setPower(double power) {
         this.power = power;
     }
 
@@ -37,4 +37,6 @@ public class Ant {
         this.currentNode = nextNode;
         tour.addFirst(nextNode);
     }
+
+    public int getCurrentNode() {return this.currentNode;}
 }

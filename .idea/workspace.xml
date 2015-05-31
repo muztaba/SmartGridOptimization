@@ -4,10 +4,10 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47d9ba94-7b4b-4918-b4b5-b85a721e04a3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/algorithm/aco/single_power_source/BestTour.java" />
+    <list default="true" id="47d9ba94-7b4b-4918-b4b5-b85a721e04a3" name="Default" comment="nextNodeSelection add n.t optimize version will come.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/single_power_source/Ant.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/single_power_source/Ant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/Node.java" afterPath="$PROJECT_DIR$/src/graph/Node.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartGridOptimization.iws" />
@@ -34,9 +34,22 @@
       <file leaf-file-name="ACO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8740741">
-              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.33169532">
+              <caret line="119" column="22" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graph/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+              <folding>
+                <element signature="e#1569#1570#0" expanded="true" />
+                <element signature="e#1621#1622#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,10 +85,7 @@
         <option value="$PROJECT_DIR$/src/thesis/graph/GraphGenerator.java" />
         <option value="$PROJECT_DIR$/input/graph.txt" />
         <option value="$PROJECT_DIR$/src/algorithm/MonteCarloValid.java" />
-        <option value="$PROJECT_DIR$/src/algorithm/MonteCarlo.java" />
         <option value="$PROJECT_DIR$/src/TestMain.java" />
-        <option value="$PROJECT_DIR$/src/algorithm/Algorithm.java" />
-        <option value="$PROJECT_DIR$/src/algorithm/Gibbs.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/test/Node.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/test/Ant.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/test/Graph.java" />
@@ -84,9 +94,12 @@
         <option value="$PROJECT_DIR$/src/algorithm/Run.java" />
         <option value="$PROJECT_DIR$/src/graph/Edge.java" />
         <option value="$PROJECT_DIR$/src/graph/GraphInput.java" />
-        <option value="$PROJECT_DIR$/src/graph/Node.java" />
-        <option value="$PROJECT_DIR$/src/algorithm/aco/single_power_source/Ant.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/single_power_source/BestTour.java" />
+        <option value="$PROJECT_DIR$/src/algorithm/Algorithm.java" />
+        <option value="$PROJECT_DIR$/src/algorithm/MonteCarlo.java" />
+        <option value="$PROJECT_DIR$/src/algorithm/Gibbs.java" />
+        <option value="$PROJECT_DIR$/src/algorithm/aco/single_power_source/Ant.java" />
+        <option value="$PROJECT_DIR$/src/graph/Node.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java" />
       </list>
     </option>
@@ -106,8 +119,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="-1" />
+    <option name="y" value="30" />
+    <option name="width" value="1368" />
+    <option name="height" value="739" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -132,9 +147,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,6 +267,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -272,7 +287,7 @@
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="FullScreen" value="false" />
+    <property name="FullScreen" value="true" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="225" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="234" />
@@ -289,10 +304,10 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1149" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="SearchEverywhereHistoryKey" value="terminal&#9;ACTION&#9;ActivateTerminalToolWindow&#10;G&#9;PSI&#9;JAVA://algorithm.aco.test.GraphACO&#10;Input&#9;PSI&#9;JAVA://graph.GraphInput.InputReader&#10;gibbs&#9;PSI&#9;JAVA://algorithm.Gibbs#gibbs&#10;gi&#9;FILE&#9;file:///home/seal/IdeaProjects/SmartGridOptimization/src/graph/GraphInput.java&#10;che&#9;PSI&#9;JAVA://algorithm.Algorithm#checkValidity&#10;initva&#9;PSI&#9;JAVA://algorithm.Algorithm#initVariable&#10;initco&#9;PSI&#9;JAVA://algorithm.Algorithm#initConnectionMatrix&#10;init&#9;PSI&#9;JAVA://algorithm.Algorithm#initVariable" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/seal/IdeaProjects/SmartGridOptimization/src/algorithm/aco/single_power_source/ACO.java&#10;terminal&#9;ACTION&#9;ActivateTerminalToolWindow&#10;G&#9;PSI&#9;JAVA://algorithm.aco.test.GraphACO&#10;Input&#9;PSI&#9;JAVA://graph.GraphInput.InputReader&#10;gibbs&#9;PSI&#9;JAVA://algorithm.Gibbs#gibbs&#10;gi&#9;FILE&#9;file:///home/seal/IdeaProjects/SmartGridOptimization/src/graph/GraphInput.java&#10;che&#9;PSI&#9;JAVA://algorithm.Algorithm#checkValidity&#10;initva&#9;PSI&#9;JAVA://algorithm.Algorithm#initVariable&#10;initco&#9;PSI&#9;JAVA://algorithm.Algorithm#initConnectionMatrix&#10;init&#9;PSI&#9;JAVA://algorithm.Algorithm#initVariable" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.TestMain">
@@ -390,74 +405,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
-      <option name="BCName" value="" />
-      <option name="IOSSimulatorSdkPath" value="" />
-      <option name="adlOptions" value="" />
-      <option name="airProgramParameters" value="" />
-      <option name="appDescriptorForEmulator" value="Android" />
-      <option name="debugTransport" value="USB" />
-      <option name="debuggerSdkRaw" value="BC SDK" />
-      <option name="emulator" value="NexusOne" />
-      <option name="emulatorAdlOptions" value="" />
-      <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="0" />
-      <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="false" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
-        </LauncherParameters>
-      </option>
-      <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="" />
-      <option name="overriddenMainClass" value="" />
-      <option name="overriddenOutputFileName" value="" />
-      <option name="overrideMainClass" value="false" />
-      <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="0" />
-      <option name="screenHeight" value="0" />
-      <option name="screenWidth" value="0" />
-      <option name="url" value="http://" />
-      <option name="usbDebugPort" value="7936" />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -472,16 +419,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
-      <module name="" />
-      <setting name="vmparams" value="" />
-      <setting name="cmdLine" value="run-app" />
-      <setting name="depsClasspath" value="false" />
-      <setting name="passParentEnv" value="true" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <setting name="launchBrowser" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -510,21 +447,12 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -553,21 +481,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <pass-parent-envs>true</pass-parent-envs>
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
-      <method />
-    </configuration>
-    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
     <list size="1">
@@ -673,36 +586,36 @@
     <option name="totallyTimeSpent" value="24413000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="-1" y="30" width="1368" height="739" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32713178" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7049847" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.52037036" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51937985" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25894287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962963" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25841874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19226857" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19226857" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960325" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32858595" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.70387596" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960325" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962963" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -722,14 +635,14 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19226857" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960325" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32858595" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32713178" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994923" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7049847" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.70387596" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960325" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.52037036" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25894287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51937985" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25841874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962963" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
@@ -758,10 +671,14 @@
     <MESSAGE value="Bring change in the gibbs algorithm." />
     <MESSAGE value="delete aco.test package." />
     <MESSAGE value="start aco algorithm" />
-    <option name="LAST_COMMIT_MESSAGE" value="start aco algorithm" />
+    <MESSAGE value="nextNodeSelection add n.t optimize version will come." />
+    <option name="LAST_COMMIT_MESSAGE" value="nextNodeSelection add n.t optimize version will come." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
       <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
@@ -775,30 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="/**...*/" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -806,7 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="58" selection-start-line="89" selection-start-column="58" selection-end-line="89" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -877,9 +769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -901,9 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -932,9 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="60" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -963,9 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -994,9 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1018,9 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1042,9 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1083,20 +954,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithm/Gibbs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TestMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1107,13 +968,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithm/MonteCarlo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9334741">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/Run.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18888889">
@@ -1121,34 +975,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithm/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93703705">
-          <caret line="131" column="7" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graph/GraphGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.13333334">
           <caret line="89" column="58" selection-start-line="89" selection-start-column="58" selection-end-line="89" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/Edge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25185186">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <marker date="1432828003699" expanded="true" signature="-1:-1" placeholder="/**...*/" />
-            <marker date="1432828003699" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432828003699" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432828003699" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432828003699" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432828003699" expanded="false" signature="-1:-1" placeholder=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1156,73 +986,86 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40185186">
           <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/Node.java">
+    <entry file="file://$PROJECT_DIR$/src/algorithm/Algorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28333333">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
-          <folding>
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="/**...*/" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432981988121" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432981988121" expanded="false" signature="-1:-1" placeholder=" }" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="135" column="24" selection-start-line="135" selection-start-column="24" selection-end-line="135" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/Ant.java">
+    <entry file="file://$PROJECT_DIR$/src/algorithm/MonteCarlo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37037036">
-          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-          <folding>
-            <marker date="1432984990881" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1432984990881" expanded="true" signature="-1:-1" placeholder="/**...*/" />
-            <marker date="1432984990881" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432984990881" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432984990881" expanded="false" signature="-1:-1" placeholder=" { " />
-            <marker date="1432984990881" expanded="false" signature="-1:-1" placeholder=" }" />
-            <marker date="1432984990881" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1432984990881" expanded="true" signature="-1:-1" placeholder="//..." />
-            <marker date="1432984990881" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/algorithm/Gibbs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="84" column="14" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/BestTour.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28333333">
+        <state vertical-scroll-proportion="0.3984375">
           <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/Ant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75130206">
+          <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
           <folding>
-            <marker date="1432984990877" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1433063324172" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1433063324172" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1433063324172" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1433063324172" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1433063324172" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1433063324172" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1433063324172" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1433063324172" expanded="true" signature="-1:-1" placeholder="//..." />
+            <marker date="1433063324172" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1433063324172" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/Edge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.265625">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+          <folding>
+            <marker date="1431090957733" expanded="true" signature="-1:-1" placeholder="/**...*/" />
+            <marker date="1431090957733" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1431090957733" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1431090957733" expanded="false" signature="-1:-1" placeholder=" }" />
+            <marker date="1431090957733" expanded="false" signature="-1:-1" placeholder=" { " />
+            <marker date="1431090957733" expanded="false" signature="-1:-1" placeholder=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+          <folding>
+            <element signature="e#1569#1570#0" expanded="true" />
+            <element signature="e#1621#1622#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8740741">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.33169532">
+          <caret line="119" column="22" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
           <folding />
         </state>
       </provider>

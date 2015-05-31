@@ -19,10 +19,7 @@ public class Node {
     public List<Edge> edges() {
         return connectedWith;
     }
-
-    public int degree() {
-        return connectedWith.size();
-    }
+    public int edge(int index) {return connectedWith.get(index).getConnectedNode();}
 
     Node(int nodeNumber, double use) {
         this.nodeNumber = nodeNumber;
@@ -51,6 +48,10 @@ public class Node {
 
     public double getDemand() {
         return demand;
+    }
+
+    public int degree() {
+        return connectedWith.size();
     }
 
     private void setSupply(double supply) {
