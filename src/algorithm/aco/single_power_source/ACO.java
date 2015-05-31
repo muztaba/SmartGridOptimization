@@ -6,10 +6,7 @@ import graph.GraphInput;
 import graph.Node;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by seal on 5/28/15.
@@ -17,33 +14,35 @@ import java.util.Set;
 public class ACO implements Run {
     public static final int primaryIteration = 1000;
     public static final int secondaryIteration = 1000;
+    // Probability fluctuation factor
+    public static final double AlPHA = 1.0;
+    public static final double BETA = 1.0;
 
     private int source;
     private double power;
+    private int powersIndex = Integer.MAX_VALUE;
+    private int sourceEdgeIndex;
 
     private Set<Integer> visited;
     private List<Node> graph;
     private List<Double> powers;
+    // Store the value of all connected node demand and capacity.
+    // This will calculate when the next node chose with probability. It can reduce some
+    // calculation
+    private Map<Integer, Double> denominator;
     private Ant ant;
 
-    public ACO(String filePath, int source) {
-        readGraph(filePath);
+    public ACO(List<Node> graph, int source) {
+        this.graph = graph;
         this.source = source;
         this.power = graph.get(source).getSupply();
         // initialize the visited List with number of the total node in graph.
         this.visited = new HashSet<>(graph.size());
         // powers is arrayList that store the distribution of power within the source's edges.
         this.powers = new ArrayList<>(graph.get(source).degree());
+        this.denominator = new HashMap<>(graph.size());
     }
-    private void readGraph(String filePath) {
-        GraphInput in = new GraphInput();
-        try {
-            this.graph = in.readGraph(filePath);
-        } catch (IOException e) {
-            System.err.println("File Not Found");
-            e.printStackTrace();
-        }
-    }
+
     @Override
     public void run() {
         // For the primary ants.
@@ -59,5 +58,76 @@ public class ACO implements Run {
         ant = new Ant();
         // Place the ant at the source node.
         ant.nextNode(source);
+        // Distribute the power of the source node within the source edge.
+        if (powersIndex < powers.size()) {
+            ant.setPower(powers.get(powersIndex++));
+        } else {
+            generatePowers();
+            ant.setPower(powers.get(powersIndex = 0));
+        }
     }
+
+    private void moveAnt() {
+        // Ant place at the source node. Force to chose edge sequentially.
+        // Else ant place any node other than source. Next node chose probabilistically.
+        if (ant.getCurrentNode() == source) {
+            if (sourceEdgeIndex < graph.get(source).degree()) {
+                ant.nextNode(graph.get(source).edge(sourceEdgeIndex++));
+            } else {
+                ant.nextNode(graph.get(source).edge(sourceEdgeIndex = 0));
+            }
+        } else {
+
+        }
+    }
+
+    /**
+     * This method chose probabilistically next node from where the ant is currently
+     * standing.
+     *
+     * @param currentNode currently where the ant now.
+     * @return nextNode where the ant next to move.
+     */
+    private int nextNodeSelection(int currentNode) {
+        int nextNode = -1;
+        double n = 0.0;
+        double maxProbability = 0.0;
+        List<Edge> edgesList = graph.get(currentNode).edges();
+        if (!denominator.containsKey(currentNode)) {
+            for (Edge i : edgesList) {
+                n += i.getCapacity() * graph.get(i.getConnectedNode()).getDemand();
+            }
+            denominator.put(currentNode, n);
+        }
+        for (Edge i : edgesList) {
+            double temp = pow(i.getCapacity(), AlPHA) * pow(graph.get(i.getConnectedNode()).getDemand(), BETA) / denominator.get(currentNode);
+            if (temp > maxProbability) {
+                nextNode = i.getConnectedNode();
+                maxProbability = temp;
+            }
+        }
+        return nextNode;
+    }
+
+    /**
+     * Faster pow method. Default pow method is slow.
+     * This method approximately 25 times faster that java's pow method.
+     */
+    public static double pow(final double a, final double b) {
+        final int x = (int) (Double.doubleToLongBits(a) >> 32);
+        final int y = (int) (b * (x - 1072632447) + 1072632447);
+        return Double.longBitsToDouble(((long) y) << 32);
+    }
+
+    private void generatePowers() {
+        powers.clear();
+        double temp = 0.0;
+        double _power = this.power;
+        for (int i = 0; i < powers.size(); i++) {
+            temp = _power * Math.random();
+            _power -= temp;
+            powers.add(temp);
+        }
+    }
+
 }

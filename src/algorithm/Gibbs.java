@@ -17,9 +17,9 @@ public class Gibbs extends Algorithm {
 
     class Undo {
         int i, j;
-        int froward, backward;
+        double froward, backward;
 
-        Undo(int i, int j, int froward, int backward) {
+        Undo(int i, int j, double froward, double backward) {
             this.i = i;
             this.j = j;
             this.froward = froward;
@@ -44,7 +44,7 @@ public class Gibbs extends Algorithm {
             if (!checkValidity(graph)) {
                 undo();
             }
-            int totalLoadShedding = totalLoadShedding(graph);
+            double totalLoadShedding = totalLoadShedding(graph);
             System.out.println(totalLoadShedding);
         }
     }
@@ -76,7 +76,7 @@ public class Gibbs extends Algorithm {
             if (connectionMatrix[i][j]) {
 
                 int index = indexOf(graph.get(i).edges(), j);
-                int randomCapacity = random.nextInt(graph.get(i).edges().get(index).getCapacity());
+                double randomCapacity = (double) random.nextInt(graph.get(i).edges().get(index).getCapacity());
                 flowMatrix[i][j] = -randomCapacity;
                 flowMatrix[j][i] = randomCapacity;
 
