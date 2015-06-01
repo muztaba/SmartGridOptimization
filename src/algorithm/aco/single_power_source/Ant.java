@@ -17,7 +17,7 @@ public class Ant {
         tour = new ArrayDeque<>();
     }
 
-    public void setPower(double power) {
+    public void setPower(final double power) {
         this.power = power;
     }
 
@@ -33,10 +33,16 @@ public class Ant {
         }
     }
 
-    public void nextNode(int nextNode) {
+    public void nextNode(final int nextNode) {
         this.currentNode = nextNode;
         tour.addFirst(nextNode);
     }
 
+    /**
+     * Negate the powerEmpty boolean variable to notify
+     * is the ant moving stop or not.
+     * @return negation of the powerEmpty.
+     */
+    public boolean isMoveStop() {return !this.powerEmpty;}
     public int getCurrentNode() {return this.currentNode;}
 }

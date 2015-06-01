@@ -17,30 +17,35 @@ public class ACO implements Run {
     // Probability fluctuation factor
     public static final double AlPHA = 1.0;
     public static final double BETA = 1.0;
+    public static final double EVAPORATION = 0.5;
+    private double[][] pheromoneTrail;
 
-    private int source;
+    private final int source;
+    private final int size;
     private double power;
     private int powersIndex = Integer.MAX_VALUE;
     private int sourceEdgeIndex;
 
+    final private List<Node> graph;
     private Set<Integer> visited;
-    private List<Node> graph;
     private List<Double> powers;
     // Store the value of all connected node demand and capacity.
-    // This will calculate when the next node chose with probability. It can reduce some
-    // calculation
+    // This will calculate when the next node chose with probability. It can reduce some calculation.
     private Map<Integer, Double> denominator;
     private Ant ant;
 
-    public ACO(List<Node> graph, int source) {
+    public ACO(final List<Node> graph, final int source) {
         this.graph = graph;
         this.source = source;
+        this.size = graph.size();
         this.power = graph.get(source).getSupply();
+        this.pheromoneTrail = new double[size][size]; // Create pheromone trail 2-D array
+        Arrays.fill(pheromoneTrail, 1.0); // Initialize the array with 1.0 value.
         // initialize the visited List with number of the total node in graph.
-        this.visited = new HashSet<>(graph.size());
+        this.visited = new HashSet<>(size);
         // powers is arrayList that store the distribution of power within the source's edges.
         this.powers = new ArrayList<>(graph.get(source).degree());
-        this.denominator = new HashMap<>(graph.size());
+        this.denominator = new HashMap<>(size);
     }
 
     @Override
@@ -48,6 +53,7 @@ public class ACO implements Run {
         // For the primary ants.
         for (int iteration = 0; iteration < primaryIteration; iteration++) {
             setupAnts();
+            moveAnt();
         }
     }
 
@@ -58,7 +64,7 @@ public class ACO implements Run {
         ant = new Ant();
         // Place the ant at the source node.
         ant.nextNode(source);
-        // Distribute the power of the source node within the source edge.
+        // Distribute the power of the source node within the source edge. Initially powerIndex = Integer.MAX_VALUE
         if (powersIndex < powers.size()) {
             ant.setPower(powers.get(powersIndex++));
         } else {
@@ -68,16 +74,19 @@ public class ACO implements Run {
     }
 
     private void moveAnt() {
-        // Ant place at the source node. Force to chose edge sequentially.
-        // Else ant place any node other than source. Next node chose probabilistically.
-        if (ant.getCurrentNode() == source) {
-            if (sourceEdgeIndex < graph.get(source).degree()) {
-                ant.nextNode(graph.get(source).edge(sourceEdgeIndex++));
+        while (ant.isMoveStop()) {
+            // Ant place at the source node. Force to chose edge sequentially.
+            // Else ant place any node other than source. Next node chose probabilistically.
+            if (ant.getCurrentNode() == source) {
+                if (sourceEdgeIndex < graph.get(source).degree()) {
+                    ant.nextNode(graph.get(source).edge(sourceEdgeIndex++));
+                } else {
+                    ant.nextNode(graph.get(source).edge(sourceEdgeIndex = 0));
+                }
             } else {
-                ant.nextNode(graph.get(source).edge(sourceEdgeIndex = 0));
+                int nextNode = nextNodeSelection(ant.getCurrentNode());
+                ant.nextNode(nextNode);
             }
-        } else {
-
         }
     }
 
@@ -88,19 +97,26 @@ public class ACO implements Run {
      * @param currentNode currently where the ant now.
      * @return nextNode where the ant next to move.
      */
-    private int nextNodeSelection(int currentNode) {
+    private int nextNodeSelection(final int currentNode) {
         int nextNode = -1;
         double n = 0.0;
         double maxProbability = 0.0;
         List<Edge> edgesList = graph.get(currentNode).edges();
+        // Check if there is pre-calculate denominator. If not then calculate and store them.
         if (!denominator.containsKey(currentNode)) {
-            for (Edge i : edgesList) {
-                n += i.getCapacity() * graph.get(i.getConnectedNode()).getDemand();
+            if (edgesList.isEmpty()) {
+                denominator.put(currentNode, Double.MAX_VALUE);
+            } else {
+                for (Edge i : edgesList) {
+                    n += i.getCapacity() * graph.get(i.getConnectedNode()).getDemand();
+                }
+                denominator.put(currentNode, n);
             }
-            denominator.put(currentNode, n);
         }
         for (Edge i : edgesList) {
-            double temp = pow(i.getCapacity(), AlPHA) * pow(graph.get(i.getConnectedNode()).getDemand(), BETA) / denominator.get(currentNode);
+            // Multiply pheromone and the demand.
+            double temp = pow(getPheromone(currentNode, i.getConnectedNode()), AlPHA) *
+                    pow(graph.get(i.getConnectedNode()).getDemand(), BETA) / denominator.get(currentNode);
             if (temp > maxProbability) {
                 nextNode = i.getConnectedNode();
                 maxProbability = temp;
@@ -128,6 +144,15 @@ public class ACO implements Run {
             _power -= temp;
             powers.add(temp);
         }
+    }
+
+    /**
+     * @param i node u
+     * @param j node v
+     * @return the pheromone from node u to node v;
+     */
+    private double getPheromone(final int i, final int j) {
+        return pheromoneTrail[i][j];
     }
 
 }
