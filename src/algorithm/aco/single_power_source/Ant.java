@@ -1,8 +1,6 @@
 package algorithm.aco.single_power_source;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by seal on 5/28/15.
@@ -11,10 +9,10 @@ public class Ant {
     private double power;
     private int currentNode;
     private boolean powerEmpty;
-    private Deque<Integer> tour;
+    private List<Integer> tour;
 
     public Ant() {
-        tour = new ArrayDeque<>();
+        tour = new ArrayList<>();
     }
 
     public void setPower(final double power) {
@@ -33,10 +31,20 @@ public class Ant {
         }
     }
 
+    /**
+     * Set the next Node as current node. This way ant move from one node to next node.
+     * @param nextNode node that the ant next to move.
+     */
     public void nextNode(final int nextNode) {
         this.currentNode = nextNode;
-        tour.addFirst(nextNode);
+        tour.add(nextNode);
     }
+
+    /**
+     * This method return the tour array that is visited by the this ant.
+     * @return an integer ArrayDeque that is store the tour.
+     */
+    public List<Integer> getTour() {return this.tour;}
 
     /**
      * Negate the powerEmpty boolean variable to notify

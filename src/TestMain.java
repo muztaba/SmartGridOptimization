@@ -1,5 +1,7 @@
 import algorithm.Gibbs;
 import algorithm.MonteCarlo;
+import algorithm.Run;
+import algorithm.aco.single_power_source.ACO;
 import com.sun.org.apache.bcel.internal.generic.LSTORE;
 import graph.Edge;
 import graph.GraphGenerator;
@@ -14,13 +16,18 @@ import java.util.List;
  * Created by seal on 2/23/15.
  */
 public class TestMain {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
 //        printGraph(1, new GraphGenerator().graphGenerator(5, 500, 300, 40));
         GraphInput in = new GraphInput();
-        List<Node> graph = in.readGraph("/home/seal/IdeaProjects/SmartGridOptimization/output/graphOutput.txt1.txt");
-        checkGibbs(1, graph);
+        List<Node> graph = in.readGraph("/home/seal/IdeaProjects/SmartGridOptimization/input/graph.txt");
+        checkACO(1, graph);
     }
 
+
+    private static void checkACO(int testCase, List<Node> graph) {
+        Run solver = new ACO(graph, 0);
+        solver.run();
+    }
     private static void checkGibbs(int testCase, List<Node> graph) {
         Gibbs solver = new Gibbs();
         solver.gibbs(graph, 100);

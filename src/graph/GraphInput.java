@@ -20,6 +20,7 @@ public class GraphInput {
 
     public List<Node> readGraph(String path) throws IOException {
         InputReader in = new InputReader(new File(path));
+        System.out.println("Starting graph input");
         int nodeNumber = in.nextInt();
         int edges = in.nextInt();
         this.graph = new ArrayList<>(nodeNumber);
@@ -35,6 +36,7 @@ public class GraphInput {
             int capacity = in.nextInt();
             graph.get(u).setConnectedWith(v, capacity);
         }
+        System.out.println("Finish input");
         return graph;
     }
 

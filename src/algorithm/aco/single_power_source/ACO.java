@@ -1,8 +1,8 @@
 package algorithm.aco.single_power_source;
 
+import Utils.ArrayUtils;
 import algorithm.Run;
 import graph.Edge;
-import graph.GraphInput;
 import graph.Node;
 
 import java.io.IOException;
@@ -18,21 +18,21 @@ public class ACO implements Run {
     public static final double AlPHA = 1.0;
     public static final double BETA = 1.0;
     public static final double EVAPORATION = 0.5;
+
     private double[][] pheromoneTrail;
 
-    private final int source;
-    private final int size;
-    private double power;
+    private final int source; // Considering one power source
+    private final int size; // Graph size
+    private double power; // Power of the source
     private int powersIndex = Integer.MAX_VALUE;
     private int sourceEdgeIndex;
 
     final private List<Node> graph;
     private Set<Integer> visited;
     private List<Double> powers;
-    // Store the value of all connected node demand and capacity.
-    // This will calculate when the next node chose with probability. It can reduce some calculation.
-    private Map<Integer, Double> denominator;
+    private Map<Integer, Double> denominator; // calculate the denominator for probability.
     private Ant ant;
+    private BestTour bestTourSoFar;
 
     public ACO(final List<Node> graph, final int source) {
         this.graph = graph;
@@ -40,7 +40,7 @@ public class ACO implements Run {
         this.size = graph.size();
         this.power = graph.get(source).getSupply();
         this.pheromoneTrail = new double[size][size]; // Create pheromone trail 2-D array
-        Arrays.fill(pheromoneTrail, 1.0); // Initialize the array with 1.0 value.
+        ArrayUtils.fill(pheromoneTrail, 1.0); // Initialize the array with 1.0 value.
         // initialize the visited List with number of the total node in graph.
         this.visited = new HashSet<>(size);
         // powers is arrayList that store the distribution of power within the source's edges.
@@ -51,11 +51,16 @@ public class ACO implements Run {
     @Override
     public void run() {
         // For the primary ants.
+        System.out.println("Algorithm start");
         for (int iteration = 0; iteration < primaryIteration; iteration++) {
+            System.out.println(iteration);
             setupAnts();
             moveAnt();
+            updateTrail();
+            bestTourSoFar();
         }
     }
+
 
     /**
      * Create an new ant and place at the primary source for the first time.
@@ -69,7 +74,8 @@ public class ACO implements Run {
             ant.setPower(powers.get(powersIndex++));
         } else {
             generatePowers();
-            ant.setPower(powers.get(powersIndex = 0));
+            powersIndex = 0;
+            ant.setPower(powers.get(powersIndex));
         }
     }
 
@@ -90,6 +96,25 @@ public class ACO implements Run {
         }
     }
 
+
+    /**
+     * Ant visited the node and keep track them. This method update the trail pheromone
+     * between two node u -> v. Update happen with this equation, (1 - p) * t (u -> v).
+     * where p = EVAPORATION rate and t = previous pheromone to node u -> v.
+     */
+    private void updateTrail() {
+        List<Integer> tour = ant.getTour();
+        for (int i = 0; i < tour.size() - 1; i++) {
+            int u = tour.get(i);
+            int v = tour.get(i + 1);
+            pheromoneTrail[u][v] *= (1 - EVAPORATION); // (1 - p) * t(u, v)
+        }
+    }
+
+    private void bestTourSoFar() {
+        bestTourSoFar.addTour(sourceEdgeIndex, ant.getTour());
+    }
+
     /**
      * This method chose probabilistically next node from where the ant is currently
      * standing.
@@ -108,7 +133,7 @@ public class ACO implements Run {
                 denominator.put(currentNode, Double.MAX_VALUE);
             } else {
                 for (Edge i : edgesList) {
-                    n += i.getCapacity() * graph.get(i.getConnectedNode()).getDemand();
+                    n += getPheromone(currentNode, i.getConnectedNode()) * graph.get(i.getConnectedNode()).getDemand();
                 }
                 denominator.put(currentNode, n);
             }
@@ -136,13 +161,21 @@ public class ACO implements Run {
     }
 
     private void generatePowers() {
-        powers.clear();
+        this.powers.clear();
         double temp = 0.0;
         double _power = this.power;
-        for (int i = 0; i < powers.size(); i++) {
+        for (int i = 0; i < graph.get(source).degree(); i++) {
             temp = _power * Math.random();
             _power -= temp;
-            powers.add(temp);
+            this.powers.add(temp);
+        }
+        // Set the current power distribution within edges of source to the BestTour object.
+        // Lazy initialization apply.
+        if (bestTourSoFar != null) {
+            bestTourSoFar.setPowers(powers);
+        } else {
+            bestTourSoFar = new BestTour();
+            bestTourSoFar.setPowers(powers);
         }
     }
 
