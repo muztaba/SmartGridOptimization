@@ -15,10 +15,6 @@ public class Ant {
         tour = new ArrayList<>();
     }
 
-    public void setPower(final double power) {
-        this.power = power;
-    }
-
     public int getPower(int demand) {
         if (power - demand <= 0) {
             powerEmpty = true;
@@ -40,6 +36,11 @@ public class Ant {
         tour.add(nextNode);
     }
 
+    public int removeFromEnd() {
+        tour.remove(tour.size() - 1);
+        return tour.get(tour.size() - 1);
+    }
+
     /**
      * This method return the tour array that is visited by the this ant.
      * @return an integer ArrayDeque that is store the tour.
@@ -52,5 +53,9 @@ public class Ant {
      * @return negation of the powerEmpty.
      */
     public boolean isMoveStop() {return !this.powerEmpty;}
+
     public int getCurrentNode() {return this.currentNode;}
+    public void setPower(final double power) {
+        this.power = power;
+    }
 }

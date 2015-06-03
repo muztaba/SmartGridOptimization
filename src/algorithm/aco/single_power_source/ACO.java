@@ -81,18 +81,22 @@ public class ACO implements Run {
 
     private void moveAnt() {
         while (ant.isMoveStop()) {
+            int nextNode = -1;
             // Ant place at the source node. Force to chose edge sequentially.
             // Else ant place any node other than source. Next node chose probabilistically.
             if (ant.getCurrentNode() == source) {
                 if (sourceEdgeIndex < graph.get(source).degree()) {
-                    ant.nextNode(graph.get(source).edge(sourceEdgeIndex++));
+                    nextNode = graph.get(source).edge(sourceEdgeIndex++);
+                    ant.nextNode(nextNode);
                 } else {
-                    ant.nextNode(graph.get(source).edge(sourceEdgeIndex = 0));
+                    nextNode = graph.get(source).edge(sourceEdgeIndex = 0);
+                    ant.nextNode(nextNode);
                 }
             } else {
-                int nextNode = nextNodeSelection(ant.getCurrentNode());
+                nextNode = nextNodeSelection(ant.getCurrentNode());
                 ant.nextNode(nextNode);
             }
+            visited.add(nextNode);
         }
     }
 
@@ -124,20 +128,19 @@ public class ACO implements Run {
      */
     private int nextNodeSelection(final int currentNode) {
         int nextNode = -1;
-        double n = 0.0;
         double maxProbability = 0.0;
-        List<Edge> edgesList = graph.get(currentNode).edges();
-        // Check if there is pre-calculate denominator. If not then calculate and store them.
-        if (!denominator.containsKey(currentNode)) {
-            if (edgesList.isEmpty()) {
-                denominator.put(currentNode, Double.MAX_VALUE);
-            } else {
-                for (Edge i : edgesList) {
-                    n += getPheromone(currentNode, i.getConnectedNode()) * graph.get(i.getConnectedNode()).getDemand();
-                }
-                denominator.put(currentNode, n);
-            }
+        List<Edge> edgesList = graph.get(currentNode).edges();// Get the edges of the current node where the ant standing.
+
+        if (edgesList == null || edgesList.size() == 0) {
+
         }
+
+        // Check if there is pre-calculate denominator.
+        if (!denominator.containsKey(currentNode)) {
+            calculateDenominator(currentNode, edgesList);
+        }
+
+        // Calculating the probability the ant's next move.
         for (Edge i : edgesList) {
             // Multiply pheromone and the demand.
             double temp = pow(getPheromone(currentNode, i.getConnectedNode()), AlPHA) *
@@ -148,6 +151,29 @@ public class ACO implements Run {
             }
         }
         return nextNode;
+    }
+
+    /**
+     * This method calculate the denominator if it is not already calculated.
+     * @param currentNode where the ant currently standing
+     * @param edgeList currentNode's edges where the ant possible to go
+     * @see nextNodeSelection
+     */
+    public void calculateDenominator(final int currentNode, final List<Edge> edgeList) {
+        double n = 0.0;
+        if (edgeList.isEmpty()) {
+            denominator.put(currentNode, Double.MAX_VALUE);
+        } else {
+            for (Edge i : edgeList) {
+                n += getPheromone(currentNode, i.getConnectedNode()) * graph.get(i.getConnectedNode()).getDemand();
+            }
+            denominator.put(currentNode, n);
+        }
+    }
+
+    public int deadEndRecover(int currentNode) {
+
+        return currentNode;
     }
 
     /**
