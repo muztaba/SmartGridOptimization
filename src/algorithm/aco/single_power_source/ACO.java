@@ -15,7 +15,7 @@ public class ACO implements Run {
     public static final int primaryIteration = 1000;
     public static final int secondaryIteration = 1000;
     // Probability fluctuation factor
-    public static final double AlPHA = 1.0;
+    public static final double ALPHA = 1.0;
     public static final double BETA = 1.0;
     public static final double EVAPORATION = 0.5;
 
@@ -143,7 +143,7 @@ public class ACO implements Run {
         // Calculating the probability the ant's next move.
         for (Edge i : edgesList) {
             // Multiply pheromone and the demand.
-            double temp = pow(getPheromone(currentNode, i.getConnectedNode()), AlPHA) *
+            double temp = pow(getPheromone(currentNode, i.getConnectedNode()), ALPHA) *
                     pow(graph.get(i.getConnectedNode()).getDemand(), BETA) / denominator.get(currentNode);
             if (temp > maxProbability) {
                 nextNode = i.getConnectedNode();
