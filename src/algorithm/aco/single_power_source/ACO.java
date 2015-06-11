@@ -93,7 +93,6 @@ public class ACO implements Run {
                 nextNode = nextNodeSelection(ant.getCurrentNode());
                 ant.nextNode(nextNode);
             }
-            visited.add(nextNode);
         }
     }
 
