@@ -28,7 +28,6 @@ public class ACO implements Run {
     private int sourceEdgeIndex;
 
     final private List<Node> graph;
-    private Set<Integer> visited;
     private List<Double> powers;
     private Map<Integer, Double> denominator; // calculate the denominator for probability.
     private Ant ant;
@@ -41,8 +40,6 @@ public class ACO implements Run {
         this.power = graph.get(source).getSupply();
         this.pheromoneTrail = new double[size][size]; // Create pheromone trail 2-D array
         ArrayUtils.fill(pheromoneTrail, 1.0); // Initialize the array with 1.0 value.
-        // initialize the visited List with number of the total node in graph.
-        this.visited = new HashSet<>(size);
         // powers is arrayList that store the distribution of power within the source's edges.
         this.powers = new ArrayList<>(graph.get(source).degree());
         this.denominator = new HashMap<>(size);
