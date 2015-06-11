@@ -9,10 +9,13 @@ public class Ant {
     private double power;
     private int currentNode;
     private boolean powerEmpty;
+
     private List<Integer> tour;
+    private Set<Integer> visited;
 
     public Ant() {
         tour = new ArrayList<>();
+        visited = new HashSet<>();
     }
 
     public int getPower(int demand) {
@@ -34,11 +37,20 @@ public class Ant {
     public void nextNode(final int nextNode) {
         this.currentNode = nextNode;
         tour.add(nextNode);
+        visited.add(nextNode);
     }
 
-    public int removeFromEnd() {
+    public boolean isVisitedBefore(final int node) {
+        return visited.contains(node);
+    }
+
+    /**
+     * This method remove the node where the ant currently standing. Then the currentNode has been
+     * updated to the last node of it's path, that is the last node of the list array. It behave like back track.
+     */
+    public void removeFromEnd() {
         tour.remove(tour.size() - 1);
-        return tour.get(tour.size() - 1);
+        currentNode = tour.get(tour.size() - 1);
     }
 
     /**

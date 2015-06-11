@@ -128,7 +128,7 @@ public class ACO implements Run {
      */
     private int nextNodeSelection(final int currentNode) {
         int nextNode = -1;
-        double maxProbability = 0.0;
+        double maxProbability = Double.MIN_VALUE;
         List<Edge> edgesList = graph.get(currentNode).edges();// Get the edges of the current node where the ant standing.
 
         if (edgesList == null || edgesList.size() == 0) {
@@ -153,10 +153,18 @@ public class ACO implements Run {
         return nextNode;
     }
 
+    public int backTrack(int currentNode) {
+        ant.removeFromEnd(); // remove the current node that is dead end.
+        currentNode = ant.getCurrentNode();
+
+        return currentNode;
+    }
+
     /**
      * This method calculate the denominator if it is not already calculated.
+     *
      * @param currentNode where the ant currently standing
-     * @param edgeList currentNode's edges where the ant possible to go
+     * @param edgeList    currentNode's edges where the ant possible to go
      * @see nextNodeSelection
      */
     public void calculateDenominator(final int currentNode, final List<Edge> edgeList) {
@@ -169,11 +177,6 @@ public class ACO implements Run {
             }
             denominator.put(currentNode, n);
         }
-    }
-
-    public int deadEndRecover(int currentNode) {
-
-        return currentNode;
     }
 
     /**
