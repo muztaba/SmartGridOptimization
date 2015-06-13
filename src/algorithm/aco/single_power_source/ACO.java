@@ -45,17 +45,22 @@ public class ACO implements Run {
         this.denominator = new HashMap<>(size);
     }
 
+    /**
+     *  From this method algorithm begin to start. This is a interface implementation.
+     *  run() method override from Run interface.
+     */
     @Override
     public void run() {
         // For the primary ants.
         System.out.println("Algorithm start");
         for (int iteration = 0; iteration < primaryIteration; iteration++) {
-            System.out.println(iteration);
             setupAnts();
             moveAnt();
             bestTourSoFar();
             // After every 10 iteration update the pheromone trail along with the best tour path.
             if (iteration % 10 == 0) updateTrail();
+            // After successfully one iteration print the iteration number in the console.
+            System.out.println(iteration);
         }
     }
 

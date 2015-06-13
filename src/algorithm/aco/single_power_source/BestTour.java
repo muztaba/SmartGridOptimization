@@ -18,6 +18,7 @@ public class BestTour {
     }
 
     public void addTour(final int index, List<Integer> tour) {
+        System.out.println("**" + index);
         if (index >= tour.size()) {
             bestTour.add(tour);
         } else if (tour.size() > bestTour.get(index).size()) {
