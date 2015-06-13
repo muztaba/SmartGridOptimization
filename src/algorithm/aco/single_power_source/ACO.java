@@ -91,6 +91,7 @@ public class ACO implements Run {
                 }
             } else {
                 nextNode = nextNodeSelection(ant.getCurrentNode());
+                if (nextNode < 0) break;
                 ant.nextNode(nextNode);
             }
         }
@@ -128,7 +129,7 @@ public class ACO implements Run {
         List<Edge> edgesList = graph.get(currentNode).edges();// Get the edges of the current node where the ant standing.
 
         if (edgesList == null || edgesList.size() == 0) {
-
+            return backTrack();
         }
 
         // Check if there is pre-calculate denominator.
@@ -138,22 +139,32 @@ public class ACO implements Run {
 
         // Calculating the probability the ant's next move.
         for (Edge i : edgesList) {
-            // Multiply pheromone and the demand.
-            double temp = pow(getPheromone(currentNode, i.getConnectedNode()), ALPHA) *
-                    pow(graph.get(i.getConnectedNode()).getDemand(), BETA) / denominator.get(currentNode);
-            if (temp > maxProbability) {
-                nextNode = i.getConnectedNode();
-                maxProbability = temp;
+            if (!ant.isVisitedBefore(i.getConnectedNode())) {
+                // Multiply pheromone and the demand.
+                double temp = pow(getPheromone(currentNode, i.getConnectedNode()), ALPHA) *
+                        pow(graph.get(i.getConnectedNode()).getDemand(), BETA) / denominator.get(currentNode);
+                if (temp > maxProbability) {
+                    nextNode = i.getConnectedNode();
+                    maxProbability = temp;
+                }
             }
         }
         return nextNode;
     }
 
-    public int backTrack(int currentNode) {
-        ant.removeFromEnd(); // remove the current node that is dead end.
-        currentNode = ant.getCurrentNode();
-
-        return currentNode;
+    /**
+     * When an ant standing at the leaf node that is the node has no out degree then
+     * this method place the ant at node immediately before the current node. From this
+     * node ant again chose next node probabilistically through the nextNodeSelection
+     * method except the visited node.
+     *
+     * @return nextNode from where the ant begins to tour again.
+     * @see nextNodeSelection
+     */
+    public int backTrack() {
+        ant.removeFromEnd(); // Remove the current node that is dead end.
+        int currentNode = ant.getCurrentNode();
+        return nextNodeSelection(currentNode);
     }
 
     /**
