@@ -105,16 +105,20 @@ public class ACO implements Run {
 
 
     /**
-     * Ant visited the node and keep track them. This method update the trail pheromone
-     * between two node u -> v. Update happen with this equation, (1 - p) * t (u -> v).
+     * After certain iteration pheromone trail will be updated. Ants made tour that has
+     * saved into the bestTourSoFar object. Get the tours from that this object and
+     * update the pheromone trail.
+     * Update happen with this equation, (1 - p) * t (u -> v).
      * where p = EVAPORATION rate and t = previous pheromone to node u -> v.
      */
     private void updateTrail() {
-        List<Integer> tour = ant.getTour();
-        for (int i = 0; i < tour.size() - 1; i++) {
-            int u = tour.get(i);
-            int v = tour.get(i + 1);
-            pheromoneTrail[u][v] *= (1 - EVAPORATION); // (1 - p) * t(u, v)
+        List<List<Integer>> tours = bestTourSoFar.getBestTour();
+        for (List<Integer> tour : tours) {
+            for (int i = 0; i < tour.size() - 1; i++) {
+                int u = tour.get(i);
+                int v = tour.get(i + 1);
+                pheromoneTrail[u][v] *= (1 - EVAPORATION); // (1 - p) * t(u, v)
+            }
         }
     }
 
