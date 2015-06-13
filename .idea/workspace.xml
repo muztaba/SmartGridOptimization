@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47d9ba94-7b4b-4918-b4b5-b85a721e04a3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/single_power_source/BestTour.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/single_power_source/BestTour.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartGridOptimization.iws" />
@@ -747,7 +746,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434200152601</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="update printTour method">
+      <created>1434200169845</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1434200169845</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -799,7 +804,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="start coding monte carlo" />
     <MESSAGE value="MonteCarlo Algorithm is working" />
     <MESSAGE value="Code rearrange in Monte Carlo and make superclass Algorithm." />
     <MESSAGE value="Code rearrange." />
@@ -824,7 +828,8 @@
     <MESSAGE value="logical error remove at addTour method." />
     <MESSAGE value="logical error remove at setupAnt method." />
     <MESSAGE value="update run method" />
-    <option name="LAST_COMMIT_MESSAGE" value="update run method" />
+    <MESSAGE value="update printTour method" />
+    <option name="LAST_COMMIT_MESSAGE" value="update printTour method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
