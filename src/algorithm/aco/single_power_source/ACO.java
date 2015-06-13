@@ -25,7 +25,7 @@ public class ACO implements Run {
     private final int size; // Graph size
     private double power; // Power of the source
     private int powersIndex = Integer.MAX_VALUE;
-    private int sourceEdgeIndex;
+    private int sourceEdgeIndex = Integer.MAX_VALUE;
 
     final private List<Node> graph;
     private List<Double> powers;
