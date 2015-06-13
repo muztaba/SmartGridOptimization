@@ -53,8 +53,9 @@ public class ACO implements Run {
             System.out.println(iteration);
             setupAnts();
             moveAnt();
-            updateTrail();
             bestTourSoFar();
+            // After every 10 iteration update the pheromone trail along with the best tour path.
+            if (iteration % 10 == 0) updateTrail();
         }
     }
 
@@ -76,17 +77,22 @@ public class ACO implements Run {
         }
     }
 
+    /**
+     *  This method move the ant in the graph until it's power will empty or if the there is no why to
+     *  move(when the nextNodeSelection return -1).
+     *  If the ant currently standing at the source then force to chose ege sequentially or the
+     *  ant chose probabilistically to move next node.
+     */
     private void moveAnt() {
         while (ant.isMoveStop()) {
             int nextNode = -1;
-            // Ant place at the source node. Force to chose edge sequentially.
-            // Else ant place any node other than source. Next node chose probabilistically.
             if (ant.getCurrentNode() == source) {
                 if (sourceEdgeIndex < graph.get(source).degree()) {
                     nextNode = graph.get(source).edge(sourceEdgeIndex++);
                     ant.nextNode(nextNode);
                 } else {
-                    nextNode = graph.get(source).edge(sourceEdgeIndex = 0);
+                    sourceEdgeIndex = 0;
+                    nextNode = graph.get(source).edge(sourceEdgeIndex);
                     ant.nextNode(nextNode);
                 }
             } else {
