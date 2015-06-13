@@ -62,6 +62,7 @@ public class ACO implements Run {
             // After successfully one iteration print the iteration number in the console.
             System.out.println(iteration);
         }
+        bestTourSoFar.printTour();
     }
 
 
