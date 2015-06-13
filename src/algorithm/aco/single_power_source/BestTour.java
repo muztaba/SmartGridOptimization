@@ -2,6 +2,7 @@ package algorithm.aco.single_power_source;
 
 import javax.xml.crypto.dom.DOMCryptoContext;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -14,7 +15,6 @@ public class BestTour {
     BestTour() {
         this.powers = new ArrayList<>();
         this.bestTour = new ArrayList<>();
-
     }
 
     public void addTour(final int index, List<Integer> tour) {
@@ -25,8 +25,8 @@ public class BestTour {
         }
     }
 
-    public void setPowers(final List<Double> powers) {
-        this.powers = powers;
+    public List<List<Integer>> getBestTour() {
+        return bestTour;
     }
 
     public void printTour() {
@@ -35,5 +35,9 @@ public class BestTour {
                 System.out.println(j);
             }
         }
+    }
+
+    public void setPowers(final List<Double> powers) {
+        this.powers = powers;
     }
 }
