@@ -18,7 +18,7 @@ public class BestTour {
     }
 
     public void addTour(final int index, List<Integer> tour) {
-        if (index >= tour.size()) {
+        if (index >= bestTour.size()) {
             bestTour.add(tour);
         } else if (tour.size() > bestTour.get(index).size()) {
             bestTour.set(index, tour);
