@@ -14,10 +14,13 @@ public class BestTour {
     BestTour() {
         this.powers = new ArrayList<>();
         this.bestTour = new ArrayList<>();
+
     }
 
     public void addTour(final int index, List<Integer> tour) {
-        if (tour.size() > bestTour.get(index).size()) {
+        if (bestTour.get(index) == null || bestTour.get(index).size() == 0) {
+            bestTour.add(tour);
+        } else if (tour.size() > bestTour.get(index).size()) {
             bestTour.set(index, tour);
         }
     }
