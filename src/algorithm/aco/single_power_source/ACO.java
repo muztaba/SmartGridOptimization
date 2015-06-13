@@ -73,8 +73,9 @@ public class ACO implements Run {
         // Place the ant at the source node.
         ant.nextNode(source);
         // Distribute the power of the source node within the source edge. Initially powerIndex = Integer.MAX_VALUE
-        if (powersIndex <= powers.size() - 1) {
-            ant.setPower(powers.get(++powersIndex));
+        if (powersIndex <= powers.size() - 2) {
+            ++powersIndex;
+            ant.setPower(powers.get(powersIndex));
         } else {
             generatePowers();
             powersIndex = 0;
