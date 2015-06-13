@@ -30,10 +30,13 @@ public class BestTour {
     }
 
     public void printTour() {
+        for (Double i : powers) System.out.print(i + " ");
+        System.out.println();
         for (List<Integer> i : bestTour) {
             for (int j : i) {
-                System.out.println(j);
+                System.out.print(j + " ");
             }
+            System.out.println();
         }
     }
 
