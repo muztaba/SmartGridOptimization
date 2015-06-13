@@ -10,15 +10,13 @@ import java.util.List;
 public class BestTour {
     private List<Double> powers;
     private List<List<Integer>> bestTour;
-    private List<List<Integer>> allTours;
+
     BestTour() {
         this.powers = new ArrayList<>();
         this.bestTour = new ArrayList<>();
-        this.allTours = new ArrayList<>();
     }
 
     public void addTour(final int index, List<Integer> tour) {
-        allTours.add(tour);
         if (tour.size() > bestTour.get(index).size()) {
             bestTour.set(index, tour);
         }
