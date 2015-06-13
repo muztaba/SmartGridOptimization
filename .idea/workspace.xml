@@ -752,7 +752,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434200169845</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="update repo">
+      <created>1434200206180</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1434200206180</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -804,7 +810,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="MonteCarlo Algorithm is working" />
     <MESSAGE value="Code rearrange in Monte Carlo and make superclass Algorithm." />
     <MESSAGE value="Code rearrange." />
     <MESSAGE value="Gibbs Algorithm working.[test]" />
@@ -829,7 +834,8 @@
     <MESSAGE value="logical error remove at setupAnt method." />
     <MESSAGE value="update run method" />
     <MESSAGE value="update printTour method" />
-    <option name="LAST_COMMIT_MESSAGE" value="update printTour method" />
+    <MESSAGE value="update repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="update repo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
