@@ -39,4 +39,8 @@ public class Node {
     public double getLoadShedding() {
         return Math.abs(loadShedding);
     }
+
+    public int getNodeNumber() {
+        return node;
+    }
 }
