@@ -15,13 +15,28 @@ public class Node {
         this.node = node;
         this.use = use;
         this.supply_demand = (this.use < 0) ? -1 : 1;
+        init();
     }
-    
-    public void addElectricity(double electricity) {
 
+    /**
+     * Randomly given electricity to a node is subtract from the previous load shedding.
+     * If the load shedding value negative then the node has residual electricity. Otherwise
+     * there is still load shedding.
+     * @param electricity
+     */
+    public void addElectricity(double electricity) {
+        loadShedding = loadShedding - electricity;
+    }
+
+    public void reset() {
+        init();
+    }
+
+    private void init() {
+        this.loadShedding = (supply_demand < -1) ? Math.abs(use) : 0;
     }
 
     public double getLoadShedding() {
-        return loadShedding;
+        return Math.abs(loadShedding);
     }
 }
