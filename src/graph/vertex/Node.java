@@ -43,4 +43,7 @@ public class Node {
     public int getNodeNumber() {
         return node;
     }
+    public int getSupply_demand() {
+        return supply_demand;
+    }
 }
