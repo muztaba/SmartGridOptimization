@@ -9,12 +9,18 @@ import java.util.*;
  * Created by seal on 7/13/15.
  */
 public class Graph <V extends Node, E> {
-    Map<Integer, V> vertexes = new HashMap<>();
-    Map<Integer, Set<Pair<Integer, Double>>> edges = new HashMap<>();
+    private Map<Integer, V> vertexes = new HashMap<>();
+    private Map<Integer, Set<Pair<Integer, Double>>> edges = new HashMap<>();
 
     // Keep the list of the sources.
-    Set<Integer> sourceList = new HashSet<>();
+    private List<Integer> sourceList = new ArrayList<>();
 
+    /**
+     * Add the vertex(node) to the graph. Using a map structure to keep the node.
+     * map key is the vertex number and the value is the vertex itself.
+     *
+     * @param node node class that represent the vertex.
+     */
     public void addVertex(final V node) {
         int nodeNumber = node.getNodeNumber();
         vertexes.put(nodeNumber, node);
@@ -38,4 +44,93 @@ public class Graph <V extends Node, E> {
         edges.get(v).add(V);
     }
 
+    /**
+     * Return the list of sources with shuffle every time the method call.
+     * This can ensure that ant chose source every time randomly.
+     *
+     * @return list of the sources of the graph
+     */
+    public List<Integer> getSourceList() {
+        Collections.shuffle(sourceList);
+        return sourceList;
+    }
+
+    /**
+     * This method return that how many number of vertex this graph object contain.
+     * The vertexes map size is the number of total number of vertexes.
+     *
+     * @return an integer number that represent the total vertexes of the graph.
+     */
+    public int vertexesNumber() {
+        return vertexes.size();
+    }
+
+    /**
+     * This method return the number of the vertexes that the particular node is connected with.
+     *
+     * @param node node number.
+     * @return the size of the set value from the edges map.
+     */
+    public int edgeCount(final int node) {
+        return edges.get(node).size();
+    }
+
+    /**
+     * Return the current load shedding of the particular node.
+     *
+     * @param nodeNumber which node's load shedding will return.
+     * @return double value of that node load shedding.
+     */
+    public double getLoadShedding(final int nodeNumber) {
+        return vertexes.get(nodeNumber).getLoadShedding();
+    }
+
+    public static class VertexInfo {
+        public final int nodeNumber;
+        public final double loadShedding;
+        public final double capacity;
+
+        public VertexInfo(int nodeNumber, double loadShedding, double capacity) {
+            this.nodeNumber = nodeNumber;
+            this.loadShedding = loadShedding;
+            this.capacity = capacity;
+        }
+    }
+
+    private VertexInfo[] vertexInfo;
+
+    private void makeEdgeInfoArray(final int node) {
+        int edges = edgeCount(node);
+        vertexInfo = new VertexInfo[edges];
+        Pair[] pairList = this.edges.get(node).toArray(new Pair[edges]);
+
+        for(int i = 0; i < vertexInfo.length; i++) {
+            int _nodeNumber = (Integer) pairList[i].first;
+            double _loadShedding = getLoadShedding(_nodeNumber);
+            double _capacity = (Double) pairList[i].second;
+            vertexInfo[i] = new VertexInfo(_nodeNumber, _loadShedding, _capacity);
+        }
+    }
+
+    public Iterable<VertexInfo> forward(final int node) {
+        makeEdgeInfoArray(node);
+        return new Iterable<VertexInfo>() {
+            @Override
+            public Iterator<VertexInfo> iterator() {
+                return new Iterator<VertexInfo>() {
+                    int index = 0;
+
+                    @Override
+                    public boolean hasNext() {
+                        return index < vertexInfo.length;
+                    }
+
+                    @Override
+                    public VertexInfo next() {
+                        return vertexInfo[index++];
+                    }
+                };
+            }
+        };
+    }
 }
