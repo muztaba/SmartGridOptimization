@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47d9ba94-7b4b-4918-b4b5-b85a721e04a3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/vertex/Node.java" afterPath="$PROJECT_DIR$/src/graph/vertex/Node.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartGridOptimization.iws" />
@@ -44,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ACO.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ACO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69491524">
+            <state vertical-scroll-proportion="0.0">
               <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
@@ -68,8 +67,25 @@
         <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graph/vertex/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.9322034">
+              <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
+              <folding>
+                <element signature="e#1440#1441#0" expanded="true" />
+                <element signature="e#1485#1486#0" expanded="true" />
+                <element signature="e#1519#1520#0" expanded="true" />
+                <element signature="e#1546#1547#0" expanded="true" />
+                <element signature="e#1582#1583#0" expanded="true" />
+                <element signature="e#1618#1619#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,10 +162,10 @@
         <option value="$PROJECT_DIR$/src/graph/GraphInput.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/single_power_source/BestTour.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java" />
-        <option value="$PROJECT_DIR$/src/graph/vertex/Node.java" />
         <option value="$PROJECT_DIR$/src/Utils/Pair.java" />
         <option value="$PROJECT_DIR$/src/graph/version2/Graph.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
+        <option value="$PROJECT_DIR$/src/graph/vertex/Node.java" />
       </list>
     </option>
   </component>
@@ -887,7 +903,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437239844511</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="ACO and Ant class create in multi source package.">
+      <created>1437240835487</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1437240835487</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -968,7 +990,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="nextNodeSelection add n.t optimize version will come." />
     <MESSAGE value="array index of out at line 129 in ACO class. [edge = null]" />
     <MESSAGE value="still working with backtraking the ant in the dead end." />
     <MESSAGE value="remove the visited set array&#10;" />
@@ -993,7 +1014,8 @@
     <MESSAGE value="new method add" />
     <MESSAGE value="working on graph class" />
     <MESSAGE value="Iterator implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Iterator implementation." />
+    <MESSAGE value="ACO and Ant class create in multi source package." />
+    <option name="LAST_COMMIT_MESSAGE" value="ACO and Ant class create in multi source package." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1317,13 +1339,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/vertex/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.044270832">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1355,14 +1370,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1373,9 +1380,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69491524">
+        <state vertical-scroll-proportion="0.0">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/algorithm/aco/single_power_source/ACO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/vertex/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9322034">
+          <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
+          <folding>
+            <element signature="e#1440#1441#0" expanded="true" />
+            <element signature="e#1485#1486#0" expanded="true" />
+            <element signature="e#1519#1520#0" expanded="true" />
+            <element signature="e#1546#1547#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
+            <element signature="e#1618#1619#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

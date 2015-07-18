@@ -36,6 +36,13 @@ public class Node {
         this.loadShedding = (supply_demand < -1) ? Math.abs(use) : 0;
     }
 
+    /**
+     * Return the current load shedding of this node. This method return the absolute value of the load shedding.
+     * If the load shedding value is positive that means there is still a load shedding. Otherwise if negative
+     * then there is a residual in this node. In this model both is considered as a load shedding.
+     *
+     * @return an absolute double value of the load shedding.
+     */
     public double getLoadShedding() {
         return Math.abs(loadShedding);
     }
