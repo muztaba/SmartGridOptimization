@@ -85,6 +85,21 @@ public class Graph <V extends Node, E> {
         return vertexes.get(nodeNumber).getLoadShedding();
     }
 
+    /**
+     * Get the power of the source node. Throw an exception if the node is not source node.
+     * Otherwise return the power.
+     *
+     * @throws IllegalArgumentException
+     * @param node node that is working on.
+     * @return double value of the power source.
+     */
+    public double getPower(final int node) {
+        if (vertexes.get(node).getSupply_demand() < 0) {
+            throw new IllegalArgumentException(node + " is not a power source");
+        }
+        return vertexes.get(node).getUse();
+    }
+
     public static class VertexInfo {
         public final int nodeNumber;
         public final double loadShedding;
