@@ -8,6 +8,8 @@ public class Node {
     private final int supply_demand;
     // keep the use
     private double use;
+    // How much electric power this node has that is providing to the other node.
+    private double power;
     // If this variable > 0 then there is load shedding and < 0 then residual.
     private double loadShedding;
 
@@ -33,7 +35,8 @@ public class Node {
     }
 
     private void init() {
-        this.loadShedding = (supply_demand < -1) ? Math.abs(use) : 0;
+        this.power = (supply_demand > 0) ? Math.abs(use) : 0;
+        this.loadShedding = (supply_demand < 0) ? Math.abs(use) : 0;
     }
 
     /**
@@ -46,7 +49,12 @@ public class Node {
     public double getLoadShedding() {
         return Math.abs(loadShedding);
     }
-
+    public double getPower() {
+        return this.power;
+    }
+    public void setPower(final double power) {
+        this.power = power;
+    }
     public int getNodeNumber() {
         return node;
     }

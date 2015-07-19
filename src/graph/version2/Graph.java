@@ -97,7 +97,7 @@ public class Graph <V extends Node, E> {
         if (vertexes.get(node).getSupply_demand() < 0) {
             throw new IllegalArgumentException(node + " is not a power source");
         }
-        return vertexes.get(node).getUse();
+        return vertexes.get(node).getPower();
     }
 
     public static class VertexInfo {
