@@ -53,4 +53,7 @@ public class Node {
     public int getSupply_demand() {
         return supply_demand;
     }
+    public double getUse() {
+        return this.use;
+    }
 }
