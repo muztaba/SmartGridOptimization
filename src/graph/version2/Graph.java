@@ -114,7 +114,7 @@ public class Graph <V extends Node, E> {
 
     private VertexInfo[] vertexInfo;
 
-    private void makeEdgeInfoArray(final int node) {
+    private void makeVertexInfoArray(final int node) {
         int edges = edgeCount(node);
         vertexInfo = new VertexInfo[edges];
         Pair[] pairList = this.edges.get(node).toArray(new Pair[edges]);
@@ -128,7 +128,7 @@ public class Graph <V extends Node, E> {
     }
 
     public Iterable<VertexInfo> extractVertexInfo(final int node) {
-        makeEdgeInfoArray(node);
+        makeVertexInfoArray(node);
         return new Iterable<VertexInfo>() {
             @Override
             public Iterator<VertexInfo> iterator() {

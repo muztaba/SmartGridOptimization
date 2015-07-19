@@ -70,8 +70,8 @@
       <file leaf-file-name="Graph.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/graph/version2/Graph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3594306">
-              <caret line="129" column="49" selection-start-line="129" selection-start-column="49" selection-end-line="129" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.10676157">
+              <caret line="116" column="36" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -190,8 +190,8 @@
         <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
         <option value="$PROJECT_DIR$/src/graph/vertex/Node.java" />
         <option value="$PROJECT_DIR$/src/Utils/CollectionUtils.java" />
-        <option value="$PROJECT_DIR$/src/graph/version2/Graph.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
+        <option value="$PROJECT_DIR$/src/graph/version2/Graph.java" />
       </list>
     </option>
   </component>
@@ -999,7 +999,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437325324852</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="method name change">
+      <created>1437325842443</created>
+      <option name="number" value="00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1437325842443</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1080,7 +1086,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="moveAnt method's comment update." />
     <MESSAGE value="addTour method update with index range check ." />
     <MESSAGE value="getbesttour method add&#10;" />
     <MESSAGE value="updateTrail method update." />
@@ -1105,7 +1110,8 @@
     <MESSAGE value="getUse method add" />
     <MESSAGE value="getPower method add." />
     <MESSAGE value="init collection utils class" />
-    <option name="LAST_COMMIT_MESSAGE" value="init collection utils class" />
+    <MESSAGE value="method name change" />
+    <option name="LAST_COMMIT_MESSAGE" value="method name change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1512,8 +1518,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graph/version2/Graph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3594306">
-          <caret line="129" column="49" selection-start-line="129" selection-start-column="49" selection-end-line="129" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.10676157">
+          <caret line="116" column="36" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
           <folding />
         </state>
       </provider>
