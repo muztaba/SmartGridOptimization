@@ -8,8 +8,8 @@ import java.util.*;
 /**
  * Created by seal on 7/13/15.
  */
-public class Graph <V extends Node, E> {
-    private Map<Integer, V> vertexes = new HashMap<>();
+public class Graph {
+    private Map<Integer, Node> vertexes = new HashMap<>();
     private Map<Integer, Set<Pair<Integer, Double>>> edges = new HashMap<>();
 
     // Keep the list of the sources.
@@ -21,7 +21,7 @@ public class Graph <V extends Node, E> {
      *
      * @param node node class that represent the vertex.
      */
-    public void addVertex(final V node) {
+    public void addVertex(final Node node) {
         int nodeNumber = node.getNodeNumber();
         vertexes.put(nodeNumber, node);
         if (node.getSupply_demand() > 0) {
