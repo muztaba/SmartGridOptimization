@@ -127,7 +127,7 @@ public class Graph <V extends Node, E> {
         }
     }
 
-    public Iterable<VertexInfo> forward(final int node) {
+    public Iterable<VertexInfo> extractVertexInfo(final int node) {
         makeEdgeInfoArray(node);
         return new Iterable<VertexInfo>() {
             @Override

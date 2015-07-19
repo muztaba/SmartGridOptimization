@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47d9ba94-7b4b-4918-b4b5-b85a721e04a3" name="Default" comment="getPower method add.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Utils/CollectionUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/version2/Graph.java" afterPath="$PROJECT_DIR$/src/graph/version2/Graph.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartGridOptimization.iws" />
@@ -35,9 +35,11 @@
         <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+              <caret line="55" column="60" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#623#624#0" expanded="true" />
+                <element signature="e#657#658#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -53,10 +55,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CollectionUtils.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CollectionUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Utils/CollectionUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5084746">
+            <state vertical-scroll-proportion="0.0">
               <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -65,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Graph.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Graph.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/graph/version2/Graph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.571428">
-              <caret line="99" column="44" selection-start-line="99" selection-start-column="44" selection-end-line="99" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.3594306">
+              <caret line="129" column="49" selection-start-line="129" selection-start-column="49" selection-end-line="129" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -187,9 +189,9 @@
         <option value="$PROJECT_DIR$/src/algorithm/aco/pheromone/Pheromone.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
         <option value="$PROJECT_DIR$/src/graph/vertex/Node.java" />
+        <option value="$PROJECT_DIR$/src/Utils/CollectionUtils.java" />
         <option value="$PROJECT_DIR$/src/graph/version2/Graph.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
-        <option value="$PROJECT_DIR$/src/Utils/CollectionUtils.java" />
       </list>
     </option>
   </component>
@@ -991,7 +993,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437324590071</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="init collection utils class">
+      <created>1437325324852</created>
+      <option name="number" value="00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1437325324852</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1072,7 +1080,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="addTour method change ." />
     <MESSAGE value="moveAnt method's comment update." />
     <MESSAGE value="addTour method update with index range check ." />
     <MESSAGE value="getbesttour method add&#10;" />
@@ -1097,7 +1104,8 @@
     <MESSAGE value="Run interface implement" />
     <MESSAGE value="getUse method add" />
     <MESSAGE value="getPower method add." />
-    <option name="LAST_COMMIT_MESSAGE" value="getPower method add." />
+    <MESSAGE value="init collection utils class" />
+    <option name="LAST_COMMIT_MESSAGE" value="init collection utils class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1472,24 +1480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/version2/Graph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.571428">
-          <caret line="99" column="44" selection-start-line="99" selection-start-column="44" selection-end-line="99" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/ArrayUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1500,11 +1490,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/CollectionUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5084746">
+        <state vertical-scroll-proportion="0.0">
           <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="60" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#623#624#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/version2/Graph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3594306">
+          <caret line="129" column="49" selection-start-line="129" selection-start-column="49" selection-end-line="129" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
