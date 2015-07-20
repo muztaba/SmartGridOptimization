@@ -10,7 +10,7 @@ public class InputReader {
     private BufferedReader reader;
     public StringTokenizer tokenizer;
 
-    InputReader(File file) {
+    public InputReader(File file) {
         try {
             reader = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
@@ -19,7 +19,7 @@ public class InputReader {
         tokenizer = null;
     }
 
-    InputReader(InputStream stream) {
+    public InputReader(InputStream stream) {
         reader = new BufferedReader(new InputStreamReader(stream));
         tokenizer = null;
     }

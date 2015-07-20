@@ -8,7 +8,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/GraphInput.java" afterPath="$PROJECT_DIR$/src/graph/GraphInput.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/vertex/Node.java" afterPath="$PROJECT_DIR$/src/graph/vertex/Node.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IOUtils/InputReader.java" afterPath="$PROJECT_DIR$/src/IOUtils/InputReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartGridOptimization.iws" />
@@ -58,21 +58,31 @@
         <entry file="file://$PROJECT_DIR$/src/graph/GraphInput.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+              <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Node.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graph/vertex/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7627119">
+            <state vertical-scroll-proportion="0.0">
               <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
               <folding>
                 <element signature="e#1685#1686#0" expanded="true" />
                 <element signature="e#1718#1719#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graph/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InputReader.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InputReader.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/IOUtils/InputReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7118644">
+              <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -166,9 +176,9 @@
         <option value="$PROJECT_DIR$/src/Utils/CollectionUtils.java" />
         <option value="$PROJECT_DIR$/src/graph/version2/Graph.java" />
         <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
-        <option value="$PROJECT_DIR$/src/IOUtils/InputReader.java" />
-        <option value="$PROJECT_DIR$/src/graph/GraphInput.java" />
         <option value="$PROJECT_DIR$/src/graph/vertex/Node.java" />
+        <option value="$PROJECT_DIR$/src/graph/GraphInput.java" />
+        <option value="$PROJECT_DIR$/src/IOUtils/InputReader.java" />
       </list>
     </option>
   </component>
@@ -690,12 +700,6 @@
       <workItem from="1433179291392" duration="54000" />
       <workItem from="1433180037669" duration="5014000" />
     </task>
-    <task id="LOCAL-00003" summary="edge generator[testing]">
-      <created>1424801175136</created>
-      <option name="number" value="00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1424801175136</updated>
-    </task>
     <task id="LOCAL-00004" summary="upload full intelij full project">
       <created>1425050338838</created>
       <option name="number" value="00004" />
@@ -984,7 +988,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437369055478</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="toString method add">
+      <created>1437369338116</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1437369338116</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1065,7 +1075,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="updateTrail method update." />
     <MESSAGE value="run method rearrange and comment add .&#10;" />
     <MESSAGE value="minor change . still debugging." />
     <MESSAGE value="logical error remove at setupAnts method." />
@@ -1090,7 +1099,8 @@
     <MESSAGE value="method name change" />
     <MESSAGE value="generic to normal graph" />
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="toString method add" />
+    <option name="LAST_COMMIT_MESSAGE" value="toString method add" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1316,13 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1087315">
-          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/Run.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33497536">
@@ -1431,7 +1434,7 @@
         <state vertical-scroll-proportion="1.0826162">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1456,20 +1459,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IOUtils/InputReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graph/GraphGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/vertex/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+          <folding>
+            <element signature="e#1685#1686#0" expanded="true" />
+            <element signature="e#1718#1719#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1485,18 +1497,17 @@
     <entry file="file://$PROJECT_DIR$/src/graph/GraphInput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+          <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graph/vertex/Node.java">
+    <entry file="file://$PROJECT_DIR$/src/IOUtils/InputReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7627119">
-          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.7118644">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
           <folding>
-            <element signature="e#1685#1686#0" expanded="true" />
-            <element signature="e#1718#1719#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
