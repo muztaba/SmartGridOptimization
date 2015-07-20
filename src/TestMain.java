@@ -7,6 +7,7 @@ import graph.Edge;
 import graph.GraphGenerator;
 import graph.GraphInput;
 import graph.Node;
+import graph.version2.Graph;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,10 +20,13 @@ public class TestMain {
     public static void main(String[] args) throws IOException {
 //        printGraph(1, new GraphGenerator().graphGenerator(5, 500, 300, 40));
         GraphInput in = new GraphInput();
-        List<Node> graph = in.readGraph("/home/seal/IdeaProjects/SmartGridOptimization/input/graph.txt");
-        checkACO(1, graph);
+        Graph graph = in.readGraph("");
+        checkNewGraph(graph);
     }
 
+    private static void checkNewGraph(Graph graph) {
+        graph.print();
+    }
 
     private static void checkACO(int testCase, List<Node> graph) {
         Run solver = new ACO(graph, 0);
