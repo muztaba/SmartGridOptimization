@@ -64,4 +64,15 @@ public class Node {
     public double getUse() {
         return this.use;
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "node=" + node +
+                ", supply_demand=" + supply_demand +
+                ", use=" + use +
+                ", power=" + power +
+                ", loadShedding=" + loadShedding +
+                '}';
+    }
 }
