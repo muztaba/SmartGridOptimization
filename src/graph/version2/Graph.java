@@ -1,5 +1,6 @@
 package graph.version2;
 
+import IOUtils.InputReader;
 import Utils.Pair;
 import graph.vertex.Node;
 
@@ -7,6 +8,7 @@ import java.util.*;
 
 /**
  * Created by seal on 7/13/15.
+ * @author Muztaba Hasanat
  */
 public class Graph {
     private Map<Integer, Node> vertexes = new HashMap<>();
@@ -29,6 +31,16 @@ public class Graph {
         }
     }
 
+    /**
+     * This method add edge between two node. 'u' is one node and 'v' is another node
+     * and the capacity of the node. Make a pair with 'v' and capacity and added to a
+     * edges map. Because of the graph bidirectional therefore make two pair with
+     * capacity with 'u' and capacity with 'v'. That is u->v and v->u.
+     *
+     * @param u first node number.
+     * @param v second node number.
+     * @param capacity capacity of the edge.
+     */
     public void addEdge(int u, int v, double capacity) {
         Pair<Integer, Double> U = Pair.makePair(v, capacity);
         Pair<Integer, Double> V = Pair.makePair(u, capacity);
@@ -147,5 +159,15 @@ public class Graph {
                 };
             }
         };
+    }
+
+    //===========================================//
+    //==================DEBUG====================//
+    //===========================================//
+
+    public void print() {
+        for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
+            System.out.println(itr.getValue());
+        }
     }
 }
