@@ -97,18 +97,21 @@ public class Graph {
     }
 
     /**
-     * Get the power of the source node. Throw an exception if the node is not source node.
-     * Otherwise return the power.
+     * Get the power of the source node or demand node that has been left.
+     * If the node has no power or left power then the method return 0.
      *
-     * @throws IllegalArgumentException
      * @param node node that is working on.
      * @return double value of the power source.
+     *          Id node has no power then return 0.
      */
     public double getPower(final int node) {
+        double power = 0.0;
         if (vertexes.get(node).getSupply_demand() < 0) {
-            throw new IllegalArgumentException(node + " is not a power source");
+            power = vertexes.get(node).getLeftPower();
+        } else {
+            power = vertexes.get(node).getPower();
         }
-        return vertexes.get(node).getPower();
+        return power;
     }
 
     public static class VertexInfo {

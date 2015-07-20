@@ -11,6 +11,7 @@ public class Node {
     // How much electric power this node has that is providing to the other node.
     private double power;
     // If this variable > 0 then there is load shedding and < 0 then residual.
+    private double leftPower;
     private double loadShedding;
 
     public Node(int node, double use) {
@@ -63,6 +64,14 @@ public class Node {
     }
     public double getUse() {
         return this.use;
+    }
+
+    public double getLeftPower() {
+        return leftPower;
+    }
+
+    public void setLeftPower(double leftPower) {
+        this.leftPower = leftPower;
     }
 
     @Override
