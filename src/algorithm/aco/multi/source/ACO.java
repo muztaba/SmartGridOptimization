@@ -22,7 +22,7 @@ public class ACO implements Run {
         this.antNumber = antNumber;
         this.graph = graph;
         this.ants = new Ant[antNumber];
-        this.pheromone = new Pheromone(graph.vertexesNumber());
+        this.pheromone = new Pheromone(this.graph.vertexesNumber());
         for (int i = 0; i < ants.length; i++) {
             // Put code here !!
         }
