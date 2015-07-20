@@ -63,7 +63,6 @@ public class Graph {
      * @return list of the sources of the graph
      */
     public List<Integer> getSourceList() {
-        Collections.shuffle(sourceList);
         return sourceList;
     }
 
