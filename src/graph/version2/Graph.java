@@ -114,6 +114,14 @@ public class Graph {
         return power;
     }
 
+    public boolean isSourceNode(final int node) {
+        return sourceList.contains(node);
+    }
+
+    public void addPower(int node, double power) {
+        vertexes.get(node).addElectricity(power);
+    }
+
     public static class VertexInfo {
         public final int nodeNumber;
         public final double loadShedding;
