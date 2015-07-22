@@ -57,10 +57,9 @@ public class Graph {
     }
 
     /**
-     * Return the list of sources with shuffle every time the method call.
-     * This can ensure that ant chose source every time randomly.
+     * This method return the all sources as Set data structure. Ensure that there is no duplicate.
      *
-     * @return list of the sources of the graph
+     * @return Set of integer of the sources of this graph containing.
      */
     public Set<Integer> getSourceList() {
         return sourceList;
