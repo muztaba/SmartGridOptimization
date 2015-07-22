@@ -111,7 +111,7 @@ public class Ant {
             }
 
             int nextNode = nextNodeSelection();
-
+            printNextNode(nextNode);
             // If the ant won't move to next node then put the ant power to the node's residual power.
             if (nextNode < 0) {
                 graph.addResidual(this.currentNode, this.power);
@@ -214,5 +214,9 @@ public class Ant {
         for (int i : visited) {
             System.out.println(i);
         }
+    }
+
+    public void printNextNode(int node) {
+        System.out.println(node);
     }
 }
