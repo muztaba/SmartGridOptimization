@@ -15,7 +15,7 @@ public class Graph {
     private Map<Integer, Set<Pair<Integer, Double>>> edges = new HashMap<>();
 
     // Keep the list of the sources.
-    private List<Integer> sourceList = new ArrayList<>();
+    private Set<Integer> sourceList = new HashSet<>();
 
     /**
      * Add the vertex(node) to the graph. Using a map structure to keep the node.
@@ -62,7 +62,7 @@ public class Graph {
      *
      * @return list of the sources of the graph
      */
-    public List<Integer> getSourceList() {
+    public Set<Integer> getSourceList() {
         return sourceList;
     }
 
