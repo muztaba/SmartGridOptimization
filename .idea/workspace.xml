@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="47d9ba94-7b4b-4918-b4b5-b85a721e04a3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/version2/Graph.java" afterPath="$PROJECT_DIR$/src/graph/version2/Graph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/vertex/Node.java" afterPath="$PROJECT_DIR$/src/graph/vertex/Node.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartGridOptimization.iws" />
@@ -727,12 +725,6 @@
       <workItem from="1433179291392" duration="54000" />
       <workItem from="1433180037669" duration="5014000" />
     </task>
-    <task id="LOCAL-00017" summary="remove the visited set array&#10;">
-      <created>1434027469950</created>
-      <option name="number" value="00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1434027469950</updated>
-    </task>
     <task id="LOCAL-00018" summary="comment update">
       <created>1434190192069</created>
       <option name="number" value="00018" />
@@ -1021,7 +1013,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437590386370</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="couple of public method add/">
+      <created>1437594209313</created>
+      <option name="number" value="00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1437594209313</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1102,7 +1100,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="Iterator implementation." />
     <MESSAGE value="ACO and Ant class create in multi source package." />
     <MESSAGE value="comment add." />
     <MESSAGE value="pheromone init" />
@@ -1127,7 +1124,8 @@
     <MESSAGE value="sourceList change List to Set data structure." />
     <MESSAGE value="toList method add" />
     <MESSAGE value="comment update" />
-    <option name="LAST_COMMIT_MESSAGE" value="comment update" />
+    <MESSAGE value="couple of public method add/" />
+    <option name="LAST_COMMIT_MESSAGE" value="couple of public method add/" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

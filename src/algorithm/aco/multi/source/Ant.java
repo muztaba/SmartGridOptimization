@@ -20,6 +20,7 @@ public class Ant {
     private List<Integer> sourceList;
     private Set<Integer> visited = new HashSet<>();
     private Set<Pair<Integer, Integer>> occupiedLink = new HashSet<>();
+    Deque<Integer> queue;
     private int currentNode;
     private double power;
 
@@ -29,7 +30,9 @@ public class Ant {
 
     public Ant(final Graph graph) {
         this.graph = graph;
-        this.sourceList = graph.getSourceList();
+        Set<Integer> sourceSet = graph.getSourceList();
+        // source set converted to List.
+        this.sourceList = CollectionUtils.toList(sourceSet);
     }
 
     public void initiate(IPheromone pheromone) {
@@ -37,7 +40,7 @@ public class Ant {
         shuffleSourceList();
 
         for (int sourceNode : sourceList) {
-            Deque<Integer> queue = new ArrayDeque<>();
+            queue = new ArrayDeque<>();
             queue.add(sourceNode);
 
             while (!queue.isEmpty()) {
@@ -94,10 +97,13 @@ public class Ant {
         boolean isAntMoving = true;
 
         while (isAntMoving) {
+            // If the current node demand node then give some electricity.
+            // And if the node supply node then the ant simply move on.
             if (!graph.isSourceNode(this.currentNode)) {
                 operationOnDemandNode();
             }
 
+            // After giving power to a node if the ant's power will zero then the ant stop moving.
             if (this.power <= 0) {
                 return false;
             }
@@ -108,9 +114,19 @@ public class Ant {
                 return false;
             }
 
-            visited.add(nextNode);
+            visited.add(nextNode); // Keep track which node has been visited.
             occupiedLink.add(Pair.makePair(this.currentNode, nextNode));
             occupiedLink.add(Pair.makePair(nextNode, this.currentNode));
+
+            double linkCapacity = graph.getCapacity(this.currentNode, nextNode);
+
+            if (power > linkCapacity) {
+                double residual = power - linkCapacity;
+                graph.addResidual(this.currentNode, residual);
+                power = linkCapacity;
+                queue.add(this.currentNode);
+            }
+
             this.currentNode = nextNode;
 
             //....................................//
@@ -121,9 +137,15 @@ public class Ant {
         return false;
     }
 
+    /**
+     * This method give the power to the demand node. Get the load shedding of the current node.
+     * Take the minimum between current ant power and the current node load shedding. Generate power
+     * power and set to the power to the current node. Then deduct the generated power from the ant's power.
+     * Ant's power will not negative.
+     */
     private void operationOnDemandNode() {
         double loadShedding = graph.getLoadShedding(this.currentNode);
-        double generatePower = random.nextInt((int)loadShedding);
+        double generatePower = random.nextInt((int)Math.min(this.power, loadShedding));
         graph.addPower(this.currentNode, generatePower);
         this.power -= generatePower;
     }
@@ -181,10 +203,4 @@ public class Ant {
         p = nominator / denominator;
         return p;
     }
-
-    private void setCurrentNode(final int nextNode) {
-        this.currentNode = nextNode;
-    }
-
-
 }
