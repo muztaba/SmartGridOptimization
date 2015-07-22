@@ -36,6 +36,7 @@ public class Ant {
     }
 
     public void initiate(IPheromone pheromone) {
+        graph.reset();
         this.pheromone = pheromone;
         shuffleSourceList();
 
@@ -97,6 +98,7 @@ public class Ant {
         boolean isAntMoving = true;
 
         while (isAntMoving) {
+            visited.add(this.currentNode); // Keep track which node has been visited.
             // If the current node demand node then give some electricity.
             // And if the node supply node then the ant simply move on.
             if (!graph.isSourceNode(this.currentNode)) {
@@ -110,11 +112,12 @@ public class Ant {
 
             int nextNode = nextNodeSelection();
 
+            // If the ant won't move to next node then put the ant power to the node's residual power.
             if (nextNode < 0) {
+                graph.addResidual(this.currentNode, this.power);
                 return false;
             }
 
-            visited.add(nextNode); // Keep track which node has been visited.
             occupiedLink.add(Pair.makePair(this.currentNode, nextNode));
             occupiedLink.add(Pair.makePair(nextNode, this.currentNode));
 
@@ -202,5 +205,14 @@ public class Ant {
         double nominator = Math.pow(pheromone, ALPHA) * Math.pow(nn, BETA);
         p = nominator / denominator;
         return p;
+    }
+
+    //===========================================//
+    //==================DEBUG====================//
+    //===========================================//
+    public void printVisitedNode() {
+        for (int i : visited) {
+            System.out.println(i);
+        }
     }
 }

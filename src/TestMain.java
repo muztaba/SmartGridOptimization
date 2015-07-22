@@ -21,7 +21,12 @@ public class TestMain {
 //        printGraph(1, new GraphGenerator().graphGenerator(5, 500, 300, 40));
         GraphInput in = new GraphInput();
         Graph graph = in.readGraph("");
-        checkNewGraph(graph);
+        checkACOV2(graph);
+    }
+
+    private static void checkACOV2(Graph graph) {
+        Run run = new algorithm.aco.multi.source.ACO(1, 1, graph);
+        run.run();
     }
 
     private static void checkNewGraph(Graph graph) {

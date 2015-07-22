@@ -26,6 +26,8 @@ public class ACO implements Run {
         for (int i = 0; i < ants.length; i++) {
             // Put code here !!
         }
+
+        ants[0] = new Ant(graph);
     }
 
     @Override
@@ -33,7 +35,9 @@ public class ACO implements Run {
         for (int _iteration = 0; _iteration < iteration; _iteration++) {
             for (int antIndex = 0; antIndex < antNumber; antIndex++) {
 
+                ants[antIndex].initiate(pheromone);
             }
+            ants[0].printVisitedNode();
         }
     }
 }
