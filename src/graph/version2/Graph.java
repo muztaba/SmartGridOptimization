@@ -146,6 +146,12 @@ public class Graph {
         return sourceList.contains(node);
     }
 
+    public void reset() {
+        for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
+            itr.getValue().reset();
+        }
+    }
+
     public void addResidual(final int node, final double residual) {
         vertexes.get(node).setLeftPower(residual);
     }
