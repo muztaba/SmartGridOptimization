@@ -7,7 +7,7 @@ public class Node {
     private final int node;
     private final int supply_demand;
     // keep the use
-    private double use;
+    private final double use;
     // How much electric power this node has that is providing to the other node.
     private double power;
     // If this variable > 0 then there is load shedding and < 0 then residual.
@@ -25,7 +25,7 @@ public class Node {
      * Randomly given electricity to a node is subtract from the previous load shedding.
      * If the load shedding value negative then the node has residual electricity. Otherwise
      * there is still load shedding.
-     * @param electricity
+     * @param electricity given electricity will add to the node.
      */
     public void addElectricity(double electricity) {
         loadShedding = loadShedding - electricity;
@@ -38,6 +38,7 @@ public class Node {
     private void init() {
         this.power = (supply_demand > 0) ? Math.abs(use) : 0;
         this.loadShedding = (supply_demand < 0) ? Math.abs(use) : 0;
+        this.leftPower = 0;
     }
 
     /**

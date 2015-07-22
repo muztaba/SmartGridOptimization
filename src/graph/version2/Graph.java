@@ -113,8 +113,41 @@ public class Graph {
         return power;
     }
 
+    /**
+     * This method return the link capacity between tow node 'u' and 'v'. The direction of the node is u -> v.
+     * Iterate over the edges and if u and v have the link then it will return the capacity between link.
+     * And if the there is  no link that is, u == null of v not match with the integer value from the set
+     * then the method will return -1.
+     *
+     * @param u from node.
+     * @param v to node.
+     * @return capacity if there is a link otherwise -1.
+     */
+    public double getCapacity(final int u, final int v) {
+        Set<Pair<Integer, Double>> set = edges.get(u);
+        if (set == null) {
+            return -1;
+        }
+        for (Pair<Integer, Double> pair : set) {
+            if (pair.first == v) {
+                return pair.second;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Check if the given node is supply node. If supply node then return true, otherwise false.
+     *
+     * @param node given node that will be checked.
+     * @return if supply node then True, otherwise False.
+     */
     public boolean isSourceNode(final int node) {
         return sourceList.contains(node);
+    }
+
+    public void addResidual(final int node, final double residual) {
+        vertexes.get(node).setLeftPower(residual);
     }
 
     public void addPower(int node, double power) {
