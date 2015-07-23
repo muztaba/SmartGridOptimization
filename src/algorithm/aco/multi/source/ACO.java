@@ -1,9 +1,12 @@
 package algorithm.aco.multi.source;
 
+import Utils.Pair;
 import algorithm.Run;
 import algorithm.aco.pheromone.IPheromone;
 import algorithm.aco.pheromone.Pheromone;
 import graph.version2.Graph;
+
+import java.util.Set;
 
 /**
  * Created by seal on 7/18/15.
@@ -33,11 +36,32 @@ public class ACO implements Run {
     @Override
     public void run() {
         for (int _iteration = 0; _iteration < iteration; _iteration++) {
-            for (int antIndex = 0; antIndex < antNumber; antIndex++) {
-
+            for (int antIndex = 0; antIndex < ants.length; antIndex++) {
                 ants[antIndex].initiate(pheromone);
             }
-            ants[0].printVisitedNode();
+
+            double minLoadShedding = Double.MAX_VALUE;
+            int minLoadSheddingAntIndex = 0;
+            for (int antIndex = 0; antIndex < ants.length; antIndex++) {
+                double loadShedding = ants[antIndex].getLoadShedding();
+                if (loadShedding < minLoadShedding) {
+                    minLoadSheddingAntIndex = antIndex;
+                }
+            }
+            
+            pheromoneUpdate(minLoadSheddingAntIndex);
         }
+    }
+
+    public static final double EVAPORATION = .25;
+
+    private void pheromoneUpdate(int antIndex) {
+        for (Pair<Integer, Integer> itr : ants[antIndex].visitedLink) {
+            int u = itr.first;
+            int v = itr.second;
+            double updatedPheromone = (1 - EVAPORATION) * pheromone.get(u, v);
+            pheromone.set(u, v, updatedPheromone);
+        }
+
     }
 }

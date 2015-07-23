@@ -7,7 +7,6 @@
     <list default="true" id="47d9ba94-7b4b-4918-b4b5-b85a721e04a3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/version2/Graph.java" afterPath="$PROJECT_DIR$/src/graph/version2/Graph.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartGridOptimization.iws" />
@@ -663,12 +662,6 @@
       <workItem from="1433179291392" duration="54000" />
       <workItem from="1433180037669" duration="5014000" />
     </task>
-    <task id="LOCAL-00023" summary="getbesttour method add&#10;">
-      <created>1434193901091</created>
-      <option name="number" value="00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1434193901091</updated>
-    </task>
     <task id="LOCAL-00024" summary="updateTrail method update.">
       <created>1434194282441</created>
       <option name="number" value="00024" />
@@ -957,7 +950,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437645896754</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="method comment update">
+      <created>1437680855413</created>
+      <option name="number" value="00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1437680855415</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1038,7 +1037,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="getPower method add." />
     <MESSAGE value="init collection utils class" />
     <MESSAGE value="method name change" />
     <MESSAGE value="generic to normal graph" />
@@ -1063,7 +1061,8 @@
     <MESSAGE value="reset method add" />
     <MESSAGE value="debug method add" />
     <MESSAGE value="some public method add" />
-    <option name="LAST_COMMIT_MESSAGE" value="some public method add" />
+    <MESSAGE value="method comment update" />
+    <option name="LAST_COMMIT_MESSAGE" value="method comment update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1411,6 +1410,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

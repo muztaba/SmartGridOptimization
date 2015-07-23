@@ -15,18 +15,20 @@ public class Ant {
     private Graph graph;
     private IPheromone pheromone;
 
-    Random random = new Random();
+    Deque<Integer> queue;
 
+    Random random = new Random();
     private List<Integer> sourceList;
     private Set<Integer> visited = new HashSet<>();
-    private Set<Pair<Integer, Integer>> occupiedLink = new HashSet<>();
-    Deque<Integer> queue;
+    private Set<Pair<Integer, Integer>> occupiedLink;
+    public Set<Pair<Integer, Integer>> visitedLink;
     private int currentNode;
     private double power;
+    private double loadShedding;
+
 
     public static final double ALPHA = 1.0;
     public static final double BETA = 1.0;
-    public static final double EVAPORATION = .25;
 
     public Ant(final Graph graph) {
         this.graph = graph;
@@ -37,6 +39,8 @@ public class Ant {
 
     public void initiate(IPheromone pheromone) {
         graph.reset();
+        occupiedLink = new HashSet<>();
+        visitedLink = new HashSet<>();
         this.pheromone = pheromone;
         shuffleSourceList();
 
@@ -51,7 +55,7 @@ public class Ant {
             }
 
         }
-
+        this.loadShedding = graph.calculateLoadShedding();
     }
 
     /**
@@ -111,7 +115,10 @@ public class Ant {
             }
 
             int nextNode = nextNodeSelection();
-            printNextNode(nextNode);
+
+            //=========DEBUG=========//
+//            printNextNode(nextNode);
+
             // If the ant won't move to next node then put the ant power to the node's residual power.
             if (nextNode < 0) {
                 graph.addResidual(this.currentNode, this.power);
@@ -130,11 +137,8 @@ public class Ant {
                 queue.add(this.currentNode);
             }
 
+            visitedLink.add(Pair.makePair(currentNode, nextNode));
             this.currentNode = nextNode;
-
-            //....................................//
-            // left power work
-            //.....................................//
         }
 
         return false;
@@ -205,6 +209,21 @@ public class Ant {
         double nominator = Math.pow(pheromone, ALPHA) * Math.pow(nn, BETA);
         p = nominator / denominator;
         return p;
+    }
+
+    /**
+     * Return the total load shedding of the graph that this ant
+     * has visited. In another way load shedding means quality of the
+     * graph.
+     *
+     * @return total load shedding of the graph that this ant visited.
+     */
+    public double getLoadShedding() {
+        return this.loadShedding;
+    }
+
+    public Iterator<Pair<Integer, Integer>> getVisitedLinkIterator() {
+        return visitedLink.iterator();
     }
 
     //===========================================//
