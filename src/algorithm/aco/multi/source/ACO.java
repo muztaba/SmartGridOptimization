@@ -36,6 +36,7 @@ public class ACO implements Run {
     @Override
     public void run() {
         for (int _iteration = 0; _iteration < iteration; _iteration++) {
+
             for (int antIndex = 0; antIndex < ants.length; antIndex++) {
                 ants[antIndex].initiate(pheromone);
             }
@@ -45,10 +46,11 @@ public class ACO implements Run {
             for (int antIndex = 0; antIndex < ants.length; antIndex++) {
                 double loadShedding = ants[antIndex].getLoadShedding();
                 if (loadShedding < minLoadShedding) {
+                    minLoadShedding = loadShedding;
                     minLoadSheddingAntIndex = antIndex;
                 }
             }
-            
+//            System.out.println(minLoadSheddingAntIndex);
             pheromoneUpdate(minLoadSheddingAntIndex);
         }
     }
@@ -56,10 +58,14 @@ public class ACO implements Run {
     public static final double EVAPORATION = .25;
 
     private void pheromoneUpdate(int antIndex) {
+//        System.out.println(ants[antIndex].visitedLink.size());
         for (Pair<Integer, Integer> itr : ants[antIndex].visitedLink) {
             int u = itr.first;
             int v = itr.second;
+//            System.out.println(u + " " + v);
             double updatedPheromone = (1 - EVAPORATION) * pheromone.get(u, v);
+//            System.out.println(updatedPheromone);
+//            System.out.println("HI");
             pheromone.set(u, v, updatedPheromone);
         }
 

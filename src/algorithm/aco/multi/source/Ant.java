@@ -20,8 +20,8 @@ public class Ant {
     Random random = new Random();
     private List<Integer> sourceList;
     private Set<Integer> visited = new HashSet<>();
-    private Set<Pair<Integer, Integer>> occupiedLink;
-    public Set<Pair<Integer, Integer>> visitedLink;
+    private Set<Pair<Integer, Integer>> occupiedLink = new HashSet<>();
+    public Set<Pair<Integer, Integer>> visitedLink = new HashSet<>();
     private int currentNode;
     private double power;
     private double loadShedding;
@@ -36,11 +36,11 @@ public class Ant {
         // source set converted to List.
         this.sourceList = CollectionUtils.toList(sourceSet);
     }
-
+    int ijij = 0;
     public void initiate(IPheromone pheromone) {
         graph.reset();
-        occupiedLink = new HashSet<>();
-        visitedLink = new HashSet<>();
+        occupiedLink.clear();
+        visitedLink.clear();
         this.pheromone = pheromone;
         shuffleSourceList();
 
@@ -53,7 +53,6 @@ public class Ant {
                 setupAnt(_currentNode);
                 moveAnt();
             }
-
         }
         this.loadShedding = graph.calculateLoadShedding();
     }
@@ -222,9 +221,6 @@ public class Ant {
         return this.loadShedding;
     }
 
-    public Iterator<Pair<Integer, Integer>> getVisitedLinkIterator() {
-        return visitedLink.iterator();
-    }
 
     //===========================================//
     //==================DEBUG====================//
