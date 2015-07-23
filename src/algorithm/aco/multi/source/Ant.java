@@ -1,6 +1,5 @@
 package algorithm.aco.multi.source;
 
-import Utils.ArrayUtils;
 import Utils.CollectionUtils;
 import Utils.Pair;
 import algorithm.aco.pheromone.IPheromone;
@@ -10,6 +9,8 @@ import java.util.*;
 
 /**
  * Created by seal on 7/18/15.
+ *
+ * @author Muztaba Hasanat
  */
 public class Ant {
     private Graph graph;
@@ -36,11 +37,12 @@ public class Ant {
         // source set converted to List.
         this.sourceList = CollectionUtils.toList(sourceSet);
     }
-    int ijij = 0;
+
     public void initiate(IPheromone pheromone) {
         graph.reset();
         occupiedLink.clear();
         visitedLink.clear();
+        visited.clear();
         this.pheromone = pheromone;
         shuffleSourceList();
 
@@ -151,7 +153,7 @@ public class Ant {
      */
     private void operationOnDemandNode() {
         double loadShedding = graph.getLoadShedding(this.currentNode);
-        double generatePower = random.nextInt((int)Math.min(this.power, loadShedding));
+        double generatePower = random.nextInt((int) Math.min(this.power, loadShedding));
         graph.addPower(this.currentNode, generatePower);
         this.power -= generatePower;
     }
@@ -164,7 +166,6 @@ public class Ant {
         PriorityQueue<MaxProbNode> probNodes = new PriorityQueue<>();
 
         for (Graph.VertexInfo itr : graph.extractVertexInfo(this.currentNode)) {
-            double p = 0.0;
             int V = itr.nodeNumber;
 
             if (visited.contains(V)) {
@@ -177,7 +178,7 @@ public class Ant {
 
             double pheromone = this.pheromone.get(currentNode, V);
             double nn = itr.loadShedding;
-            p = probTo(pheromone, nn, denominator);
+            double p = probTo(pheromone, nn, denominator);
             MaxProbNode maxProbNode = new MaxProbNode(V, p);
             probNodes.add(maxProbNode);
         }
@@ -204,10 +205,8 @@ public class Ant {
     }
 
     private double probTo(double pheromone, double nn, double denominator) {
-        double p = 0.0;
         double nominator = Math.pow(pheromone, ALPHA) * Math.pow(nn, BETA);
-        p = nominator / denominator;
-        return p;
+        return nominator / denominator;
     }
 
     /**

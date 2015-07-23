@@ -6,14 +6,13 @@ import algorithm.aco.pheromone.IPheromone;
 import algorithm.aco.pheromone.Pheromone;
 import graph.version2.Graph;
 
-import java.util.Set;
-
 /**
  * Created by seal on 7/18/15.
+ *
+ * @author Muztaba Hasanat
  */
 public class ACO implements Run {
     private final int iteration;
-    private final int antNumber;
     private final Graph graph;
 
     private Ant[] ants;
@@ -22,7 +21,6 @@ public class ACO implements Run {
 
     public ACO(int iteration, int antNumber, Graph graph) {
         this.iteration = iteration;
-        this.antNumber = antNumber;
         this.graph = graph;
         this.ants = new Ant[antNumber];
         this.pheromone = new Pheromone(this.graph.vertexesNumber());
@@ -50,7 +48,7 @@ public class ACO implements Run {
                     minLoadSheddingAntIndex = antIndex;
                 }
             }
-//            System.out.println(minLoadSheddingAntIndex);
+            System.out.println(minLoadShedding);
             pheromoneUpdate(minLoadSheddingAntIndex);
         }
     }
@@ -58,14 +56,11 @@ public class ACO implements Run {
     public static final double EVAPORATION = .25;
 
     private void pheromoneUpdate(int antIndex) {
-//        System.out.println(ants[antIndex].visitedLink.size());
         for (Pair<Integer, Integer> itr : ants[antIndex].visitedLink) {
             int u = itr.first;
             int v = itr.second;
-//            System.out.println(u + " " + v);
+            System.out.println(u + " " + v);
             double updatedPheromone = (1 - EVAPORATION) * pheromone.get(u, v);
-//            System.out.println(updatedPheromone);
-//            System.out.println("HI");
             pheromone.set(u, v, updatedPheromone);
         }
 
