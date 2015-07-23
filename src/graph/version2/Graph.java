@@ -146,16 +146,37 @@ public class Graph {
         return sourceList.contains(node);
     }
 
+    /**
+     * Reset node's temporary variable that keeps changes in the graph for one state.
+     * Iterate over the vertexes map and call the node's internal reset method.
+     *
+     * @see Node reset method.
+     */
     public void reset() {
         for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
             itr.getValue().reset();
         }
     }
 
+    /**
+     * Set the residual electricity to the particular node that is given to the method.
+     * This residual electricity will keep in the Node's value.
+     *
+     * @see Node setLeftPower method.
+     * @param node particular node where the residual power will be kept.
+     * @param residual residual power.
+     */
     public void addResidual(final int node, final double residual) {
         vertexes.get(node).setLeftPower(residual);
     }
 
+    /**
+     * Set the given electricity to the particular node.
+     *
+     * @see Node addElectricity method.
+     * @param node particular node where power is given.
+     * @param power given power.
+     */
     public void addPower(int node, double power) {
         vertexes.get(node).addElectricity(power);
     }
