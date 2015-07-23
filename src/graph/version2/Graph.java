@@ -160,6 +160,25 @@ public class Graph {
         vertexes.get(node).addElectricity(power);
     }
 
+    /**
+     * Calculate the total load shedding of this graph. Iterate over
+     * every node and get the load shedding and residual power or whatever
+     * we are considering as load shedding and then sum up every thing.
+     *
+     * Noted that this method calculate the total load shedding of this graph.
+     * Not the individual load shedding of node.
+     *
+     * @return total load shedding of this graph.
+     */
+    public double calculateLoadShedding() {
+        double loadShedding = 0.0;
+        for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
+            loadShedding += itr.getValue().getLoadShedding();
+            loadShedding += itr.getValue().getLeftPower();
+        }
+        return loadShedding;
+    }
+
     public static class VertexInfo {
         public final int nodeNumber;
         public final double loadShedding;
