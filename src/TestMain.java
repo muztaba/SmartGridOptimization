@@ -25,7 +25,7 @@ public class TestMain {
     }
 
     private static void checkACOV2(Graph graph) {
-        Run run = new algorithm.aco.multi.source.ACO(100, 1, graph);
+        Run run = new algorithm.aco.multi.source.ACO(100, 10, graph);
         run.run();
     }
 

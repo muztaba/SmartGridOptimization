@@ -25,10 +25,9 @@ public class ACO implements Run {
         this.ants = new Ant[antNumber];
         this.pheromone = new Pheromone(this.graph.vertexesNumber());
         for (int i = 0; i < ants.length; i++) {
-            // Put code here !!
+            Graph cloneGraph = this.graph.clone();
+            ants[i] = new Ant(cloneGraph);
         }
-
-        ants[0] = new Ant(graph);
     }
 
     @Override
