@@ -1,9 +1,11 @@
 package Utils;
 
+import java.io.Serializable;
+
 /**
  * Created by seal on 7/14/15.
  */
-public class Pair<U, V> implements Comparable<Pair<U, V>> {
+public class Pair<U, V> implements Comparable<Pair<U, V>>, Serializable {
     public final U first;
     public final V second;
 

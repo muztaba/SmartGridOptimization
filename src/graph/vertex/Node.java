@@ -1,9 +1,11 @@
 package graph.vertex;
 
+import java.io.Serializable;
+
 /**
  * Created by seal on 7/13/15.
  */
-public class Node {
+public class Node implements Serializable {
     private final int node;
     private final int supply_demand;
     // keep the use
