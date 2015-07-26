@@ -4,13 +4,14 @@ import IOUtils.InputReader;
 import Utils.Pair;
 import graph.vertex.Node;
 
+import java.io.*;
 import java.util.*;
 
 /**
  * Created by seal on 7/13/15.
  * @author Muztaba Hasanat
  */
-public class Graph {
+public class Graph implements Serializable{
     private Map<Integer, Node> vertexes = new HashMap<>();
     private Map<Integer, Set<Pair<Integer, Double>>> edges = new HashMap<>();
 
@@ -247,6 +248,39 @@ public class Graph {
                 };
             }
         };
+    }
+    //================CLONING====================//
+    //===========================================//
+
+    public Graph clone() {
+        serializeObject();
+        return deSerializeObject();
+    }
+
+    private void serializeObject() {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("src/graph/objSerialize.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
+            out.writeObject(this);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Graph deSerializeObject() {
+        Graph cloneObject = null;
+        try {
+            FileInputStream fileInputStream = new FileInputStream("src/graph/objSerialize.ser");
+            ObjectInputStream in = new ObjectInputStream(fileInputStream);
+            cloneObject = (Graph) in.readObject();
+            in.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cloneObject;
     }
 
     //===========================================//
