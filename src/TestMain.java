@@ -1,8 +1,8 @@
+import Utils.StopWatch;
 import algorithm.Gibbs;
 import algorithm.MonteCarlo;
 import algorithm.Run;
 import algorithm.aco.single_power_source.ACO;
-import com.sun.org.apache.bcel.internal.generic.LSTORE;
 import graph.Edge;
 import graph.GraphGenerator;
 import graph.GraphInput;
@@ -18,14 +18,20 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
-//        printGraph(1, new GraphGenerator().graphGenerator(50, 500000, 300, 40));
-        GraphInput in = new GraphInput();
-        Graph graph = in.readGraph("");
+//        printGraph(1, new GraphGenerator().graphGenerator(50, 500, 350, 40));
+        Graph graph = new Graph();
+        GraphGenerator graphGenerator = new GraphGenerator();
+        graphGenerator.graphGenerator(500, 500, 350, 40);
+        graphGenerator.generateGraph(graph);
+//        graph.printEdge();
+
+        StopWatch.start();
         checkACOV2(graph);
+        StopWatch.elapsedTime();
     }
 
     private static void checkACOV2(Graph graph) {
-        Run run = new algorithm.aco.multi.source.ACO(100, 10, graph);
+        Run run = new algorithm.aco.multi.source.ACO(1000, 50, graph);
         run.run();
     }
 
