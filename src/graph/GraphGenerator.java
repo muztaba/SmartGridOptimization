@@ -1,9 +1,10 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import Utils.Pair;
+import graph.version2.Graph;
+
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * Created by seal on 2/23/15.
@@ -20,7 +21,7 @@ public class GraphGenerator {
         double meanSupply = mean(supplyNode, supply);
         double meanDemand = mean(demandNode, demand);
 
-        for(int i = 0; i < node; i++) {
+        for (int i = 0; i < node; i++) {
             if (random.nextInt() % 2 == 0) {
                 nodeList.add(new Node(i, generateSupplyOrDemand(meanSupply, meanSupply, random)));
             } else {
@@ -52,7 +53,7 @@ public class GraphGenerator {
             }
 
             int capacity = generateSupplyOrDemand(meanDemand, meanDemand / 3, random);
-            nodeList.get(i).setConnectedWith(lastIndexValue,capacity);
+            nodeList.get(i).setConnectedWith(lastIndexValue, capacity);
             list.remove(list.size() - 1);
         }
 
@@ -118,4 +119,33 @@ public class GraphGenerator {
         return list;
     }
 
+    public void generateGraph(Graph graph) {
+        // Sometime there is duplicate link appear due to bug. Therefor this
+        // is here to check whether this a duplicate link or not. If duplicate
+        // then this link will not add to the graph.
+        Set<Pair<Integer, Integer>> duplicateCheck = new HashSet<>();
+        // Create vertex and add to the graph.
+        for (int i = 0; i < nodeList.size(); i++) {
+            double supply_demand = nodeList.get(i).getSupplyOrDemand();
+            graph.addVertex(new graph.vertex.Node(i, supply_demand));
+        }
+        // Add edge between two node along with their link capacity.
+        for (int i = 0; i < nodeList.size(); i++) {
+            List<Edge> l = nodeList.get(i).edges();
+            for (int j = 0; j < l.size(); j++) {
+                int v = l.get(j).getConnectedNode();
+                Pair<Integer, Integer> pair = Pair.makePair(i, v);
+                double capacity = l.get(j).getCapacity();
+                // If the capacity will zero then get the connected node's use
+                // and assign to the capacity.
+                if (capacity  == 0) {
+                    capacity = nodeList.get(v).getSupplyOrDemand();
+                }
+                if (!duplicateCheck.contains(pair)) {
+                    graph.addEdge(i, v, capacity);
+                    duplicateCheck.add(pair);
+                }
+            }
+        }
+    }
 }
