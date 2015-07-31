@@ -27,7 +27,7 @@ public class GraphInput {
         int edgeNumber = reader.nextInt();
 
         for (int i = 0; i < nodeNumber; i++) {
-            int use = reader.nextInt();
+            double use = reader.nextDouble();
             graph.vertex.Node node = new Node(i, use);
             graph.addVertex(node);
         }

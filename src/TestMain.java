@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
-//        printGraph(1, new GraphGenerator().graphGenerator(5, 500, 300, 40));
+//        printGraph(1, new GraphGenerator().graphGenerator(50, 500000, 300, 40));
         GraphInput in = new GraphInput();
         Graph graph = in.readGraph("");
         checkACOV2(graph);

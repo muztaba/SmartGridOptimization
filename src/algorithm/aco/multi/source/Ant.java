@@ -100,9 +100,8 @@ public class Ant {
     }
 
     private boolean moveAnt() {
-        boolean isAntMoving = true;
 
-        while (isAntMoving) {
+        while (this.power > 0) {
             visited.add(this.currentNode); // Keep track which node has been visited.
             // If the current node demand node then give some electricity.
             // And if the node supply node then the ant simply move on.

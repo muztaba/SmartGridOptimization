@@ -58,7 +58,6 @@ public class ACO implements Run {
         for (Pair<Integer, Integer> itr : ants[antIndex].visitedLink) {
             int u = itr.first;
             int v = itr.second;
-            System.out.println(u + " " + v);
             double updatedPheromone = (1 - EVAPORATION) * pheromone.get(u, v);
             pheromone.set(u, v, updatedPheromone);
         }
