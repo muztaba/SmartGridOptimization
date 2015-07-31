@@ -28,8 +28,8 @@ public class Ant {
     private double loadShedding;
 
 
-    public static final double ALPHA = 1.0;
-    public static final double BETA = 1.0;
+    public static final double ALPHA = 5.0;
+    public static final double BETA = 2.0;
 
     public Ant(final Graph graph) {
         this.graph = graph;
@@ -198,7 +198,7 @@ public class Ant {
             if (visited.contains(V)) {
                 continue;
             }
-            sum += itr.loadShedding * pheromone.get(currentNode, V);
+            sum += Math.pow(itr.loadShedding, BETA) * Math.pow(pheromone.get(currentNode, V), ALPHA);
         }
         return sum;
     }
@@ -231,5 +231,9 @@ public class Ant {
 
     public void printNextNode(int node) {
         System.out.println(node);
+    }
+
+    public int getVisitedNodeNumber() {
+        return this.visited.size();
     }
 }

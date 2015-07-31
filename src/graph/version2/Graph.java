@@ -292,4 +292,13 @@ public class Graph implements Serializable{
             System.out.println(itr.getValue());
         }
     }
+
+    public void printEdge() {
+        for (Map.Entry<Integer, Set<Pair<Integer, Double>>> itr : edges.entrySet()) {
+            for (Pair<Integer, Double> link : itr.getValue()) {
+                System.out.println(itr.getKey() + " " + link.first + " " + link.second);
+            }
+            System.out.println();
+        }
+    }
 }

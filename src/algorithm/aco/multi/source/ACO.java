@@ -6,6 +6,10 @@ import algorithm.aco.pheromone.IPheromone;
 import algorithm.aco.pheromone.Pheromone;
 import graph.version2.Graph;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by seal on 7/18/15.
  *
@@ -32,6 +36,8 @@ public class ACO implements Run {
 
     @Override
     public void run() {
+        List<Double> ll = new ArrayList<>();
+        double prevLoadShedding = 0.0;
         for (int _iteration = 0; _iteration < iteration; _iteration++) {
 
             for (int antIndex = 0; antIndex < ants.length; antIndex++) {
@@ -47,19 +53,41 @@ public class ACO implements Run {
                     minLoadSheddingAntIndex = antIndex;
                 }
             }
-            System.out.println(minLoadShedding);
+//            System.out.println(minLoadShedding);
+            ll.add(minLoadShedding);
             pheromoneUpdate(minLoadSheddingAntIndex);
+
+            //===========DEBUG==========//
+            if (_iteration % 10 == 0) {
+                System.out.println("\n");
+            }
+            System.out.print("Iteration : " + _iteration + " Min Load Shedding :" + minLoadShedding);
+            if (minLoadShedding < prevLoadShedding) {
+                System.out.print(" * ");
+            }
+            System.out.println();
+            prevLoadShedding = minLoadShedding;
+            System.out.println("Visited Node Number : " + ants[minLoadSheddingAntIndex].getVisitedNodeNumber());
+
+            //========================//
         }
+        Collections.sort(ll);
+        System.out.println();
+        System.out.println("Min : " + ll.get(0) + " Max : " + ll.get(ll.size()- 1));
     }
 
-    public static final double EVAPORATION = .25;
+    public static final double EVAPORATION = .5;
 
     private void pheromoneUpdate(int antIndex) {
         for (Pair<Integer, Integer> itr : ants[antIndex].visitedLink) {
             int u = itr.first;
             int v = itr.second;
-            double updatedPheromone = (1 - EVAPORATION) * pheromone.get(u, v);
-            pheromone.set(u, v, updatedPheromone);
+
+            double evaporatePheromone = (1 - EVAPORATION) * pheromone.get(u, v);
+            pheromone.set(u, v, evaporatePheromone);
+
+            double updatePheromone = pheromone.get(u, v) + pheromone.get(u, v);
+            pheromone.set(u, v, updatePheromone);
         }
 
     }
