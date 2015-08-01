@@ -71,9 +71,13 @@ public class ACO implements Run {
 
             //========================//
         }
+
+        //===========DEBUG==========//
         Collections.sort(ll);
         System.out.println();
         System.out.println("Min : " + ll.get(0) + " Max : " + ll.get(ll.size()- 1));
+        //========================//
+
     }
 
     public static final double EVAPORATION = .5;
