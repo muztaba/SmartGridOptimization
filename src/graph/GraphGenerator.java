@@ -57,16 +57,11 @@ public class GraphGenerator {
             list.remove(list.size() - 1);
         }
 
-//        for (int i = 0; i < nodeList.size(); i++) {
-//            List<Edge> l = nodeList.get(i).edges();
-//            for (int j = 0; j < l.size(); j++) {
-//                System.out.println(i + " " +   l.get(j).getConnectedNode());
-//            }
-//            System.out.println();
-//        }
-//
-//        System.out.println("**********************");
-//        System.out.println(edge);
+        // Sometime there is duplicate link appear due to bug. Therefor this
+        // is here to check whether this a duplicate link or not. If duplicate
+        // then this link will not add to the graph.
+        Set<Pair<Integer, Integer>> duplicateCheck = new HashSet<>();
+
         for (int i = 0, t = edge * 3; i < edge && t > 0; i++, t--) {
             int prev = i;
             int u = random.nextInt(node);
@@ -86,18 +81,22 @@ public class GraphGenerator {
                 i = prev;
                 continue;
             }
+            // Sometime there is negative value in the capacity. [Reason not known]
+            // Therefore take the absolute value of the capacity.
+            double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
 
-            int capacity = generateSupplyOrDemand(meanDemand, meanDemand, random);
-            nodeList.get(u).setConnectedWith(v, capacity);
+            Pair<Integer, Integer> pair = Pair.makePair(u, v);
+            if (!duplicateCheck.contains(pair)) {
+                // If the capacity will zero then get the connected node's use
+                // and assign to the capacity.
+                if (capacity  == 0) {
+                    capacity = nodeList.get(v).getSupplyOrDemand();
+                }
+                nodeList.get(u).setConnectedWith(v, (int)capacity);
+                duplicateCheck.add(pair);
+            }
         }
 
-//        for (int i = 0; i < nodeList.size(); i++) {
-//            List<Edge> l = nodeList.get(i).edges();
-//            for (int j = 0; j < l.size(); j++) {
-//                System.out.println(i + " " + l.get(j).getConnectedNode());
-//            }
-//            System.out.println();
-//        }
         return nodeList;
     }
 
