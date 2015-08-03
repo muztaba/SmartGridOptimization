@@ -50,6 +50,10 @@ public class Ant {
             queue = new ArrayDeque<>();
             queue.add(sourceNode);
 
+//            //======= DEBUG =======//
+//            System.out.println(sourceNode);
+//            //=====================//
+
             while (!queue.isEmpty()) {
                 int _currentNode = queue.poll();
                 setupAnt(_currentNode);
@@ -167,9 +171,9 @@ public class Ant {
         for (Graph.VertexInfo itr : graph.extractVertexInfo(this.currentNode)) {
             int V = itr.nodeNumber;
 
-            if (visited.contains(V)) {
-                continue;
-            }
+//            if (visited.contains(V)) {
+//                continue;
+//            }
 
             if (occupiedLink.contains(Pair.makePair(this.currentNode, V))) {
                 continue;

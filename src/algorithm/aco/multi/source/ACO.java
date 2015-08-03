@@ -58,17 +58,16 @@ public class ACO implements Run {
             pheromoneUpdate(minLoadSheddingAntIndex);
 
             //===========DEBUG==========//
-            if (_iteration % 10 == 0) {
-                System.out.println("\n");
-            }
-            System.out.print("Iteration : " + _iteration + " Min Load Shedding :" + minLoadShedding);
-            if (minLoadShedding < prevLoadShedding) {
-                System.out.print(" * ");
-            }
-            System.out.println();
-            prevLoadShedding = minLoadShedding;
-            System.out.println("Visited Node Number : " + ants[minLoadSheddingAntIndex].getVisitedNodeNumber());
-
+//            if (_iteration % 10 == 0) {
+//                System.out.println("\n");
+//            }
+//            System.out.print("Iteration : " + _iteration + " Min Load Shedding :" + minLoadShedding);
+//            if (minLoadShedding < prevLoadShedding) {
+//                System.out.print(" * ");
+//            }
+//            System.out.println();
+//            prevLoadShedding = minLoadShedding;
+//            System.out.println("Visited Node Number : " + ants[minLoadSheddingAntIndex].getVisitedNodeNumber());
             //========================//
         }
 

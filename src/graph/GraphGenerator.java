@@ -64,7 +64,7 @@ public class GraphGenerator {
             }
             // capacity is cast to integer but it should not be.
             // Code should be rearrange .
-            nodeList.get(i).setConnectedWith(lastIndexValue, (int) capacity);
+            nodeList.get(i).setConnectedWith(lastIndexValue, Integer.MAX_VALUE);
             list.remove(list.size() - 1);
             this.linkNumber++; // Update/increase the link number [edge].
         }
@@ -93,12 +93,15 @@ public class GraphGenerator {
                 i = prev;
                 continue;
             }
-            // Sometime there is negative value in the capacity. [Reason not known]
-            // Therefore take the absolute value of the capacity.
-            double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
+
 
             Pair<Integer, Integer> pair = Pair.makePair(u, v);
             if (!duplicateCheck.contains(pair)) {
+                // Sometime there is negative value in the capacity. [Reason not known]
+                // Therefore take the absolute value of the capacity.
+//                double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
+                double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
+
                 // If the capacity will zero then get the connected node's use
                 // and assign to the capacity.
                 if (capacity == 0) {
@@ -106,7 +109,7 @@ public class GraphGenerator {
                 }
                 // capacity is cast to integer but it should not be.
                 // Code should be rearrange .
-                nodeList.get(u).setConnectedWith(v, (int) capacity);
+                nodeList.get(u).setConnectedWith(v, Integer.MAX_VALUE);
                 duplicateCheck.add(pair);
                 this.linkNumber++; // Update/increase the link number [edge].
             }

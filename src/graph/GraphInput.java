@@ -21,7 +21,7 @@ public class GraphInput {
     Graph graph;
 
     public Graph readGraph(Graph graph, String path) throws IOException {
-        InputReader reader = new InputReader(new File("input/graph.txt"));
+        InputReader reader = new InputReader(new File(path));
         this.graph = graph;
         int nodeNumber = reader.nextInt();
         int edgeNumber = reader.nextInt();
