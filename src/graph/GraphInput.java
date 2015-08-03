@@ -20,9 +20,9 @@ import java.io.IOException;
 public class GraphInput {
     Graph graph;
 
-    public Graph readGraph(String path) throws IOException {
+    public Graph readGraph(Graph graph, String path) throws IOException {
         InputReader reader = new InputReader(new File("input/graph.txt"));
-        this.graph = new Graph();
+        this.graph = graph;
         int nodeNumber = reader.nextInt();
         int edgeNumber = reader.nextInt();
 
