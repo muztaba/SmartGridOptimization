@@ -10,11 +10,16 @@ public class Pheromone implements IPheromone{
 
     public Pheromone(int vertexes) {
         this.pheromoneTrail = new double[vertexes][vertexes];
-        init();
+        init(1.0);
     }
 
-    private void init() {
-        ArrayUtils.fill(pheromoneTrail, 1.0);
+    public Pheromone(int vertexes, double fillValue) {
+        this.pheromoneTrail = new double[vertexes][vertexes];
+        init(fillValue);
+    }
+
+    private void init(double fillValue) {
+        ArrayUtils.fill(pheromoneTrail, fillValue);
     }
 
     @Override
@@ -27,4 +32,8 @@ public class Pheromone implements IPheromone{
         return pheromoneTrail[u][v];
     }
 
+    @Override
+    public void reset(double resetValue) {
+        init(resetValue);
+    }
 }
