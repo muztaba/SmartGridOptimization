@@ -13,7 +13,7 @@ public class Node implements Serializable {
     // How much electric power this node has that is providing to the other node.
     private double power;
     // If this variable > 0 then there is load shedding and < 0 then residual.
-    private double leftPower;
+    private double residual;
     private double loadShedding;
 
     public Node(int node, double use) {
@@ -40,7 +40,7 @@ public class Node implements Serializable {
     private void init() {
         this.power = (supply_demand > 0) ? Math.abs(use) : 0;
         this.loadShedding = (supply_demand < 0) ? Math.abs(use) : 0;
-        this.leftPower = 0;
+        this.residual = 0;
     }
 
     /**
@@ -69,12 +69,12 @@ public class Node implements Serializable {
         return this.use;
     }
 
-    public double getLeftPower() {
-        return leftPower;
+    public double getResidual() {
+        return residual;
     }
 
-    public void setLeftPower(double leftPower) {
-        this.leftPower = leftPower;
+    public void setResidual(double residual) {
+        this.residual = residual;
     }
 
     @Override
@@ -84,6 +84,7 @@ public class Node implements Serializable {
                 ", supply_demand=" + supply_demand +
                 ", use=" + use +
                 ", power=" + power +
+                ", residual=" + residual +
                 ", loadShedding=" + loadShedding +
                 '}';
     }
