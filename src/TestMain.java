@@ -18,16 +18,22 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
-//        printGraph(1, new GraphGenerator().graphGenerator(50, 500, 350, 40));
-        Graph graph = new Graph();
-        GraphGenerator graphGenerator = new GraphGenerator();
-        graphGenerator.graphGenerator(500, 500, 350, 40);
-        graphGenerator.generateGraph(graph);
-//        graph.printEdge();
 
-        StopWatch.start();
-        checkACOV2(graph);
-        StopWatch.elapsedTime();
+        for (int i = 1; i <= 5; i++) {
+            GraphGenerator graphGenerator = new GraphGenerator();
+            List<Node> nodeList = graphGenerator.graphGenerator(150, 500, 350, 40);
+            printGraph(i, nodeList, graphGenerator.getLinkNumber());
+        }
+
+//        Graph graph = new Graph();
+//        GraphGenerator graphGenerator = new GraphGenerator();
+//        graphGenerator.graphGenerator(500, 500, 350, 40);
+//        graphGenerator.generateGraph(graph);
+////        graph.printEdge();
+//
+//        StopWatch.start();
+//        checkACOV2(graph);
+//        StopWatch.elapsedTime();
     }
 
     private static void checkACOV2(Graph graph) {
@@ -48,13 +54,13 @@ public class TestMain {
         solver.gibbs(graph, 100);
     }
 
-    private static void printGraph(int testCase, List<Node> nodeList) {
+    private static void printGraph(int testCase, List<Node> nodeList, int linkNumber) {
         try {
-            String path = "/home/seal/IdeaProjects/SmartGridOptimization/output/";
-            String str = "graphOutput.txt";
+            String path = "/home/seal/Documents/Graphs/";
+            String str = "graphOutput";
 
             PrintWriter out = new PrintWriter(path + str + String.valueOf(testCase) + ".txt");
-            out.println(nodeList.size());
+            out.println(nodeList.size() + " " + linkNumber);
             for (int i = 0; i < nodeList.size(); i++) {
                 out.print(nodeList.get(i).getSupplyOrDemand() + " ");
             }
