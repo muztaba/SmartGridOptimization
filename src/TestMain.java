@@ -18,22 +18,22 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
+        GraphGenerator graphGenerator = new GraphGenerator();
+        List<Node> nodeList = graphGenerator.graphGenerator(100, 500, 350, 40);
+        printGraph(1, nodeList, graphGenerator.getLinkNumber());
 
-        for (int i = 1; i <= 5; i++) {
-            GraphGenerator graphGenerator = new GraphGenerator();
-            List<Node> nodeList = graphGenerator.graphGenerator(150, 500, 350, 40);
-            printGraph(i, nodeList, graphGenerator.getLinkNumber());
-        }
+        Graph graph = new Graph();
+        Graph graph1 = new Graph();
 
-//        Graph graph = new Graph();
-//        GraphGenerator graphGenerator = new GraphGenerator();
-//        graphGenerator.graphGenerator(500, 500, 350, 40);
-//        graphGenerator.generateGraph(graph);
+        GraphInput reader = new GraphInput();
+        graph = reader.readGraph("input/graph1.txt");
 ////        graph.printEdge();
 //
-//        StopWatch.start();
-//        checkACOV2(graph);
-//        StopWatch.elapsedTime();
+        StopWatch.start();
+        for (int i = 0; i < 10; i++) {
+            checkACOV2(graph);
+        }
+        StopWatch.elapsedTime();
     }
 
     private static void checkACOV2(Graph graph) {
@@ -56,8 +56,8 @@ public class TestMain {
 
     private static void printGraph(int testCase, List<Node> nodeList, int linkNumber) {
         try {
-            String path = "/home/seal/Documents/Graphs/";
-            String str = "graphOutput";
+            String path = "input/";
+            String str = "graph";
 
             PrintWriter out = new PrintWriter(path + str + String.valueOf(testCase) + ".txt");
             out.println(nodeList.size() + " " + linkNumber);
