@@ -107,7 +107,7 @@ public class Graph implements Serializable{
     public double getPower(final int node) {
         double power = 0.0;
         if (vertexes.get(node).getSupply_demand() < 0) {
-            power = vertexes.get(node).getLeftPower();
+            power = vertexes.get(node).getResidual();
         } else {
             power = vertexes.get(node).getPower();
         }
@@ -168,7 +168,7 @@ public class Graph implements Serializable{
      * @param residual residual power.
      */
     public void addResidual(final int node, final double residual) {
-        vertexes.get(node).setLeftPower(residual);
+        vertexes.get(node).setResidual(residual);
     }
 
     /**
@@ -196,7 +196,7 @@ public class Graph implements Serializable{
         double loadShedding = 0.0;
         for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
             loadShedding += itr.getValue().getLoadShedding();
-            loadShedding += itr.getValue().getLeftPower();
+            loadShedding += itr.getValue().getResidual();
         }
         return loadShedding;
     }

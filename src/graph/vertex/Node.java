@@ -25,12 +25,18 @@ public class Node implements Serializable {
 
     /**
      * Randomly given electricity to a node is subtract from the previous load shedding.
-     * If the load shedding value negative then the node has residual electricity. Otherwise
-     * there is still load shedding.
+     * If the given electricity is grater than load shedding then subtract from the electricity,
+     * set the load shedding 0 [the node has no load shedding] and rest of the electricity set to
+     * the residual.
      * @param electricity given electricity will add to the node.
      */
     public void addElectricity(double electricity) {
-        loadShedding = loadShedding - electricity;
+        if (electricity > loadShedding) {
+            setResidual(electricity - loadShedding);
+            loadShedding = 0;
+        } else {
+            loadShedding = loadShedding - electricity;
+        }
     }
 
     public void reset() {
