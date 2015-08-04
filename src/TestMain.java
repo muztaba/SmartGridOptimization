@@ -19,6 +19,7 @@ import java.util.List;
 public class TestMain {
     public static void main(String[] args) throws IOException {
         GraphGenerator graphGenerator = new GraphGenerator();
+<<<<<<< Updated upstream
         List<Node> nodeList = graphGenerator.graphGenerator(50, 5000, 350, 60);
         printGraph(1, nodeList, graphGenerator.getLinkNumber());
 
@@ -38,6 +39,11 @@ public class TestMain {
 //        graph1.print();
 //        graph1.print();
 
+=======
+        graphGenerator.graphGenerator(584, 500, 350, 40);
+        graphGenerator.generateGraph(graph);
+//        graph.printEdge();
+>>>>>>> Stashed changes
 
         StopWatch.start();
         for (int i = 0; i < 10; i++) {
@@ -47,8 +53,18 @@ public class TestMain {
     }
 
     private static void checkACOV2(Graph graph) {
+<<<<<<< Updated upstream
         Run run = new algorithm.aco.multi.source.ACO(100, 10, graph);
+=======
+        Run run = new algorithm.aco.multi.source.ACO(1000, 10, graph);
+        Run run1 = new algorithm.aco.multi.source.ACO(2000, 10, graph);
+        Run run3 = new algorithm.aco.multi.source.ACO(3000, 10, graph);
+        Run run4 = new algorithm.aco.multi.source.ACO(4000, 10, graph);
+>>>>>>> Stashed changes
         run.run();
+        run1.run();
+        run3.run();
+        run4.run();
     }
 
     private static void checkNewGraph(Graph graph) {
