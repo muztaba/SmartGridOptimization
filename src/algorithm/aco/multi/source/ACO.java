@@ -27,7 +27,7 @@ public class ACO implements Run {
         this.iteration = iteration;
         this.graph = graph;
         this.ants = new Ant[antNumber];
-        this.pheromone = new Pheromone(this.graph.vertexesNumber());
+        this.pheromone = new Pheromone(this.graph.vertexesNumber(), 10000);
         for (int i = 0; i < ants.length; i++) {
             Graph cloneGraph = this.graph.clone();
             ants[i] = new Ant(cloneGraph);
@@ -37,11 +37,19 @@ public class ACO implements Run {
     @Override
     public void run() {
         List<Double> ll = new ArrayList<>();
+        //====== DEBUG ======//
         double prevLoadShedding = 0.0;
+        int minAntIndex = 0;
+        //===================//
         for (int _iteration = 0; _iteration < iteration; _iteration++) {
 
             for (int antIndex = 0; antIndex < ants.length; antIndex++) {
                 ants[antIndex].initiate(pheromone);
+                //=====DEBUG======//
+//                System.out.println(ants[antIndex].getVisitedNodeNumber());
+//                System.out.println(ants[antIndex].getLoadShedding());
+//                System.out.println();
+                //================//
             }
 
             double minLoadShedding = Double.MAX_VALUE;
@@ -53,11 +61,12 @@ public class ACO implements Run {
                     minLoadSheddingAntIndex = antIndex;
                 }
             }
-//            System.out.println(minLoadShedding);
-            ll.add(minLoadShedding);
             pheromoneUpdate(minLoadSheddingAntIndex);
 
             //===========DEBUG==========//
+//            System.out.println(minLoadShedding);
+//            ll.add(minLoadShedding);
+//            minAntIndex = minLoadSheddingAntIndex;
 //            if (_iteration % 10 == 0) {
 //                System.out.println("\n");
 //            }
@@ -68,16 +77,17 @@ public class ACO implements Run {
 //            System.out.println();
 //            prevLoadShedding = minLoadShedding;
 //            System.out.println("Visited Node Number : " + ants[minLoadSheddingAntIndex].getVisitedNodeNumber());
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
             //========================//
         }
 
         //===========DEBUG==========//
-        Collections.sort(ll);
-        System.out.println();
+//        Collections.sort(ll);
+//        System.out.println();
+//        ants[minAntIndex].printGraph();
+//        ants[minAntIndex].printVisitedNode();
+//        System.out.println();
+        System.out.println(ants[minAntIndex].getVisitedNodeNumber());
+//        System.out.println();
         System.out.println("Min : " + ll.get(0) + " Max : " + ll.get(ll.size()- 1));
         //========================//
 

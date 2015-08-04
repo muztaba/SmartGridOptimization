@@ -15,6 +15,10 @@ public class GraphGenerator {
 
     public List<Node> graphGenerator(int node, int supply, int demand, int percentageOf) {
         Random random = new Random();
+
+        // Sometime there is duplicate link appear due to bug. Therefor this
+        // is here to check whether this a duplicate link or not. If duplicate
+        // then this link will not add to the graph.
         Set<Pair<Integer, Integer>> duplicateCheck = new HashSet<>();
 
         int supplyNode = (node * percentageOf) / 100;
@@ -53,8 +57,10 @@ public class GraphGenerator {
             if (nodeList.get(i).isConnected(lastIndexValue) || nodeList.get(lastIndexValue).isConnected(i)) {
                 continue;
             }
+
             Pair<Integer, Integer> pairU_V = Pair.makePair(i, lastIndexValue);
             Pair<Integer, Integer> pairV_U = Pair.makePair(lastIndexValue, i);
+
             if (!duplicateCheck.contains(pairU_V) && !duplicateCheck.contains(pairV_U)) {
                 // Sometime there is negative value in the capacity. [Reason not known]
                 // Therefore take the absolute value of the capacity.
@@ -72,10 +78,6 @@ public class GraphGenerator {
                 this.linkNumber++; // Update/increase the link number [edge].
             }
         }
-
-        // Sometime there is duplicate link appear due to bug. Therefor this
-        // is here to check whether this a duplicate link or not. If duplicate
-        // then this link will not add to the graph.
 
         for (int i = 0, t = edge * 3; i < edge && t > 0; i++, t--) {
             int prev = i;
@@ -113,7 +115,6 @@ public class GraphGenerator {
                 }
                 // capacity is cast to integer but it should not be.
                 // Code should be rearrange .
-                System.out.println(duplicateCheck.contains(Pair.makePair(u, v)));
                 nodeList.get(u).setConnectedWith(v, Integer.MAX_VALUE);
                 duplicateCheck.add(pairU_V);
                 duplicateCheck.add(pairV_U);
