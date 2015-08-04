@@ -15,6 +15,7 @@ public class GraphGenerator {
 
     public List<Node> graphGenerator(int node, int supply, int demand, int percentageOf) {
         Random random = new Random();
+        Set<Pair<Integer, Integer>> duplicateCheck = new HashSet<>();
 
         int supplyNode = (node * percentageOf) / 100;
         int demandNode = node - supplyNode;
@@ -30,7 +31,7 @@ public class GraphGenerator {
             }
         }
 
-        int edge = (node / 3) + random.nextInt(node / 2) + 1;
+        int edge = node + (random.nextInt(node / 2) + (node / 2));
         int avgEdge = (edge / node) + 1;
 
         // Making a spanning tree therefor there will be no chance that any of those node has no connection
@@ -52,27 +53,29 @@ public class GraphGenerator {
             if (nodeList.get(i).isConnected(lastIndexValue) || nodeList.get(lastIndexValue).isConnected(i)) {
                 continue;
             }
+            Pair<Integer, Integer> pairU_V = Pair.makePair(i, lastIndexValue);
+            Pair<Integer, Integer> pairV_U = Pair.makePair(lastIndexValue, i);
+            if (!duplicateCheck.contains(pairU_V) && !duplicateCheck.contains(pairV_U)) {
+                // Sometime there is negative value in the capacity. [Reason not known]
+                // Therefore take the absolute value of the capacity.
+                double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
 
-            // Sometime there is negative value in the capacity. [Reason not known]
-            // Therefore take the absolute value of the capacity.
-            double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
-
-            // If the capacity will zero then get the connected node's use
-            // and assign to the capacity.
-            if (capacity == 0) {
-                capacity = nodeList.get(lastIndexValue).getSupplyOrDemand();
+                // If the capacity will zero then get the connected node's use
+                // and assign to the capacity.
+                if (capacity == 0) {
+                    capacity = nodeList.get(lastIndexValue).getSupplyOrDemand();
+                }
+                // capacity is cast to integer but it should not be.
+                // Code should be rearrange .
+                nodeList.get(i).setConnectedWith(lastIndexValue, Integer.MAX_VALUE);
+                list.remove(list.size() - 1);
+                this.linkNumber++; // Update/increase the link number [edge].
             }
-            // capacity is cast to integer but it should not be.
-            // Code should be rearrange .
-            nodeList.get(i).setConnectedWith(lastIndexValue, Integer.MAX_VALUE);
-            list.remove(list.size() - 1);
-            this.linkNumber++; // Update/increase the link number [edge].
         }
 
         // Sometime there is duplicate link appear due to bug. Therefor this
         // is here to check whether this a duplicate link or not. If duplicate
         // then this link will not add to the graph.
-        Set<Pair<Integer, Integer>> duplicateCheck = new HashSet<>();
 
         for (int i = 0, t = edge * 3; i < edge && t > 0; i++, t--) {
             int prev = i;
@@ -95,8 +98,9 @@ public class GraphGenerator {
             }
 
 
-            Pair<Integer, Integer> pair = Pair.makePair(u, v);
-            if (!duplicateCheck.contains(pair)) {
+            Pair<Integer, Integer> pairU_V = Pair.makePair(u, v);
+            Pair<Integer, Integer> pairV_U = Pair.makePair(v, u);
+            if (!duplicateCheck.contains(pairU_V) && !duplicateCheck.contains(pairV_U)) {
                 // Sometime there is negative value in the capacity. [Reason not known]
                 // Therefore take the absolute value of the capacity.
 //                double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
@@ -109,8 +113,10 @@ public class GraphGenerator {
                 }
                 // capacity is cast to integer but it should not be.
                 // Code should be rearrange .
+                System.out.println(duplicateCheck.contains(Pair.makePair(u, v)));
                 nodeList.get(u).setConnectedWith(v, Integer.MAX_VALUE);
-                duplicateCheck.add(pair);
+                duplicateCheck.add(pairU_V);
+                duplicateCheck.add(pairV_U);
                 this.linkNumber++; // Update/increase the link number [edge].
             }
         }
