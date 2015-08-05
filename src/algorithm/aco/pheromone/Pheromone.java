@@ -18,6 +18,17 @@ public class Pheromone implements IPheromone{
         init(fillValue);
     }
 
+    @Override
+    public void evaporation(IEvaporation evaporationMethod) {
+        for (int i = 0; i < pheromoneTrail.length; i++) {
+            for (int j = 0; j < pheromoneTrail[i].length; j++) {
+                double oldPheromone = get(i, j);
+                double newPheromone = evaporationMethod.evaporation(oldPheromone);
+                set(i, j, newPheromone);
+            }
+        }
+    }
+
     private void init(double fillValue) {
         ArrayUtils.fill(pheromoneTrail, fillValue);
     }

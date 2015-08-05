@@ -9,4 +9,5 @@ public interface IPheromone {
     void set(final int u, final int v, final double pheromoneValue);
 
     void reset(double resetValue);
+    void evaporation(IEvaporation evaporationMethod);
 }

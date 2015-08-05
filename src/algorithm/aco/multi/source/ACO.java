@@ -2,6 +2,7 @@ package algorithm.aco.multi.source;
 
 import Utils.Pair;
 import algorithm.Run;
+import algorithm.aco.pheromone.IEvaporation;
 import algorithm.aco.pheromone.IPheromone;
 import algorithm.aco.pheromone.Pheromone;
 import graph.version2.Graph;
@@ -97,12 +98,21 @@ public class ACO implements Run {
     public static final double EVAPORATION = .5;
 
     private void pheromoneUpdate(int antIndex) {
+
+        // Evaporation
+
+        pheromone.evaporation(new IEvaporation() {
+            @Override
+            public double evaporation(double oldPheromone) {
+                return (1 - .5) * oldPheromone;
+            }
+        });
+
+        // Update pheromone
+
         for (Pair<Integer, Integer> itr : ants[antIndex].visitedLink) {
             int u = itr.first;
             int v = itr.second;
-
-            double evaporatePheromone = (1 - EVAPORATION) * pheromone.get(u, v);
-            pheromone.set(u, v, evaporatePheromone);
 
             double updatePheromone = pheromone.get(u, v) + pheromone.get(u, v);
             pheromone.set(u, v, updatePheromone);
