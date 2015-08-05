@@ -28,8 +28,8 @@ public class Ant {
     private double loadShedding;
 
 
-    public static final double ALPHA = 5.0;
-    public static final double BETA = 2.0;
+    public static final double ALPHA = 1;
+    public static final double BETA = 1;
 
     public Ant(final Graph graph) {
         this.graph = graph;
@@ -107,6 +107,13 @@ public class Ant {
 
         while (this.power > 0) {
             visited.add(this.currentNode); // Keep track which node has been visited.
+
+            //====== DEBUG =======//
+            System.out.println(this.currentNode);
+            this.graph.print();
+            System.out.println("\n");
+            //====================//
+
             // If the current node demand node then give some electricity.
             // And if the node supply node then the ant simply move on.
             if (!graph.isSourceNode(this.currentNode)) {
@@ -140,7 +147,9 @@ public class Ant {
                 power = linkCapacity;
                 queue.add(this.currentNode);
             }
-
+            //======= DEBUG ======//
+            visitedLinkOrder.add(Pair.makePair(currentNode, nextNode));
+            //====================//
             visitedLink.add(Pair.makePair(currentNode, nextNode));
             this.currentNode = nextNode;
         }
@@ -227,9 +236,16 @@ public class Ant {
     //===========================================//
     //==================DEBUG====================//
     //===========================================//
+    public List<Pair<Integer, Integer>> visitedLinkOrder = new ArrayList<>();
     public void printVisitedNode() {
         for (int i : visited) {
             System.out.println(i);
+        }
+    }
+
+    public void printVisitedLink() {
+        for (Pair<Integer, Integer> i : visitedLinkOrder) {
+            System.out.println(i.first + " " + i.second);
         }
     }
 
@@ -239,5 +255,9 @@ public class Ant {
 
     public int getVisitedNodeNumber() {
         return this.visited.size();
+    }
+
+    public void printGraph() {
+        this.graph.print();
     }
 }

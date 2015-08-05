@@ -27,7 +27,7 @@ public class ACO implements Run {
         this.iteration = iteration;
         this.graph = graph;
         this.ants = new Ant[antNumber];
-        this.pheromone = new Pheromone(this.graph.vertexesNumber(), 10000);
+        this.pheromone = new Pheromone(this.graph.vertexesNumber(), 1);
         for (int i = 0; i < ants.length; i++) {
             Graph cloneGraph = this.graph.clone();
             ants[i] = new Ant(cloneGraph);
@@ -65,7 +65,7 @@ public class ACO implements Run {
 
             //===========DEBUG==========//
 //            System.out.println(minLoadShedding);
-//            ll.add(minLoadShedding);
+            ll.add(minLoadShedding);
 //            minAntIndex = minLoadSheddingAntIndex;
 //            if (_iteration % 10 == 0) {
 //                System.out.println("\n");
@@ -83,10 +83,11 @@ public class ACO implements Run {
         //===========DEBUG==========//
 //        Collections.sort(ll);
 //        System.out.println();
+        ants[minAntIndex].printVisitedLink();
 //        ants[minAntIndex].printGraph();
 //        ants[minAntIndex].printVisitedNode();
 //        System.out.println();
-        System.out.println(ants[minAntIndex].getVisitedNodeNumber());
+//        System.out.println(ants[minAntIndex].getVisitedNodeNumber());
 //        System.out.println();
         System.out.println("Min : " + ll.get(0) + " Max : " + ll.get(ll.size()- 1));
         //========================//

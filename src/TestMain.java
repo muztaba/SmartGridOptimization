@@ -43,14 +43,14 @@ public class TestMain {
 //        graph.printEdge();
 
         StopWatch.start();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1; i++) {
             checkACOV2(graph);
         }
         StopWatch.elapsedTime();
     }
 
     private static void checkACOV2(Graph graph) {
-        Run run = new algorithm.aco.multi.source.ACO(1000, 10, graph);
+        Run run = new algorithm.aco.multi.source.ACO(1, 1, graph);
         run.run();
     }
 
