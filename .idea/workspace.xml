@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47d9ba94-7b4b-4918-b4b5-b85a721e04a3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graph/objSerialize.ser" afterPath="$PROJECT_DIR$/src/graph/objSerialize.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" afterPath="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TestMain.java" afterPath="$PROJECT_DIR$/src/TestMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartGridOptimization.iws" />
@@ -42,10 +39,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ACO.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ACO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5017794">
+            <state vertical-scroll-proportion="-10.071428">
               <caret line="63" column="53" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -54,14 +51,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ant.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Ant.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.678571">
-              <caret line="53" column="29" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.033898305">
+              <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
               <folding>
-                <element signature="e#3039#3040#0" expanded="true" />
-                <element signature="e#3091#3092#0" expanded="true" />
+                <element signature="e#3090#3091#0" expanded="true" />
+                <element signature="e#3142#3143#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -134,9 +131,9 @@
         <option value="$PROJECT_DIR$/input/graph1.txt" />
         <option value="$PROJECT_DIR$/src/graph/version2/Graph.java" />
         <option value="$PROJECT_DIR$/input/graph.txt" />
-        <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
-        <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
         <option value="$PROJECT_DIR$/src/TestMain.java" />
+        <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java" />
+        <option value="$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java" />
       </list>
     </option>
   </component>
@@ -410,7 +407,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1149" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="SearchEverywhereHistoryKey" value="setup&#9;PSI&#9;JAVA://algorithm.aco.multi.source.Ant#setupAnt&#10;getPo&#9;PSI&#9;JAVA://graph.version2.Graph#getPower&#10;terminal&#9;ACTION&#9;ActivateTerminalToolWindow&#10;G&#9;PSI&#9;JAVA://algorithm.aco.test.GraphACO&#10;Input&#9;PSI&#9;JAVA://graph.GraphInput.InputReader&#10;gibbs&#9;PSI&#9;JAVA://algorithm.Gibbs#gibbs&#10;gi&#9;FILE&#9;file:///home/seal/IdeaProjects/SmartGridOptimization/src/graph/GraphInput.java&#10;che&#9;PSI&#9;JAVA://algorithm.Algorithm#checkValidity&#10;initva&#9;PSI&#9;JAVA://algorithm.Algorithm#initVariable&#10;initco&#9;PSI&#9;JAVA://algorithm.Algorithm#initConnectionMatrix&#10;init&#9;PSI&#9;JAVA://algorithm.Algorithm#initVariable" />
+    <property name="SearchEverywhereHistoryKey" value="nextNode&#9;PSI&#9;JAVA://algorithm.aco.multi.source.Ant#nextNodeSelection&#10;setup&#9;PSI&#9;JAVA://algorithm.aco.multi.source.Ant#setupAnt&#10;getPo&#9;PSI&#9;JAVA://graph.version2.Graph#getPower&#10;terminal&#9;ACTION&#9;ActivateTerminalToolWindow&#10;G&#9;PSI&#9;JAVA://algorithm.aco.test.GraphACO&#10;Input&#9;PSI&#9;JAVA://graph.GraphInput.InputReader&#10;gibbs&#9;PSI&#9;JAVA://algorithm.Gibbs#gibbs&#10;gi&#9;FILE&#9;file:///home/seal/IdeaProjects/SmartGridOptimization/src/graph/GraphInput.java&#10;che&#9;PSI&#9;JAVA://algorithm.Algorithm#checkValidity&#10;initva&#9;PSI&#9;JAVA://algorithm.Algorithm#initVariable&#10;initco&#9;PSI&#9;JAVA://algorithm.Algorithm#initConnectionMatrix&#10;init&#9;PSI&#9;JAVA://algorithm.Algorithm#initVariable" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
@@ -907,7 +904,13 @@
       <option name="project" value="LOCAL" />
       <updated>1438807123269</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="still working">
+      <created>1438808023565</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1438808023565</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -987,7 +990,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="some minor change place. n.t updateTrail will implement." />
     <MESSAGE value="working on &quot;deadEndRecover&quot; method" />
     <MESSAGE value="new class Graph create in version2 package" />
     <MESSAGE value="new type of vertex class(Node) create in vertex package" />
@@ -1012,7 +1014,8 @@
     <MESSAGE value="getResidual method add and change in the getPower method." />
     <MESSAGE value="setupAnt method change. and the comment update." />
     <MESSAGE value="calculateDinominetor method bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="calculateDinominetor method bug fix" />
+    <MESSAGE value="still working" />
+    <option name="LAST_COMMIT_MESSAGE" value="still working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1388,17 +1391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.678571">
-          <caret line="53" column="29" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="29" />
-          <folding>
-            <element signature="e#3039#3040#0" expanded="true" />
-            <element signature="e#3091#3092#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TestMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1409,10 +1401,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/ACO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5017794">
+        <state vertical-scroll-proportion="-10.071428">
           <caret line="63" column="53" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.033898305">
+          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+          <folding>
+            <element signature="e#3090#3091#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -31,6 +31,7 @@ public class Ant {
 
     public static final double ALPHA = 1;
     public static final double BETA = 1;
+    public static final int SCALING_FACTOR = 1000;
 
     public Ant(final Graph graph) {
         this.graph = graph;
@@ -208,7 +209,7 @@ public class Ant {
             }
 
             double pheromone = this.pheromone.get(currentNode, V);
-            double nn = itr.loadShedding;
+            double nn = itr.loadShedding / SCALING_FACTOR;
             double p = probTo(pheromone, nn, denominator);
             MaxProbNode maxProbNode = new MaxProbNode(V, p);
             probNodes.add(maxProbNode);
@@ -236,6 +237,9 @@ public class Ant {
             if (loadShedding == 0) {
                 loadShedding = .001;
             }
+            // Scale the load shedding.
+            loadShedding /= SCALING_FACTOR;
+
             sum += Math.pow(loadShedding, BETA) * Math.pow(pheromone.get(currentNode, V), ALPHA);
         }
         return sum;
