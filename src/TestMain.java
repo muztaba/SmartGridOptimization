@@ -26,7 +26,7 @@ public class TestMain {
 //        Graph graph1;
 //
         GraphInput reader = new GraphInput();
-        graph = reader.readGraph(graph, "input/graph1.txt");
+        graph = reader.readGraph(graph, "input/graph.txt");
 //        graph1 = graph.clone();
 //
 //        graph1.addResidual(0, 3);
@@ -50,7 +50,7 @@ public class TestMain {
     }
 
     private static void checkACOV2(Graph graph) {
-        Run run = new algorithm.aco.multi.source.ACO(1, 1, graph);
+        Run run = new algorithm.aco.multi.source.ACO(100, 5, graph);
         run.run();
     }
 

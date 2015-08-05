@@ -227,10 +227,16 @@ public class Ant {
         double sum = 0.0;
         for (Graph.VertexInfo itr : graph.extractVertexInfo(this.currentNode)) {
             int V = itr.nodeNumber;
+            double loadShedding = itr.loadShedding;
             if (visited.contains(V)) {
                 continue;
             }
-            sum += Math.pow(itr.loadShedding, BETA) * Math.pow(pheromone.get(currentNode, V), ALPHA);
+            // If the load shedding is '0' the a very little value will
+            // assign to the loadShedding variable. Only '0' is not good.
+            if (loadShedding == 0) {
+                loadShedding = .001;
+            }
+            sum += Math.pow(loadShedding, BETA) * Math.pow(pheromone.get(currentNode, V), ALPHA);
         }
         return sum;
     }
