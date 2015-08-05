@@ -32,8 +32,8 @@
       <file leaf-file-name="Ant.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.840678">
-              <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.4338983">
+              <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -851,7 +851,13 @@
       <option name="project" value="LOCAL" />
       <updated>1438803024874</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="setupAnt method change. and the comment update.">
+      <created>1438805550988</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1438805550988</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -931,7 +937,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start aco algorithm" />
     <MESSAGE value="nextNodeSelection add n.t optimize version will come." />
     <MESSAGE value="some minor change place. n.t updateTrail will implement." />
     <MESSAGE value="working on &quot;deadEndRecover&quot; method" />
@@ -956,7 +961,8 @@
     <MESSAGE value="duplicate link construct bug remove." />
     <MESSAGE value="still working...." />
     <MESSAGE value="getResidual method add and change in the getPower method." />
-    <option name="LAST_COMMIT_MESSAGE" value="getResidual method add and change in the getPower method." />
+    <MESSAGE value="setupAnt method change. and the comment update." />
+    <option name="LAST_COMMIT_MESSAGE" value="setupAnt method change. and the comment update." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -969,7 +975,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java</url>
-          <line>142</line>
+          <line>146</line>
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
@@ -1358,8 +1364,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/algorithm/aco/multi/source/Ant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.840678">
-          <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.4338983">
+          <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
           <folding />
         </state>
       </provider>
