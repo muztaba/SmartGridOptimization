@@ -81,9 +81,9 @@ public class ACO implements Run {
         }
 
         //===========DEBUG==========//
-//        Collections.sort(ll);
+        Collections.sort(ll);
 //        System.out.println();
-        ants[minAntIndex].printVisitedLink();
+//        ants[minAntIndex].printVisitedLink();
 //        ants[minAntIndex].printGraph();
 //        ants[minAntIndex].printVisitedNode();
 //        System.out.println();

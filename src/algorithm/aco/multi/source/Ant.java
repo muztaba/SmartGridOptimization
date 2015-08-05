@@ -128,9 +128,9 @@ public class Ant {
             }
 
             //====== DEBUG =======//
-            System.out.println(this.currentNode);
-            this.graph.print();
-            System.out.println("\n");
+//            System.out.println(this.currentNode);
+//            this.graph.print();
+//            System.out.println("\n");
             //====================//
 
             // If the current node demand node then give some electricity.
@@ -167,7 +167,7 @@ public class Ant {
                 queue.add(this.currentNode);
             }
             //======= DEBUG ======//
-            visitedLinkOrder.add(Pair.makePair(currentNode, nextNode));
+//            visitedLinkOrder.add(Pair.makePair(currentNode, nextNode));
             //====================//
             visitedLink.add(Pair.makePair(currentNode, nextNode));
             this.currentNode = nextNode;

@@ -18,15 +18,15 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
-        GraphGenerator graphGenerator = new GraphGenerator();
-        List<Node> nodeList = graphGenerator.graphGenerator(30, 200, 150, 40);
-        printGraph(1, nodeList, graphGenerator.getLinkNumber());
+//        GraphGenerator graphGenerator = new GraphGenerator();
+//        List<Node> nodeList = graphGenerator.graphGenerator(50, 1000, 750, 40);
+//        printGraph(1, nodeList, graphGenerator.getLinkNumber());
 
         Graph graph = new Graph();
 //        Graph graph1;
 //
         GraphInput reader = new GraphInput();
-        graph = reader.readGraph(graph, "input/graph.txt");
+        graph = reader.readGraph(graph, "input/graph1.txt");
 //        graph1 = graph.clone();
 //
 //        graph1.addResidual(0, 3);
@@ -43,14 +43,14 @@ public class TestMain {
 //        graph.printEdge();
 
         StopWatch.start();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             checkACOV2(graph);
         }
         StopWatch.elapsedTime();
     }
 
     private static void checkACOV2(Graph graph) {
-        Run run = new algorithm.aco.multi.source.ACO(100, 5, graph);
+        Run run = new algorithm.aco.multi.source.ACO(100, 20, graph);
         run.run();
     }
 
