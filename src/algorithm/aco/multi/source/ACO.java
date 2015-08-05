@@ -98,25 +98,20 @@ public class ACO implements Run {
     public static final double EVAPORATION = .5;
 
     private void pheromoneUpdate(int antIndex) {
-
         // Evaporation
-
         pheromone.evaporation(new IEvaporation() {
             @Override
             public double evaporation(double oldPheromone) {
-                return (1 - .5) * oldPheromone;
+                return (1 - EVAPORATION) * oldPheromone;
             }
         });
 
         // Update pheromone
-
         for (Pair<Integer, Integer> itr : ants[antIndex].visitedLink) {
             int u = itr.first;
             int v = itr.second;
-
             double updatePheromone = pheromone.get(u, v) + pheromone.get(u, v);
             pheromone.set(u, v, updatePheromone);
         }
-
     }
 }
