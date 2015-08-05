@@ -29,8 +29,8 @@ public class Ant {
     private double loadShedding;
 
 
-    public static final double ALPHA = 1;
-    public static final double BETA = 1;
+    public static final double ALPHA = 2;
+    public static final double BETA = 5;
     public static final int SCALING_FACTOR = 1000;
 
     public Ant(final Graph graph) {
