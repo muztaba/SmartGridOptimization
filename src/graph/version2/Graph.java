@@ -97,21 +97,31 @@ public class Graph implements Serializable{
     }
 
     /**
-     * Get the power of the source node or demand node that has been left.
-     * If the node has no power or left power then the method return 0.
+     * This method return the power that generate by the source node.
+     * If the node that has passed to the method as parameter is node
+     * source node the method throw IllegalArgumentException.
      *
+     * @throws IllegalArgumentException if the given node is not source node.
      * @param node node that is working on.
      * @return double value of the power source.
      *          Id node has no power then return 0.
      */
     public double getPower(final int node) {
-        double power = 0.0;
-        if (vertexes.get(node).getSupply_demand() < 0) {
-            power = vertexes.get(node).getResidual();
-        } else {
-            power = vertexes.get(node).getPower();
+        if (!isSourceNode(node)) {
+            throw new IllegalArgumentException("Node should be source node");
         }
-        return power;
+
+        return vertexes.get(node).getPower();
+    }
+
+    /**
+     * This method return the residual electricity in the node.
+     *
+     * @param node target node.
+     * @return the residual electricity.
+     */
+    public double getResidual(final int node) {
+        return vertexes.get(node).getResidual();
     }
 
     /**

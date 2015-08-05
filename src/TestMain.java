@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
-//        GraphGenerator graphGenerator = new GraphGenerator();
-//        List<Node> nodeList = graphGenerator.graphGenerator(30, 200, 150, 40);
-//        printGraph(1, nodeList, graphGenerator.getLinkNumber());
+        GraphGenerator graphGenerator = new GraphGenerator();
+        List<Node> nodeList = graphGenerator.graphGenerator(30, 200, 150, 40);
+        printGraph(1, nodeList, graphGenerator.getLinkNumber());
 
         Graph graph = new Graph();
 //        Graph graph1;
