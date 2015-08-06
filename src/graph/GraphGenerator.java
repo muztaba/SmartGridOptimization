@@ -73,7 +73,7 @@ public class GraphGenerator {
                 }
                 // capacity is cast to integer but it should not be.
                 // Code should be rearrange .
-                nodeList.get(i).setConnectedWith(lastIndexValue, Integer.MAX_VALUE);
+                nodeList.get(i).setConnectedWith(lastIndexValue,(int) capacity);
                 list.remove(list.size() - 1);
                 this.linkNumber++; // Update/increase the link number [edge].
             }
@@ -115,7 +115,7 @@ public class GraphGenerator {
                 }
                 // capacity is cast to integer but it should not be.
                 // Code should be rearrange .
-                nodeList.get(u).setConnectedWith(v, Integer.MAX_VALUE);
+                nodeList.get(u).setConnectedWith(v, (int) capacity);
                 duplicateCheck.add(pairU_V);
                 duplicateCheck.add(pairV_U);
                 this.linkNumber++; // Update/increase the link number [edge].
