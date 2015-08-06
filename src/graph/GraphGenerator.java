@@ -73,7 +73,9 @@ public class GraphGenerator {
                 }
                 // capacity is cast to integer but it should not be.
                 // Code should be rearrange .
-                nodeList.get(i).setConnectedWith(lastIndexValue,(int) capacity);
+                // From the line 72 there is a chance the capacity will negative.
+                // Therefore when the parameter will pass to the capacity will make positive again.
+                nodeList.get(i).setConnectedWith(lastIndexValue,(int) Math.abs(capacity));
                 list.remove(list.size() - 1);
                 this.linkNumber++; // Update/increase the link number [edge].
             }
@@ -105,7 +107,6 @@ public class GraphGenerator {
             if (!duplicateCheck.contains(pairU_V) && !duplicateCheck.contains(pairV_U)) {
                 // Sometime there is negative value in the capacity. [Reason not known]
                 // Therefore take the absolute value of the capacity.
-//                double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
                 double capacity = Math.abs(generateSupplyOrDemand(meanDemand, meanDemand, random));
 
                 // If the capacity will zero then get the connected node's use
@@ -115,7 +116,9 @@ public class GraphGenerator {
                 }
                 // capacity is cast to integer but it should not be.
                 // Code should be rearrange .
-                nodeList.get(u).setConnectedWith(v, (int) capacity);
+                // From the line 72 there is a chance the capacity will negative.
+                // Therefore when the parameter will pass to the capacity will make positive again.
+                nodeList.get(u).setConnectedWith(v, (int) Math.abs(capacity));
                 duplicateCheck.add(pairU_V);
                 duplicateCheck.add(pairV_U);
                 this.linkNumber++; // Update/increase the link number [edge].
