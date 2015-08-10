@@ -18,15 +18,15 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
-//        GraphGenerator graphGenerator = new GraphGenerator();
-//        List<Node> nodeList = graphGenerator.graphGenerator(50, 1000, 750, 40);
-//        printGraph(1, nodeList, graphGenerator.getLinkNumber());
+        GraphGenerator graphGenerator = new GraphGenerator();
+        List<Node> nodeList = graphGenerator.graphGenerator(21, 11000, 6000, 40);
+        printGraph(1, nodeList, graphGenerator.getLinkNumber());
 
         Graph graph = new Graph();
-//        Graph graph1;
+        Graph graph1;
 //
         GraphInput reader = new GraphInput();
-        graph = reader.readGraph(graph, "input/graph1.txt");
+//        graph = reader.readGraph(graph, "input/graph.txt");
 //        graph1 = graph.clone();
 //
 //        graph1.addResidual(0, 3);
@@ -43,14 +43,16 @@ public class TestMain {
 //        graph.printEdge();
 
         StopWatch.start();
-        for (int i = 0; i < 10; i++) {
-            checkACOV2(graph);
+        for (int i = 0; i < 1; i++) {
+//            checkACOV2(graph);
+            checkGibbs(12, nodeList);
+//            checkMonteCarlo(1, nodeList);
         }
         StopWatch.elapsedTime();
     }
 
     private static void checkACOV2(Graph graph) {
-        Run run = new algorithm.aco.multi.source.ACO(100, 20, graph);
+        Run run = new algorithm.aco.multi.source.ACO(1, 20, graph);
         run.run();
     }
 
@@ -64,13 +66,17 @@ public class TestMain {
     }
     private static void checkGibbs(int testCase, List<Node> graph) {
         Gibbs solver = new Gibbs();
-        solver.gibbs(graph, 100);
+        solver.gibbs(graph, 10);
     }
 
+    private static void checkMonteCarlo(int iteration, List<Node> nodeList) {
+        MonteCarlo solver = new MonteCarlo();
+        solver.monteCarlo(nodeList, 1000);
+    }
     private static void printGraph(int testCase, List<Node> nodeList, int linkNumber) {
         try {
             String path = "input/";
-            String str = "graph";
+            String str = "graph1";
 
             PrintWriter out = new PrintWriter(path + str + String.valueOf(testCase) + ".txt");
             out.println(nodeList.size() + " " + linkNumber);

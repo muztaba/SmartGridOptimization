@@ -125,7 +125,7 @@ public class Algorithm {
 
         for (double i : row) total += i;
 
-        return total >= 0;
+        return total >= 0.0;
     }
 
     /**
