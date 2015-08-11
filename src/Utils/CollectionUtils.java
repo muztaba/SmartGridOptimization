@@ -17,9 +17,9 @@ public class CollectionUtils {
         return set;
     }
 
-    public static List<Integer> toList(Set<Integer> set) {
-        List<Integer> list = new ArrayList<>();
-        for (int i : set) {
+    public static <T> List<T> toList(Set<T> set) {
+        List<T> list = new ArrayList<>();
+        for (T i : set) {
             list.add(i);
         }
         return list;
