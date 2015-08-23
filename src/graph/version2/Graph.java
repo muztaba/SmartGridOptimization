@@ -2,6 +2,7 @@ package graph.version2;
 
 import IOUtils.InputReader;
 import Utils.Pair;
+import com.sun.istack.internal.NotNull;
 import graph.vertex.Node;
 
 import java.io.*;
@@ -112,6 +113,25 @@ public class Graph implements Serializable{
         }
 
         return vertexes.get(node).getPower();
+    }
+
+    /**
+     * This method return the demand of the node that containing maximum value.
+     *
+     * @return maxDemand. The maximum value of the demand of the graph.
+     */
+    public double getMaxDemand() {
+        double maxDemand = Double.MIN_VALUE;
+        for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
+            if (itr.getValue().getSupply_demand() > 1) {
+                continue;
+            }
+            double demand = itr.getValue().getLoadShedding();
+            if (demand > maxDemand) {
+                maxDemand = demand;
+            }
+        }
+        return maxDemand;
     }
 
     /**

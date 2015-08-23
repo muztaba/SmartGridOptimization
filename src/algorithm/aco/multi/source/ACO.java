@@ -37,8 +37,8 @@ public class ACO implements Run {
 
     @Override
     public void run() {
-        List<Double> ll = new ArrayList<>();
         //====== DEBUG ======//
+        List<Double> ll = new ArrayList<>();
         double prevLoadShedding = 0.0;
         int minAntIndex = 0;
         //===================//

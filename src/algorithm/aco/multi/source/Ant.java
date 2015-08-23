@@ -31,10 +31,12 @@ public class Ant {
 
     public static final double ALPHA = 2;
     public static final double BETA = 5;
-    public static final int SCALING_FACTOR = 1000;
+    public final double SCALING_FACTOR;
 
     public Ant(final Graph graph) {
         this.graph = graph;
+//        SCALING_FACTOR = graph.getMaxDemand();
+        SCALING_FACTOR = 10;
         Set<Integer> sourceSet = graph.getSourceList();
         // source set converted to List.
         this.sourceList = CollectionUtils.toList(sourceSet);
