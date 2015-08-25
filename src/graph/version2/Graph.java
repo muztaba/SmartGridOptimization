@@ -19,6 +19,34 @@ public class Graph implements Serializable{
     // Keep the list of the sources.
     private Set<Integer> sourceList = new HashSet<>();
 
+    // Out degree and and the in degree of a node.
+    Map<Integer, Degree> degreeMap = new HashMap<>();
+
+    private static class Degree {
+        public int inDegree;
+        public int outDegree;
+
+        public int totalDegree() {
+            return inDegree + outDegree;
+        }
+
+    }
+
+    public void setDegreeMap(int out, int in) {
+        if (degreeMap.get(out) == null) {
+            degreeMap.put(out, new Degree());
+        }
+        if (degreeMap.get(in) == null) {
+            degreeMap.put(in, new Degree());
+        }
+        degreeMap.get(out).outDegree++;
+        degreeMap.get(in).inDegree++;
+    }
+
+    public int degreeUse(int node) {
+        return degreeMap.get(node).totalDegree();
+    }
+
     /**
      * Add the vertex(node) to the graph. Using a map structure to keep the node.
      * map key is the vertex number and the value is the vertex itself.
@@ -320,6 +348,25 @@ public class Graph implements Serializable{
     public void print() {
         for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
             System.out.println(itr.getValue());
+        }
+    }
+
+    public void printDegree() {
+        for (int i = 0; i < vertexes.size(); i++) {
+            if (isSourceNode(i)) {
+                System.out.println("Node " + i + "*");
+                System.out.println("Total Degree  " + edges.get(i).size());
+                System.out.println("Degree Use    " + degreeUse(i));
+                System.out.println("Residual      " + getResidual(i));
+            } else {
+                System.out.println("Node " + i);
+                System.out.println("Total Degree  " + edges.get(i).size());
+                System.out.println("Degree Use    " + degreeUse(i));
+                System.out.println("Residual      " + getResidual(i));
+                System.out.println("Load Shedding " + getLoadShedding(i));
+                System.out.println("Total         " + (getLoadShedding(i) + getResidual(i)));
+            }
+            System.out.println();
         }
     }
 

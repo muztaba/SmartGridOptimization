@@ -173,6 +173,9 @@ public class Ant {
 //            visitedLinkOrder.add(Pair.makePair(currentNode, nextNode));
             //====================//
             visitedLink.add(Pair.makePair(currentNode, nextNode));
+
+            graph.setDegreeMap(this.currentNode, nextNode);
+
             this.currentNode = nextNode;
         }
 
@@ -205,6 +208,9 @@ public class Ant {
 //            if (visited.contains(V)) {
 //                continue;
 //            }
+            if (graph.isSourceNode(V)) {
+                continue;
+            }
 
             if (occupiedLink.contains(Pair.makePair(this.currentNode, V))) {
                 continue;
@@ -279,6 +285,10 @@ public class Ant {
         for (Pair<Integer, Integer> i : visitedLinkOrder) {
             System.out.println(i.first + " " + i.second);
         }
+    }
+
+    public void printDegree() {
+        graph.printDegree();
     }
 
     public void printNextNode(int node) {

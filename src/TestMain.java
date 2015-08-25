@@ -18,15 +18,16 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
-        GraphGenerator graphGenerator = new GraphGenerator();
-        List<Node> nodeList = graphGenerator.graphGenerator(21, 11000, 6000, 40);
-        printGraph(1, nodeList, graphGenerator.getLinkNumber());
+//        GraphGenerator graphGenerator = new GraphGenerator();
+//        List<Node> nodeList = graphGenerator.graphGenerator(50, 600, 300, 40);
+//        printGraph(1, nodeList, graphGenerator.getLinkNumber());
+
 
         Graph graph = new Graph();
-        Graph graph1;
+//        Graph graph1;
 //
         GraphInput reader = new GraphInput();
-//        graph = reader.readGraph(graph, "input/graph.txt");
+        graph = reader.readGraph(graph, "input/graph1.txt");
 //        graph1 = graph.clone();
 //
 //        graph1.addResidual(0, 3);
@@ -38,21 +39,16 @@ public class TestMain {
 //        graph1.print();
 //        graph1.print();
 
-//        graphGenerator.graphGenerator(584, 500, 350, 40);
-//        graphGenerator.generateGraph(graph);
-//        graph.printEdge();
 
         StopWatch.start();
         for (int i = 0; i < 1; i++) {
-//            checkACOV2(graph);
-            checkGibbs(12, nodeList);
-//            checkMonteCarlo(1, nodeList);
+            checkACOV2(graph);
         }
         StopWatch.elapsedTime();
     }
 
     private static void checkACOV2(Graph graph) {
-        Run run = new algorithm.aco.multi.source.ACO(1, 20, graph);
+        Run run = new algorithm.aco.multi.source.ACO(1, 1, graph);
         run.run();
     }
 
@@ -64,19 +60,16 @@ public class TestMain {
         Run solver = new ACO(graph, 0);
         solver.run();
     }
+
     private static void checkGibbs(int testCase, List<Node> graph) {
         Gibbs solver = new Gibbs();
-        solver.gibbs(graph, 10);
+        solver.gibbs(graph, 1);
     }
 
-    private static void checkMonteCarlo(int iteration, List<Node> nodeList) {
-        MonteCarlo solver = new MonteCarlo();
-        solver.monteCarlo(nodeList, 1000);
-    }
     private static void printGraph(int testCase, List<Node> nodeList, int linkNumber) {
         try {
             String path = "input/";
-            String str = "graph1";
+            String str = "graph";
 
             PrintWriter out = new PrintWriter(path + str + String.valueOf(testCase) + ".txt");
             out.println(nodeList.size() + " " + linkNumber);
