@@ -171,11 +171,10 @@ public class Ant {
             }
             //======= DEBUG ======//
 //            visitedLinkOrder.add(Pair.makePair(currentNode, nextNode));
+            graph.setDegreeMap(this.currentNode, nextNode);
+            graph.setVisitedNumber(this.currentNode);
             //====================//
             visitedLink.add(Pair.makePair(currentNode, nextNode));
-
-            graph.setDegreeMap(this.currentNode, nextNode);
-
             this.currentNode = nextNode;
         }
 
@@ -208,9 +207,9 @@ public class Ant {
 //            if (visited.contains(V)) {
 //                continue;
 //            }
-            if (graph.isSourceNode(V)) {
-                continue;
-            }
+//            if (graph.isSourceNode(V)) {
+//                continue;
+//            }
 
             if (occupiedLink.contains(Pair.makePair(this.currentNode, V))) {
                 continue;
@@ -288,7 +287,7 @@ public class Ant {
     }
 
     public void printDegree() {
-        graph.printDegree();
+        graph.printDegree(this.visited);
     }
 
     public void printNextNode(int node) {

@@ -44,7 +44,7 @@ public class Graph implements Serializable{
     }
 
     public int degreeUse(int node) {
-        return degreeMap.get(node).totalDegree();
+        return degreeMap.get(node) == null ? 0 : degreeMap.get(node).totalDegree();
     }
 
     /**
@@ -351,17 +351,39 @@ public class Graph implements Serializable{
         }
     }
 
-    public void printDegree() {
+    Map<Integer, Integer> visitedNumber = new HashMap<>();
+
+    public void setVisitedNumber(int node) {
+        if (visitedNumber.get(node) == null) {
+            visitedNumber.put(node, 1);
+        } else {
+            visitedNumber.put(node, visitedNumber.get(node) + 1);
+        }
+    }
+
+    public void printDegree(Set<Integer> visited) {
+        System.out.println(vertexes.size() == visited.size() ? "All Visited" : visited.size());
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         for (int i = 0; i < vertexes.size(); i++) {
             if (isSourceNode(i)) {
                 System.out.println("Node " + i + "*");
+                System.out.println("Visited       " + (visited.contains(i) ? "true" : "false"));
+                System.out.println("Visited Time  " + (visitedNumber.get(i) == null ? "0" : visitedNumber.get(i)));
+                System.out.println("Use           " + vertexes.get(i).getUse());
                 System.out.println("Total Degree  " + edges.get(i).size());
                 System.out.println("Degree Use    " + degreeUse(i));
+                System.out.println("In Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).inDegree));
+                System.out.println("Out Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).outDegree));
                 System.out.println("Residual      " + getResidual(i));
             } else {
                 System.out.println("Node " + i);
+                System.out.println("Visited       " + (visited.contains(i) ? "true" : "false"));
+                System.out.println("Visited Time  " + (visitedNumber.get(i) == null ? "0" : visitedNumber.get(i)));
+                System.out.println("Use           " + vertexes.get(i).getUse());
                 System.out.println("Total Degree  " + edges.get(i).size());
                 System.out.println("Degree Use    " + degreeUse(i));
+                System.out.println("In Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).inDegree));
+                System.out.println("Out Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).outDegree));
                 System.out.println("Residual      " + getResidual(i));
                 System.out.println("Load Shedding " + getLoadShedding(i));
                 System.out.println("Total         " + (getLoadShedding(i) + getResidual(i)));
