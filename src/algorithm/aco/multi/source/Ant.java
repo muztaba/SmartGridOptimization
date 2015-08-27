@@ -77,6 +77,8 @@ public class Ant {
      * If the node is demand node then directly get the residua electricity.
      * Only the node is source node then the node will mark visited. Demand node will mark visited
      * in the moveAnt method.
+     * Because of getting the full power from the current node there is no residual in the node.
+     * So the residual set `0`.
      *
      * @param node first node where some power has.
      */
@@ -91,6 +93,7 @@ public class Ant {
         } else {
             this.power = graph.getResidual(node);
         }
+        graph.setResidual(node, 0);
         this.currentNode = node;
     }
 
@@ -189,8 +192,16 @@ public class Ant {
      */
     private void operationOnDemandNode() {
         double loadShedding = graph.getLoadShedding(this.currentNode);
+//        double generatePower = random.nextInt((int) Math.min(this.power, loadShedding));
         double generatePower = random.nextInt((int) Math.min(this.power, loadShedding));
         graph.addPower(this.currentNode, generatePower);
+        if (currentNode == 486) {
+            System.out.println(visited.size());
+            System.out.println(this.power);
+            System.out.println(loadShedding);
+            System.out.println(generatePower);
+//            System.exit(0);
+        }
         this.power -= generatePower;
     }
 

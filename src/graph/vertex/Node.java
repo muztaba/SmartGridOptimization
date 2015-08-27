@@ -32,7 +32,7 @@ public class Node implements Serializable {
      */
     public void addElectricity(double electricity) {
         if (electricity > loadShedding) {
-            setResidual(electricity - loadShedding);
+            addResidual(electricity - loadShedding);
             loadShedding = 0;
         } else {
             loadShedding = loadShedding - electricity;
@@ -77,6 +77,10 @@ public class Node implements Serializable {
 
     public double getResidual() {
         return residual;
+    }
+
+    public void addResidual(double residual) {
+        this.residual += residual;
     }
 
     public void setResidual(double residual) {

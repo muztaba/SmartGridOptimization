@@ -230,6 +230,18 @@ public class Graph implements Serializable{
     }
 
     /**
+     * Set specific value in a node residual value.
+     *
+     * @param node target node.
+     * @param residual specific value.
+     * @return current graph object.
+     */
+    public Graph setResidual(final int node, final double residual) {
+        vertexes.get(node).setResidual(residual);
+        return this;
+    }
+
+    /**
      * Set the given electricity to the particular node.
      *
      * @see Node addElectricity method.
@@ -373,7 +385,7 @@ public class Graph implements Serializable{
                 System.out.println("Total Degree  " + edges.get(i).size());
                 System.out.println("Degree Use    " + degreeUse(i));
                 System.out.println("In Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).inDegree));
-                System.out.println("Out Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).outDegree));
+                System.out.println("Out Degree    " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).outDegree));
                 System.out.println("Residual      " + getResidual(i));
             } else {
                 System.out.println("Node " + i);
@@ -383,7 +395,7 @@ public class Graph implements Serializable{
                 System.out.println("Total Degree  " + edges.get(i).size());
                 System.out.println("Degree Use    " + degreeUse(i));
                 System.out.println("In Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).inDegree));
-                System.out.println("Out Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).outDegree));
+                System.out.println("Out Degree    " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).outDegree));
                 System.out.println("Residual      " + getResidual(i));
                 System.out.println("Load Shedding " + getLoadShedding(i));
                 System.out.println("Total         " + (getLoadShedding(i) + getResidual(i)));

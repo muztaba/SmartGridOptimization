@@ -19,7 +19,7 @@ import java.util.List;
 public class TestMain {
     public static void main(String[] args) throws IOException {
 //        GraphGenerator graphGenerator = new GraphGenerator();
-//        List<Node> nodeList = graphGenerator.graphGenerator(500, 20000, 7000, 45);
+//        List<Node> nodeList = graphGenerator.graphGenerator(20, 300, 175, 40);
 //        printGraph(1, nodeList, graphGenerator.getLinkNumber());
 
 
