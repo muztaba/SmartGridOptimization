@@ -59,7 +59,7 @@ public class ACO implements Run {
             double minLoadShedding = Double.MAX_VALUE;
             int minLoadSheddingAntIndex = 0;
             for (int antIndex = 0; antIndex < ants.length; antIndex++) {
-                double loadShedding = ants[antIndex].getLoadShedding();
+                double loadShedding = ants[antIndex].quality();
                 if (loadShedding < minLoadShedding) {
                     minLoadShedding = loadShedding;
                     minLoadSheddingAntIndex = antIndex;
