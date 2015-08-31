@@ -226,7 +226,7 @@ public class Graph implements Serializable{
      * @param residual residual power.
      */
     public void addResidual(final int node, final double residual) {
-        vertexes.get(node).setResidual(residual);
+        vertexes.get(node).addResidual(residual);
     }
 
     /**
