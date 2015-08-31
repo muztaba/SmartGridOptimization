@@ -26,7 +26,9 @@ public class Ant {
 
     private int currentNode;
     private double power;
+
     private double loadShedding;
+    private double residual;
 
 
     public static final double ALPHA = 2;
@@ -65,6 +67,7 @@ public class Ant {
             }
         }
         this.loadShedding = graph.calculateLoadShedding();
+        this.residual = graph.calculateResidual();
     }
 
     /**
@@ -131,6 +134,9 @@ public class Ant {
         while (this.power > 0) {
             if (!graph.isSourceNode(this.currentNode)) {
                 visited.add(this.currentNode); // Keep track which node has been visited.
+                // If the current node demand node then give some electricity.
+                // And if the node supply node then the ant simply move on.
+                operationOnDemandNode();
             }
 
             //====== DEBUG =======//
@@ -138,12 +144,6 @@ public class Ant {
 //            this.graph.print();
 //            System.out.println("\n");
             //====================//
-
-            // If the current node demand node then give some electricity.
-            // And if the node supply node then the ant simply move on.
-            if (!graph.isSourceNode(this.currentNode)) {
-                operationOnDemandNode();
-            }
 
             // After giving power to a node if the ant's power will zero then the ant stop moving.
             if (this.power <= 0) {
@@ -270,8 +270,7 @@ public class Ant {
 
     /**
      * Return the total load shedding of the graph that this ant
-     * has visited. In another way load shedding means quality of the
-     * graph.
+     * has visited.
      *
      * @return total load shedding of the graph that this ant visited.
      */
@@ -279,6 +278,24 @@ public class Ant {
         return this.loadShedding;
     }
 
+    /**
+     * This method return the total residual in the graph that this ant travel.
+     *
+     * @return total residual of the graph.
+     */
+    public double getResidual() {
+        return this.residual;
+    }
+
+    /**
+     * This method return the summation of the total load shedding and the total residual of the graph
+     * that has been visited by the current ant.
+     *
+     * @return load shedding + residual.
+     */
+    public double quality() {
+        return residual + loadShedding;
+    }
 
     //===========================================//
     //==================DEBUG====================//

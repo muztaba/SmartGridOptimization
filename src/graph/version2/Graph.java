@@ -266,9 +266,16 @@ public class Graph implements Serializable{
         double loadShedding = 0.0;
         for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
             loadShedding += itr.getValue().getLoadShedding();
-            loadShedding += itr.getValue().getResidual();
         }
         return loadShedding;
+    }
+
+    public double calculateResidual() {
+        double residual = 0.0;
+        for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
+            residual += itr.getValue().getLoadShedding();
+        }
+        return residual;
     }
 
     public static class VertexInfo {
