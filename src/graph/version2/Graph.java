@@ -262,7 +262,7 @@ public class Graph implements Serializable{
      *
      * @return total load shedding of this graph.
      */
-    public double calculateLoadShedding() {
+    public double calculateTotalLoadShedding() {
         double loadShedding = 0.0;
         for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
             loadShedding += itr.getValue().getLoadShedding();
@@ -270,10 +270,10 @@ public class Graph implements Serializable{
         return loadShedding;
     }
 
-    public double calculateResidual() {
+    public double calculateTotalResidual() {
         double residual = 0.0;
         for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
-            residual += itr.getValue().getLoadShedding();
+            residual += itr.getValue().getResidual();
         }
         return residual;
     }

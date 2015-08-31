@@ -39,15 +39,18 @@ public class ACO implements Run {
     public void run() {
         //====== DEBUG ======//
         List<Double> ll = new ArrayList<>();
+        List<Double> rr = new ArrayList<>();
         double prevLoadShedding = 0.0;
         int minAntIndex = 0;
         //===================//
         for (int _iteration = 0; _iteration < iteration; _iteration++) {
             //======== DEBUG ======//
-            System.out.println(ants[0].getLoadShedding());
+            System.out.println(ants[0].getTotalLoadShedding());
             for (int antIndex = 0; antIndex < ants.length; antIndex++) {
                 ants[antIndex].initiate(pheromone);
                 //=====DEBUG======//
+                ll.add(ants[antIndex].getTotalLoadShedding());
+                rr.add(ants[antIndex].getTotalResidual());
 //                ants[antIndex].printVisitedNode();
                 ants[antIndex].printDegree();
 //                System.out.println(ants[antIndex].getVisitedNodeNumber());
@@ -69,7 +72,7 @@ public class ACO implements Run {
 
             //===========DEBUG==========//
 //            System.out.println(minLoadShedding);
-            ll.add(minLoadShedding);
+//            ll.add(minLoadShedding);
 //            minAntIndex = minLoadSheddingAntIndex;
 //            if (_iteration % 10 == 0) {
 //                System.out.println("\n");
@@ -86,6 +89,7 @@ public class ACO implements Run {
 
         //===========DEBUG==========//
         Collections.sort(ll);
+        Collections.sort(rr);
 //        System.out.println();
 //        ants[minAntIndex].printVisitedLink();
 //        ants[minAntIndex].printGraph();
@@ -93,7 +97,8 @@ public class ACO implements Run {
 //        System.out.println();
 //        System.out.println(ants[minAntIndex].getVisitedNodeNumber());
 //        System.out.println();
-        System.out.println("Min : " + ll.get(0) + " Max : " + ll.get(ll.size()- 1));
+        System.out.println("Min Load Shedding: " + ll.get(0) + " Max Load Shedding: " + ll.get(ll.size()- 1));
+        System.out.println("Min Residual: " + rr.get(0) + " Max Residual: " + rr.get(rr.size()- 1));
         //========================//
 
     }

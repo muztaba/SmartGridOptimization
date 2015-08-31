@@ -27,8 +27,8 @@ public class Ant {
     private int currentNode;
     private double power;
 
-    private double loadShedding;
-    private double residual;
+    private double totalLoadShedding;
+    private double totalResidual;
 
 
     public static final double ALPHA = 2;
@@ -66,8 +66,8 @@ public class Ant {
                 moveAnt();
             }
         }
-        this.loadShedding = graph.calculateLoadShedding();
-        this.residual = graph.calculateResidual();
+        this.totalLoadShedding = graph.calculateTotalLoadShedding();
+        this.totalResidual = graph.calculateTotalResidual();
     }
 
     /**
@@ -274,8 +274,8 @@ public class Ant {
      *
      * @return total load shedding of the graph that this ant visited.
      */
-    public double getLoadShedding() {
-        return this.loadShedding;
+    public double getTotalLoadShedding() {
+        return this.totalLoadShedding;
     }
 
     /**
@@ -283,8 +283,8 @@ public class Ant {
      *
      * @return total residual of the graph.
      */
-    public double getResidual() {
-        return this.residual;
+    public double getTotalResidual() {
+        return this.totalResidual;
     }
 
     /**
@@ -294,7 +294,7 @@ public class Ant {
      * @return load shedding + residual.
      */
     public double quality() {
-        return residual + loadShedding;
+        return totalResidual + totalLoadShedding;
     }
 
     //===========================================//
