@@ -193,7 +193,7 @@ public class Ant {
     private void operationOnDemandNode() {
         double loadShedding = graph.getLoadShedding(this.currentNode);
 //        double generatePower = random.nextInt((int) Math.min(this.power, loadShedding));
-        double generatePower = random.nextInt((int) Math.min(this.power, loadShedding));
+        double generatePower = loadShedding * random.nextDouble();
         graph.addPower(this.currentNode, generatePower);
         if (currentNode == 486) {
             System.out.println(visited.size());
