@@ -165,11 +165,14 @@ public class Ant {
             occupiedLink.add(Pair.makePair(nextNode, this.currentNode));
 
             double linkCapacity = graph.getCapacity(this.currentNode, nextNode);
+            double avgFlowOfLink = avgFlowOfLink(nextNode);
 
-            if (power > linkCapacity) {
+            double min = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
+
+            if (power > min) {
                 double residual = power - linkCapacity;
                 graph.addResidual(this.currentNode, residual);
-                power = linkCapacity;
+                power = min;
                 queue.add(this.currentNode);
             }
             //======= DEBUG ======//
@@ -182,6 +185,21 @@ public class Ant {
         }
 
         return false;
+    }
+
+    /**
+     * When the next has been selected then this method will try to
+     * assume what will be the incoming edges. so the the demand of that
+     * node will be divided into those incoming link.
+     *
+     * @param nextNode to where this ant will go from current node.
+     * @return the average flow of a link that are currently available.
+     */
+    private double avgFlowOfLink(int nextNode) {
+        int unusedLink = graph.degreeUsed(nextNode);
+        int probIncomingLink = unusedLink / 2;
+        double loadSheddingNextNode = graph.currentDemand(nextNode);
+        return (probIncomingLink == 0) ? loadSheddingNextNode / probIncomingLink : loadSheddingNextNode;
     }
 
     /**

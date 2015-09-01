@@ -25,7 +25,8 @@ public class Graph implements Serializable{
     private static class Degree {
         public int inDegree;
         public int outDegree;
-
+        public List<Integer> inDegreeList = new ArrayList<>();
+        public List<Integer> outDegreeList = new ArrayList<>();
         public int totalDegree() {
             return inDegree + outDegree;
         }
@@ -40,11 +41,31 @@ public class Graph implements Serializable{
             degreeMap.put(in, new Degree());
         }
         degreeMap.get(out).outDegree++;
+        degreeMap.get(out).outDegreeList.add(in);
         degreeMap.get(in).inDegree++;
+        degreeMap.get(in).inDegreeList.add(out);
     }
 
     public int degreeUse(int node) {
         return degreeMap.get(node) == null ? 0 : degreeMap.get(node).totalDegree();
+    }
+
+    /**
+     * This method return the how many degree or edges is used so far for the target vertex.
+     *
+     * @param node target vertex.
+     * @return how may edges or degrees has used or occupied.
+     */
+    public int degreeUsed(int node) {
+        int totalEdge = edges.get(node).size();
+        int usedEdge = degreeMap.get(node).totalDegree();
+        int unusedEdge = totalEdge - usedEdge;
+        // ===== Debug ======//
+        if (unusedEdge < 0) {
+            throw new IllegalArgumentException("Unused edge should not be negative");
+        }
+        //===================//
+        return unusedEdge;
     }
 
     /**
@@ -123,6 +144,18 @@ public class Graph implements Serializable{
      */
     public double getLoadShedding(final int nodeNumber) {
         return vertexes.get(nodeNumber).getLoadShedding();
+    }
+
+    public double currentDemand(int node) {
+        double actualDemand = Math.abs(vertexes.get(node).getUse());
+        double currentLoadShedding = vertexes.get(node).getLoadShedding();
+        double currentDemand = actualDemand - currentLoadShedding;
+        // ===== Debug ======//
+        if (currentDemand < 0) {
+            throw new IllegalArgumentException("Load shedding is grater then demand");
+        }
+        //===================//
+        return currentDemand;
     }
 
     /**
@@ -391,8 +424,20 @@ public class Graph implements Serializable{
                 System.out.println("Use           " + vertexes.get(i).getUse());
                 System.out.println("Total Degree  " + edges.get(i).size());
                 System.out.println("Degree Use    " + degreeUse(i));
-                System.out.println("In Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).inDegree));
-                System.out.println("Out Degree    " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).outDegree));
+                if (degreeMap.get(i) == null) {
+                    System.out.println(0);
+                } else {
+                    System.out.print("In Degree     " + (degreeMap.get(i).inDegree) + " [ ");
+                    for (int d : degreeMap.get(i).inDegreeList) {
+                        System.out.print(d + " ");
+                    }
+                    System.out.println(" ]");
+                    System.out.print("Out Degree    " + (degreeMap.get(i).outDegree) + " [ ");
+                    for (int d : degreeMap.get(i).outDegreeList) {
+                        System.out.print(d + " ");
+                    }
+                }
+                System.out.println(" ]");
                 System.out.println("Residual      " + getResidual(i));
             } else {
                 System.out.println("Node " + i);
@@ -401,8 +446,20 @@ public class Graph implements Serializable{
                 System.out.println("Use           " + vertexes.get(i).getUse());
                 System.out.println("Total Degree  " + edges.get(i).size());
                 System.out.println("Degree Use    " + degreeUse(i));
-                System.out.println("In Degree     " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).inDegree));
-                System.out.println("Out Degree    " + (degreeMap.get(i) == null ? 0 : degreeMap.get(i).outDegree));
+                if (degreeMap.get(i) == null) {
+                    System.out.println(0);
+                } else {
+                    System.out.print("In Degree     " + (degreeMap.get(i).inDegree) + " [ ");
+                    for (int d : degreeMap.get(i).inDegreeList) {
+                        System.out.print(d + " ");
+                    }
+                    System.out.println(" ]");
+                    System.out.print("Out Degree    " + (degreeMap.get(i).outDegree) + " [ ");
+                    for (int d : degreeMap.get(i).outDegreeList) {
+                        System.out.print(d + " ");
+                    }
+                }
+                System.out.println(" ]");
                 System.out.println("Residual      " + getResidual(i));
                 System.out.println("Load Shedding " + getLoadShedding(i));
                 System.out.println("Total         " + (getLoadShedding(i) + getResidual(i)));
