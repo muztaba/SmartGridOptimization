@@ -167,14 +167,15 @@ public class Ant {
             double linkCapacity = graph.getCapacity(this.currentNode, nextNode);
             double avgFlowOfLink = avgFlowOfLink(nextNode);
 
-            double min = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
+            double flow = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
 
-            if (power > min) {
+            if (power > flow) {
                 double residual = power - linkCapacity;
                 graph.addResidual(this.currentNode, residual);
-                power = min;
+                power = flow;
                 queue.add(this.currentNode);
             }
+            graph.setFlow(this.currentNode, nextNode, flow);
             //======= DEBUG ======//
 //            visitedLinkOrder.add(Pair.makePair(currentNode, nextNode));
             graph.setDegreeMap(this.currentNode, nextNode);
@@ -197,8 +198,8 @@ public class Ant {
      */
     private double avgFlowOfLink(int nextNode) {
         int unusedLink = graph.degreeUsed(nextNode);
-        int probIncomingLink = unusedLink / 2;
-        double loadSheddingNextNode = graph.currentDemand(nextNode);
+        int probIncomingLink = (int) Math.ceil(unusedLink / 2);
+        double loadSheddingNextNode = graph.getLoadShedding(nextNode);
         return (probIncomingLink == 0) ? loadSheddingNextNode / probIncomingLink : loadSheddingNextNode;
     }
 

@@ -1,6 +1,7 @@
 package graph.version2;
 
 import IOUtils.InputReader;
+import Utils.ArrayUtils;
 import Utils.Pair;
 import com.sun.istack.internal.NotNull;
 import graph.vertex.Node;
@@ -20,11 +21,13 @@ public class Graph implements Serializable{
 
     // Keep the list of the sources.
     private Set<Integer> sourceList = new HashSet<>();
-
     // Out degree and and the in degree of a node.
     Map<Integer, Degree> degreeMap = new HashMap<>();
 
-    private double[][] flowMatrix;
+    private double[][][] flowMatrix;
+
+    public static final int CAPACITY = 1;
+    public static final int FLOW = 0;
 
     private static class Degree {
         public int inDegree;
@@ -88,6 +91,19 @@ public class Graph implements Serializable{
     }
 
     /**
+     * Set the capacity u -> v node. It is bidirectional connection.
+     * @param u from where to leave flow.
+     * @param v to where to get the flow
+     * @param flow that is between the node.
+     * @return this object.
+     */
+    public Graph setFlow(int u, int v,final double flow) {
+        flowMatrix[u][v][FLOW] = -flow;
+        flowMatrix[v][u][FLOW] = flow;
+        return this;
+    }
+
+    /**
      * This method add edge between two node. 'u' is one node and 'v' is another node
      * and the capacity of the node. Make a pair with 'v' and capacity and added to a
      * edges map. Because of the graph bidirectional therefore make two pair with
@@ -98,25 +114,28 @@ public class Graph implements Serializable{
      * @param capacity capacity of the edge.
      */
     public void addEdge(int u, int v, double capacity) {
+        if (flowMatrix == null) {
+            initFlowMatrix();
+        }
         Pair<Integer, Double> U = Pair.makePair(v, capacity);
         Pair<Integer, Double> V = Pair.makePair(u, capacity);
-
         if (!edges.containsKey(u)) {
             edges.put(u, new HashSet<>());
         }
         if (!edges.containsKey(v)) {
             edges.put(v, new HashSet<>());
         }
-
         edges.get(u).add(U);
         edges.get(v).add(V);
+        flowMatrix[u][v][CAPACITY] = capacity;
+        flowMatrix[v][u][CAPACITY] = capacity;
     }
 
     /**
-     * This method initialize the new flow matrix. it creates a new object of the flow matrix.
+     * It creates a new object of the flow matrix that is initialize with 0.
      */
     private void initFlowMatrix() {
-        flowMatrix = new double[totalVertex][totalVertex];
+        flowMatrix = new double[totalVertex][totalVertex][2];
     }
 
     /**
