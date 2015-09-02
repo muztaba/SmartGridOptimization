@@ -13,6 +13,8 @@ import java.util.*;
  * @author Muztaba Hasanat
  */
 public class Graph implements Serializable{
+    private int totalVertex;
+    private int totalEdge;
     private Map<Integer, Node> vertexes = new HashMap<>();
     private Map<Integer, Set<Pair<Integer, Double>>> edges = new HashMap<>();
 
@@ -21,6 +23,8 @@ public class Graph implements Serializable{
 
     // Out degree and and the in degree of a node.
     Map<Integer, Degree> degreeMap = new HashMap<>();
+
+    private double[][] flowMatrix;
 
     private static class Degree {
         public int inDegree;
@@ -58,7 +62,8 @@ public class Graph implements Serializable{
      */
     public int degreeUsed(int node) {
         int totalEdge = edges.get(node).size();
-        int usedEdge = degreeMap.get(node).totalDegree();
+        // If the degree return null then there is no edge has visited so far. So it return 0
+        int usedEdge = (degreeMap.get(node) == null) ? 0 : degreeMap.get(node).totalDegree();
         int unusedEdge = totalEdge - usedEdge;
         // ===== Debug ======//
         if (unusedEdge < 0) {
@@ -108,6 +113,13 @@ public class Graph implements Serializable{
     }
 
     /**
+     * This method initialize the new flow matrix. it creates a new object of the flow matrix.
+     */
+    private void initFlowMatrix() {
+        flowMatrix = new double[totalVertex][totalVertex];
+    }
+
+    /**
      * This method return the all sources as Set data structure. Ensure that there is no duplicate.
      *
      * @return Set of integer of the sources of this graph containing.
@@ -124,6 +136,28 @@ public class Graph implements Serializable{
      */
     public int vertexesNumber() {
         return vertexes.size();
+    }
+
+    /**
+     * Set the total vertex of the graph that will contain.
+     *
+     * @param nodeNumber how many vertex there will be.
+     * @return this object
+     */
+    public Graph setVertexNumber(final int nodeNumber) {
+        totalVertex = nodeNumber;
+        return this;
+    }
+
+    /**
+     * Set the total edge of the graph that will contain.
+     *
+     * @param nodeNumber how many edge there will be.
+     * @return this object
+     */
+    public Graph setEdgeNumber(final int edgeNumber) {
+        totalEdge = edgeNumber;
+        return this;
     }
 
     /**
@@ -146,6 +180,13 @@ public class Graph implements Serializable{
         return vertexes.get(nodeNumber).getLoadShedding();
     }
 
+    /**
+     * This method calculate the load shedding of the target node
+     * at that time, and return the calculate value.
+     *
+     * @param node target node.
+     * @return load shedding at that time.
+     */
     public double currentDemand(int node) {
         double actualDemand = Math.abs(vertexes.get(node).getUse());
         double currentLoadShedding = vertexes.get(node).getLoadShedding();
