@@ -2,6 +2,7 @@ package algorithm.aco.multi.source;
 
 import Utils.CollectionUtils;
 import Utils.Pair;
+import algorithm.OurLocalSearch;
 import algorithm.aco.pheromone.IPheromone;
 import graph.version2.Graph;
 
@@ -66,6 +67,16 @@ public class Ant {
                 moveAnt();
             }
         }
+//        printDegree();
+        System.out.println(graph.calculateTotalLoadShedding());
+        System.out.println(graph.calculateTotalResidual());
+
+        OurLocalSearch localSearch = new OurLocalSearch();
+        localSearch.initiate(graph, 200);
+
+        System.out.println(graph.calculateTotalLoadShedding());
+        System.out.println(graph.calculateTotalResidual());
+
         this.totalLoadShedding = graph.calculateTotalLoadShedding();
         this.totalResidual = graph.calculateTotalResidual();
     }

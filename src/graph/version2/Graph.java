@@ -57,6 +57,26 @@ public class Graph implements Serializable{
         return degreeMap.get(node) == null ? 0 : degreeMap.get(node).totalDegree();
     }
 
+    public List<Integer> getOutDegreeList(int node) {
+        List<Integer> listOutDegree;
+        if (degreeMap.get(node).outDegreeList == null) {
+            listOutDegree = new ArrayList<>();
+        } else {
+            listOutDegree = new ArrayList<>(degreeMap.get(node).outDegreeList);
+        }
+        return listOutDegree;
+    }
+
+    public double getFlow(int u, int v) {
+        double flow = flowMatrix[u][v][FLOW];
+        // ======== DEBUG =======//
+        if (flow > 0) {
+            throw new IllegalArgumentException("+ : This is incoming flow");
+        }
+        // =====================//
+        return flow;
+    }
+
     /**
      * This method return the how many degree or edges is used so far for the target vertex.
      *
@@ -100,6 +120,12 @@ public class Graph implements Serializable{
     public Graph setFlow(int u, int v,final double flow) {
         flowMatrix[u][v][FLOW] = -flow;
         flowMatrix[v][u][FLOW] = flow;
+        return this;
+    }
+
+    public Graph addFlow(int u, int v, final double flow) {
+        flowMatrix[u][v][FLOW] += -flow;
+        flowMatrix[v][u][FLOW] += flow;
         return this;
     }
 
