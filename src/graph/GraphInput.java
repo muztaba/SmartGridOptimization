@@ -18,13 +18,13 @@ import java.io.IOException;
  *  Positive value mean supply and negative value for demand.
  */
 public class GraphInput {
-    Graph graph;
-
-    public Graph readGraph(Graph graph, String path) throws IOException {
+    public Graph readGraph(final Graph graph, String path) throws IOException {
         InputReader reader = new InputReader(new File(path));
-        this.graph = graph;
+
         int nodeNumber = reader.nextInt();
         int edgeNumber = reader.nextInt();
+
+        graph.setVertexNumber(nodeNumber).setEdgeNumber(edgeNumber);
 
         for (int i = 0; i < nodeNumber; i++) {
             double use = reader.nextDouble();
@@ -39,6 +39,6 @@ public class GraphInput {
             graph.addEdge(u, v, capacity);
         }
 
-        return this.graph;
+        return graph;
     }
 }
