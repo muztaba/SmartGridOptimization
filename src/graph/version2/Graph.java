@@ -16,6 +16,7 @@ import java.util.*;
 public class Graph implements Serializable{
     private int totalVertex;
     private int totalEdge;
+
     private Map<Integer, Node> vertexes = new HashMap<>();
     private Map<Integer, Set<Pair<Integer, Double>>> edges = new HashMap<>();
 
@@ -445,6 +446,35 @@ public class Graph implements Serializable{
             }
         };
     }
+
+    // ========== Graph Constraint Check ========//
+
+    private boolean validationCheck(int node) {
+        double[][] row = flowMatrix[node];
+        double totalFlow = 0.0;
+        for (int i = 0; i < row[0].length; i++) {
+            if (row[i][CAPACITY] >= row[i][FLOW]) {
+                totalFlow += row[i][FLOW];
+            } else {
+                throw new IllegalArgumentException("Capacity constraint violation"
+                + "Capacity " + row[i][CAPACITY] + "Flow " + row[i][FLOW]);
+            }
+        }
+        if (totalFlow >= 0) {
+            double residual = vertexes.get(node).getResidual();
+            double electricity = vertexes.get(node).getElectricity();
+            if (totalFlow - (residual + electricity) >= .1) {
+                throw new IllegalArgumentException("Flow constraint violation, Flow : " + totalFlow
+                + "residual + electricity" + (residual + electricity));
+            }
+        } else {
+            throw new IllegalArgumentException("Flow constraint violation, Flow : " + totalFlow);
+        }
+        return true;
+    }
+
+    //===========================================//
+
     //================CLONING====================//
     //===========================================//
 

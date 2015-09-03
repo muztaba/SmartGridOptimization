@@ -39,6 +39,18 @@ public class Node implements Serializable {
         }
     }
 
+    /**
+     * Return the given electricity to the node. If the node is supply node
+     * then this method will return '-1'. Otherwise calculate the value of
+     * given electricity to the demand node so far by subtract load shedding
+     * from the absolute value of the 'use'.
+     *
+     * @return if supply node then '-1' otherwise given electricity to the node.
+     */
+    public double getElectricity() {
+        return (supply_demand > 0) ? -1 : Math.abs(use) - loadShedding;
+    }
+
     public void reset() {
         init();
     }
