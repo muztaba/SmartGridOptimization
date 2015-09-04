@@ -72,7 +72,7 @@ public class Ant {
         System.out.println(graph.calculateTotalResidual());
 
         OurLocalSearch localSearch = new OurLocalSearch();
-        localSearch.initiate(graph, 200);
+//        localSearch.initiate(graph, 200);
 
         System.out.println(graph.calculateTotalLoadShedding());
         System.out.println(graph.calculateTotalResidual());
@@ -222,16 +222,8 @@ public class Ant {
      */
     private void operationOnDemandNode() {
         double loadShedding = graph.getLoadShedding(this.currentNode);
-//        double generatePower = random.nextInt((int) Math.min(this.power, loadShedding));
         double generatePower = loadShedding * random.nextDouble();
         graph.addPower(this.currentNode, generatePower);
-        if (currentNode == 486) {
-            System.out.println(visited.size());
-            System.out.println(this.power);
-            System.out.println(loadShedding);
-            System.out.println(generatePower);
-//            System.exit(0);
-        }
         this.power -= generatePower;
     }
 

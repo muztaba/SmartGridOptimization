@@ -362,7 +362,8 @@ public class Graph implements Serializable{
     }
 
     /**
-     * Set the given electricity to the particular node.
+     * Set the given electricity to the particular node. After give the power
+     * to the node validation check.
      *
      * @see Node addElectricity method.
      * @param node particular node where power is given.
@@ -370,6 +371,7 @@ public class Graph implements Serializable{
      */
     public void addPower(int node, double power) {
         vertexes.get(node).addElectricity(power);
+        validationCheck(node);
     }
 
     /**
@@ -464,8 +466,13 @@ public class Graph implements Serializable{
             double residual = vertexes.get(node).getResidual();
             double electricity = vertexes.get(node).getElectricity();
             if (totalFlow - (residual + electricity) >= .1) {
-                throw new IllegalArgumentException("Flow constraint violation, Flow : " + totalFlow
-                + "residual + electricity" + (residual + electricity));
+                System.out.println(node + "******");
+                System.out.println(totalFlow);
+                System.out.println(residual);
+                System.out.println(electricity);
+                System.out.println();
+//                throw new IllegalArgumentException("Flow constraint violation, Flow : " + totalFlow
+//                        + " residual + electricity " + (residual + electricity));
             }
         } else {
             throw new IllegalArgumentException("Flow constraint violation, Flow : " + totalFlow);
