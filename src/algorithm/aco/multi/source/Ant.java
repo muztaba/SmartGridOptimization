@@ -68,14 +68,15 @@ public class Ant {
             }
         }
 //        printDegree();
-        System.out.println(graph.calculateTotalLoadShedding());
-        System.out.println(graph.calculateTotalResidual());
-
+//        System.out.println(graph.calculateTotalLoadShedding());
+//        System.out.println(graph.calculateTotalResidual());
+//        graph.validationCheck();
+//        graph.printFlowMatrix();
         OurLocalSearch localSearch = new OurLocalSearch();
 //        localSearch.initiate(graph, 200);
 
-        System.out.println(graph.calculateTotalLoadShedding());
-        System.out.println(graph.calculateTotalResidual());
+//        System.out.println(graph.calculateTotalLoadShedding());
+//        System.out.println(graph.calculateTotalResidual());
 
         this.totalLoadShedding = graph.calculateTotalLoadShedding();
         this.totalResidual = graph.calculateTotalResidual();
@@ -178,10 +179,14 @@ public class Ant {
             double linkCapacity = graph.getCapacity(this.currentNode, nextNode);
             double avgFlowOfLink = avgFlowOfLink(nextNode);
 
+            //================ DEBUG ===============//
+            System.out.println("linkCapacity " + linkCapacity + " avgFlowOfLink " + avgFlowOfLink + " power " + power);
+            // ======================================= //
             double flow = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
 
+
             if (power > flow) {
-                double residual = power - linkCapacity;
+                double residual = power - flow;
                 graph.addResidual(this.currentNode, residual);
                 power = flow;
                 queue.add(this.currentNode);
@@ -191,6 +196,7 @@ public class Ant {
 //            visitedLinkOrder.add(Pair.makePair(currentNode, nextNode));
             graph.setDegreeMap(this.currentNode, nextNode);
             graph.setVisitedNumber(this.currentNode);
+            graph.validationCheck();
             //====================//
             visitedLink.add(Pair.makePair(currentNode, nextNode));
             this.currentNode = nextNode;
@@ -211,7 +217,7 @@ public class Ant {
         int unusedLink = graph.degreeUsed(nextNode);
         int probIncomingLink = (int) Math.ceil(unusedLink / 2);
         double loadSheddingNextNode = graph.getLoadShedding(nextNode);
-        return (probIncomingLink == 0) ? loadSheddingNextNode / probIncomingLink : loadSheddingNextNode;
+        return (probIncomingLink != 0) ? loadSheddingNextNode / probIncomingLink : loadSheddingNextNode;
     }
 
     /**
