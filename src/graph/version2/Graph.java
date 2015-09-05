@@ -11,9 +11,10 @@ import java.util.*;
 
 /**
  * Created by seal on 7/13/15.
+ *
  * @author Muztaba Hasanat
  */
-public class Graph implements Serializable{
+public class Graph implements Serializable {
     private int totalVertex;
     private int totalEdge;
 
@@ -35,6 +36,7 @@ public class Graph implements Serializable{
         public int outDegree;
         public List<Integer> inDegreeList = new ArrayList<>();
         public List<Integer> outDegreeList = new ArrayList<>();
+
         public int totalDegree() {
             return inDegree + outDegree;
         }
@@ -60,7 +62,7 @@ public class Graph implements Serializable{
 
     public List<Integer> getOutDegreeList(int node) {
         List<Integer> listOutDegree;
-        if (degreeMap.get(node).outDegreeList == null) {
+        if (degreeMap.get(node) == null || degreeMap.get(node).outDegreeList == null) {
             listOutDegree = new ArrayList<>();
         } else {
             listOutDegree = new ArrayList<>(degreeMap.get(node).outDegreeList);
@@ -113,12 +115,13 @@ public class Graph implements Serializable{
 
     /**
      * Set the capacity u -> v node. It is bidirectional connection.
-     * @param u from where to leave flow.
-     * @param v to where to get the flow
+     *
+     * @param u    from where to leave flow.
+     * @param v    to where to get the flow
      * @param flow that is between the node.
      * @return this object.
      */
-    public Graph setFlow(int u, int v,final double flow) {
+    public Graph setFlow(int u, int v, final double flow) {
         flowMatrix[u][v][FLOW] = -flow;
         flowMatrix[v][u][FLOW] = flow;
         return this;
@@ -136,8 +139,8 @@ public class Graph implements Serializable{
      * edges map. Because of the graph bidirectional therefore make two pair with
      * capacity with 'u' and capacity with 'v'. That is u->v and v->u.
      *
-     * @param u first node number.
-     * @param v second node number.
+     * @param u        first node number.
+     * @param v        second node number.
      * @param capacity capacity of the edge.
      */
     public void addEdge(int u, int v, double capacity) {
@@ -198,7 +201,7 @@ public class Graph implements Serializable{
     /**
      * Set the total edge of the graph that will contain.
      *
-     * @param nodeNumber how many edge there will be.
+     * @param edgeNumber how many edge there will be.
      * @return this object
      */
     public Graph setEdgeNumber(final int edgeNumber) {
@@ -250,10 +253,10 @@ public class Graph implements Serializable{
      * If the node that has passed to the method as parameter is node
      * source node the method throw IllegalArgumentException.
      *
-     * @throws IllegalArgumentException if the given node is not source node.
      * @param node node that is working on.
      * @return double value of the power source.
-     *          Id node has no power then return 0.
+     * Id node has no power then return 0.
+     * @throws IllegalArgumentException if the given node is not source node.
      */
     public double getPower(final int node) {
         if (!isSourceNode(node)) {
@@ -341,9 +344,9 @@ public class Graph implements Serializable{
      * Set the residual electricity to the particular node that is given to the method.
      * This residual electricity will keep in the Node's value.
      *
-     * @see Node setLeftPower method.
-     * @param node particular node where the residual power will be kept.
+     * @param node     particular node where the residual power will be kept.
      * @param residual residual power.
+     * @see Node setLeftPower method.
      */
     public void addResidual(final int node, final double residual) {
         vertexes.get(node).addResidual(residual);
@@ -352,7 +355,7 @@ public class Graph implements Serializable{
     /**
      * Set specific value in a node residual value.
      *
-     * @param node target node.
+     * @param node     target node.
      * @param residual specific value.
      * @return current graph object.
      */
@@ -365,9 +368,9 @@ public class Graph implements Serializable{
      * Set the given electricity to the particular node. After give the power
      * to the node validation check.
      *
-     * @see Node addElectricity method.
-     * @param node particular node where power is given.
+     * @param node  particular node where power is given.
      * @param power given power.
+     * @see Node addElectricity method.
      */
     public void addPower(int node, double power) {
         vertexes.get(node).addElectricity(power);
@@ -378,7 +381,7 @@ public class Graph implements Serializable{
      * Calculate the total load shedding of this graph. Iterate over
      * every node and get the load shedding and residual power or whatever
      * we are considering as load shedding and then sum up every thing.
-     *
+     * <p>
      * Noted that this method calculate the total load shedding of this graph.
      * Not the individual load shedding of node.
      *
@@ -419,7 +422,7 @@ public class Graph implements Serializable{
         vertexInfo = new VertexInfo[edges];
         Pair[] pairList = this.edges.get(node).toArray(new Pair[edges]);
 
-        for(int i = 0; i < vertexInfo.length; i++) {
+        for (int i = 0; i < vertexInfo.length; i++) {
             int _nodeNumber = (Integer) pairList[i].first;
             double _loadShedding = getLoadShedding(_nodeNumber);
             double _capacity = (Double) pairList[i].second;
@@ -459,7 +462,7 @@ public class Graph implements Serializable{
                 totalFlow += row[i][FLOW];
             } else {
                 throw new IllegalArgumentException("Capacity constraint violation"
-                + "Capacity " + row[i][CAPACITY] + "Flow " + row[i][FLOW]);
+                        + "Capacity " + row[i][CAPACITY] + " Flow " + row[i][FLOW]);
             }
         }
         if (totalFlow >= 0) {
