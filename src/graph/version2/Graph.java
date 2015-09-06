@@ -7,6 +7,8 @@ import com.sun.istack.internal.NotNull;
 import graph.vertex.Node;
 
 import java.io.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.*;
 
 /**
@@ -93,7 +95,8 @@ public class Graph implements Serializable {
         int unusedEdge = totalEdge - usedEdge;
         // ===== Debug ======//
         if (unusedEdge < 0) {
-            throw new IllegalArgumentException("Unused edge should not be negative");
+            throw new IllegalArgumentException("Unused edge should not be negative Total edge : "
+            + totalEdge + " Used Edge " + usedEdge);
         }
         //===================//
         return unusedEdge;
@@ -124,6 +127,16 @@ public class Graph implements Serializable {
     public Graph setFlow(int u, int v, final double flow) {
         flowMatrix[u][v][FLOW] = -flow;
         flowMatrix[v][u][FLOW] = flow;
+        // ============== DEBUG ================//
+        if (flowMatrix[u][v][FLOW] == Double.NaN) {
+            System.out.println("***");
+            System.out.println(flow);
+        }
+        if (flowMatrix[v][u][FLOW] == Double.NaN) {
+            System.out.println("****");
+            System.out.println(flow);
+        }
+        //======================================//
         return this;
     }
 
@@ -312,6 +325,8 @@ public class Graph implements Serializable {
         }
         for (Pair<Integer, Double> pair : set) {
             if (pair.first == v) {
+                assert (flowMatrix[u][v][CAPACITY] == pair.second) : "U " + u + " V " + v +
+                        " Flow matrix " + flowMatrix[u][v][CAPACITY] + " Set " + pair.second;
                 return pair.second;
             }
         }
@@ -335,6 +350,12 @@ public class Graph implements Serializable {
      * @see Node reset method.
      */
     public void reset() {
+        for (int i = 0; i < flowMatrix.length; i++) {
+            for (int j = 0; j < flowMatrix[i].length; j++) {
+                flowMatrix[i][j][FLOW] = 0.0;
+            }
+        }
+        degreeMap = new HashMap<>();
         for (Map.Entry<Integer, Node> itr : vertexes.entrySet()) {
             itr.getValue().reset();
         }
@@ -374,7 +395,7 @@ public class Graph implements Serializable {
      */
     public void addPower(int node, double power) {
         vertexes.get(node).addElectricity(power);
-        validationCheck(node);
+//        validationCheck(node);
     }
 
     /**
@@ -455,10 +476,13 @@ public class Graph implements Serializable {
     // ========== Graph Constraint Check ========//
 
     private boolean validationCheck(int node) {
+        if (isSourceNode(node)) {
+            return false;
+        }
         double[][] row = flowMatrix[node];
         double totalFlow = 0.0;
         for (int i = 0; i < row[0].length; i++) {
-            if (row[i][CAPACITY] >= row[i][FLOW]) {
+            if (row[i][CAPACITY] >= Math.abs(row[i][FLOW])) {
                 totalFlow += row[i][FLOW];
             } else {
                 throw new IllegalArgumentException("Capacity constraint violation"
@@ -468,12 +492,16 @@ public class Graph implements Serializable {
         if (totalFlow >= 0) {
             double residual = vertexes.get(node).getResidual();
             double electricity = vertexes.get(node).getElectricity();
-            if (totalFlow - (residual + electricity) >= .1) {
-                System.out.println(node + "******");
-                System.out.println(totalFlow);
-                System.out.println(residual);
-                System.out.println(electricity);
-                System.out.println();
+            if (totalFlow - (residual + electricity) != 0) {
+                // ================ DEBUG ==============//
+//                System.out.println(node + "******");
+//                System.out.println(totalFlow);
+//                System.out.println(residual);
+//                System.out.println(electricity);
+//                printFlowMatrix(row);
+//                System.out.println(isSourceNode(node));
+//                System.out.println();
+                //=====================================//
 //                throw new IllegalArgumentException("Flow constraint violation, Flow : " + totalFlow
 //                        + " residual + electricity " + (residual + electricity));
             }
@@ -481,6 +509,12 @@ public class Graph implements Serializable {
             throw new IllegalArgumentException("Flow constraint violation, Flow : " + totalFlow);
         }
         return true;
+    }
+
+    public void validationCheck() {
+        for (int i = 0; i < totalVertex; i++) {
+            validationCheck(i);
+        }
     }
 
     //===========================================//
@@ -602,4 +636,29 @@ public class Graph implements Serializable {
             System.out.println();
         }
     }
+
+    public void printFlowMatrix() {
+        NumberFormat format = new DecimalFormat("#0.");
+        for (int i = 0; i < flowMatrix.length; i++) {
+            for (int j = 0; j < flowMatrix[i].length; j++) {
+                System.out.print(format.format(flowMatrix[i][j][CAPACITY]) + "|| ");
+            }
+            System.out.println();
+            for (int j = 0; j < flowMatrix[i].length; j++) {
+                System.out.print(format.format(flowMatrix[i][j][FLOW]) + "|| ");
+            }
+            System.out.println("\n");
+        }
+    }
+
+    public void printFlowMatrix(double[][] row) {
+        for (int i = 0; i < row.length; i++) {
+            System.out.print(row[i][CAPACITY] + " ");
+        }
+        System.out.println();
+        for (int i = 0; i < row.length; i++) {
+            System.out.print(row[i][FLOW] + " ");
+        }
+    }
+
 }
