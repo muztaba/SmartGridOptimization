@@ -48,7 +48,7 @@ public class Node implements Serializable {
      * @return if supply node then '-1' otherwise given electricity to the node.
      */
     public double getElectricity() {
-        return (supply_demand > 0) ? -1 : Math.abs(use) - loadShedding;
+        return (supply_demand > 0) ? 0 : Math.abs(use) - loadShedding;
     }
 
     public void reset() {

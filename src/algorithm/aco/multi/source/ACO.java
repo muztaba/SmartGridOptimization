@@ -45,14 +45,15 @@ public class ACO implements Run {
         //===================//
         for (int _iteration = 0; _iteration < iteration; _iteration++) {
             //======== DEBUG ======//
-            System.out.println(ants[0].getTotalLoadShedding());
+//            System.out.println(ants[0].getTotalLoadShedding());
+            //=====================//
             for (int antIndex = 0; antIndex < ants.length; antIndex++) {
                 ants[antIndex].initiate(pheromone);
                 //=====DEBUG======//
-                ll.add(ants[antIndex].getTotalLoadShedding());
-                rr.add(ants[antIndex].getTotalResidual());
+//                ll.add(ants[antIndex].getTotalLoadShedding());
+//                rr.add(ants[antIndex].getTotalResidual());
 //                ants[antIndex].printVisitedNode();
-                ants[antIndex].printDegree();
+//                ants[antIndex].printDegree();
 //                System.out.println(ants[antIndex].getVisitedNodeNumber());
 //                System.out.println(ants[antIndex].getLoadShedding());
 //                System.out.println();
@@ -97,8 +98,8 @@ public class ACO implements Run {
 //        System.out.println();
 //        System.out.println(ants[minAntIndex].getVisitedNodeNumber());
 //        System.out.println();
-        System.out.println("Min Load Shedding: " + ll.get(0) + " Max Load Shedding: " + ll.get(ll.size()- 1));
-        System.out.println("Min Residual: " + rr.get(0) + " Max Residual: " + rr.get(rr.size()- 1));
+//        System.out.println("Min Load Shedding: " + ll.get(0) + " Max Load Shedding: " + ll.get(ll.size()- 1));
+//        System.out.println("Min Residual: " + rr.get(0) + " Max Residual: " + rr.get(rr.size()- 1));
         //========================//
 
     }

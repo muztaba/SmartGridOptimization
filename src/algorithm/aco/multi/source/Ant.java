@@ -68,16 +68,20 @@ public class Ant {
             }
         }
 //        printDegree();
-//        System.out.println(graph.calculateTotalLoadShedding());
-//        System.out.println(graph.calculateTotalResidual());
-//        graph.validationCheck();
+        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
+        System.out.println("Residual " + graph.calculateTotalResidual());
+        double prevLoadShedding = graph.calculateTotalLoadShedding();
+        double prevResidual = graph.calculateTotalResidual();
+        graph.validationCheck();
 //        graph.printFlowMatrix();
         OurLocalSearch localSearch = new OurLocalSearch();
-//        localSearch.initiate(graph, 200);
+        localSearch.initiate(graph, 200);
 
-//        System.out.println(graph.calculateTotalLoadShedding());
-//        System.out.println(graph.calculateTotalResidual());
-
+        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
+        System.out.println("Residual " + graph.calculateTotalResidual());
+        System.out.println("New Load Shedding " + (prevLoadShedding - graph.calculateTotalLoadShedding()));
+        System.out.println("New Residual " + (prevResidual - graph.calculateTotalResidual()));
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         this.totalLoadShedding = graph.calculateTotalLoadShedding();
         this.totalResidual = graph.calculateTotalResidual();
     }
@@ -126,7 +130,6 @@ public class Ant {
      */
     private static class MaxProbNode implements Comparable<MaxProbNode> {
         private int nodeNumber;
-
         private double probability;
 
         public MaxProbNode(int nodeNumber, double probability) {
@@ -138,53 +141,42 @@ public class Ant {
         public int compareTo(MaxProbNode node) {
             return Double.compare(node.probability, this.probability);
         }
-
     }
 
     private boolean moveAnt() {
-
         while (this.power > 0) {
+//            System.out.println("Current Node " + currentNode);
             if (!graph.isSourceNode(this.currentNode)) {
                 visited.add(this.currentNode); // Keep track which node has been visited.
                 // If the current node demand node then give some electricity.
                 // And if the node supply node then the ant simply move on.
                 operationOnDemandNode();
             }
-
-            //====== DEBUG =======//
-//            System.out.println(this.currentNode);
-//            this.graph.print();
-//            System.out.println("\n");
-            //====================//
-
             // After giving power to a node if the ant's power will zero then the ant stop moving.
             if (this.power <= 0) {
+//                System.out.println(">>>>>>>>>>Power End>>>>>>>>>>>>>>");
                 return false;
             }
-
             int nextNode = nextNodeSelection();
-
-            //=========DEBUG=========//
-//            printNextNode(nextNode);
-
             // If the ant won't move to next node then put the ant power to the node's residual power.
             if (nextNode < 0) {
                 graph.addResidual(this.currentNode, this.power);
+//                System.out.println(">>>>>>>>>>No Next Node>>>>>>>>>>>>>>");
                 return false;
             }
+
+//            System.out.println("Next Node  " + nextNode);
+//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>");
 
             occupiedLink.add(Pair.makePair(this.currentNode, nextNode));
             occupiedLink.add(Pair.makePair(nextNode, this.currentNode));
 
             double linkCapacity = graph.getCapacity(this.currentNode, nextNode);
             double avgFlowOfLink = avgFlowOfLink(nextNode);
-
             //================ DEBUG ===============//
-            System.out.println("linkCapacity " + linkCapacity + " avgFlowOfLink " + avgFlowOfLink + " power " + power);
+//            System.out.println("linkCapacity " + linkCapacity + " avgFlowOfLink " + avgFlowOfLink + " power " + power);
             // ======================================= //
             double flow = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
-
-
             if (power > flow) {
                 double residual = power - flow;
                 graph.addResidual(this.currentNode, residual);
@@ -201,7 +193,6 @@ public class Ant {
             visitedLink.add(Pair.makePair(currentNode, nextNode));
             this.currentNode = nextNode;
         }
-
         return false;
     }
 
@@ -242,31 +233,27 @@ public class Ant {
 
         for (Graph.VertexInfo itr : graph.extractVertexInfo(this.currentNode)) {
             int V = itr.nodeNumber;
-
+            double loadShedding = (itr.loadShedding == 0.0) ? 0.1 : itr.loadShedding;
 //            if (visited.contains(V)) {
 //                continue;
 //            }
 //            if (graph.isSourceNode(V)) {
 //                continue;
 //            }
-
             if (occupiedLink.contains(Pair.makePair(this.currentNode, V))) {
                 continue;
             }
 
             double pheromone = this.pheromone.get(currentNode, V);
-            double nn = itr.loadShedding / SCALING_FACTOR;
+            double nn = loadShedding / SCALING_FACTOR;
             double p = probTo(pheromone, nn, denominator);
             MaxProbNode maxProbNode = new MaxProbNode(V, p);
             probNodes.add(maxProbNode);
         }
-
         int nextNode = -1;
-
         if (!probNodes.isEmpty()) {
             nextNode = probNodes.peek().nodeNumber;
         }
-
         return nextNode;
     }
 
@@ -274,18 +261,13 @@ public class Ant {
         double sum = 0.0;
         for (Graph.VertexInfo itr : graph.extractVertexInfo(this.currentNode)) {
             int V = itr.nodeNumber;
-            double loadShedding = itr.loadShedding;
+            double loadShedding = (itr.loadShedding == 0) ? 0.1 : itr.loadShedding;
             if (visited.contains(V)) {
                 continue;
             }
-            // If the load shedding is '0' the a very little value will
-            // assign to the loadShedding variable. Only '0' is not good.
-            if (loadShedding == 0) {
-                loadShedding = .001;
-            }
+//            System.out.println(itr.nodeNumber + "  " + loadShedding);
             // Scale the load shedding.
             loadShedding /= SCALING_FACTOR;
-
             sum += Math.pow(loadShedding, BETA) * Math.pow(pheromone.get(currentNode, V), ALPHA);
         }
         return sum;
