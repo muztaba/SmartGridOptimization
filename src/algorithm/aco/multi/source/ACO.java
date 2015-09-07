@@ -7,6 +7,9 @@ import algorithm.aco.pheromone.IPheromone;
 import algorithm.aco.pheromone.Pheromone;
 import graph.version2.Graph;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,13 +46,19 @@ public class ACO implements Run {
         double prevLoadShedding = 0.0;
         int minAntIndex = 0;
         //===================//
-        for (int _iteration = 0; _iteration < iteration; _iteration++) {
-            //======== DEBUG ======//
+        try {
+            PrintWriter outI = new PrintWriter("input/Iteration.txt");
+            PrintWriter outL = new PrintWriter("input/LoadShedding.txt");
+
+
+            for (int _iteration = 0; _iteration < iteration; _iteration++) {
+                //======== DEBUG ======//
 //            System.out.println(ants[0].getTotalLoadShedding());
-            //=====================//
-            for (int antIndex = 0; antIndex < ants.length; antIndex++) {
-                ants[antIndex].initiate(pheromone);
-                //=====DEBUG======//
+                outI.println(_iteration);
+                //=====================//
+                for (int antIndex = 0; antIndex < ants.length; antIndex++) {
+                    ants[antIndex].initiate(pheromone);
+                    //=====DEBUG======//
 //                ll.add(ants[antIndex].getTotalLoadShedding());
 //                rr.add(ants[antIndex].getTotalResidual());
 //                ants[antIndex].printVisitedNode();
@@ -57,21 +66,21 @@ public class ACO implements Run {
 //                System.out.println(ants[antIndex].getVisitedNodeNumber());
 //                System.out.println(ants[antIndex].getLoadShedding());
 //                System.out.println();
-                //================//
-            }
-
-            double minQuality = Double.MAX_VALUE;
-            int minQualityAntIndex = 0;
-            for (int antIndex = 0; antIndex < ants.length; antIndex++) {
-                double quality = ants[antIndex].quality();
-                if (quality < minQuality) {
-                    minQuality = quality;
-                    minQualityAntIndex = antIndex;
+                    //================//
                 }
-            }
-            pheromoneUpdate(minQualityAntIndex);
 
-            //===========DEBUG==========//
+                double minQuality = Double.MAX_VALUE;
+                int minQualityAntIndex = 0;
+                for (int antIndex = 0; antIndex < ants.length; antIndex++) {
+                    double quality = ants[antIndex].quality();
+                    if (quality < minQuality) {
+                        minQuality = quality;
+                        minQualityAntIndex = antIndex;
+                    }
+                }
+                pheromoneUpdate(minQualityAntIndex);
+                outL.println(ants[minQualityAntIndex].getTotalLoadShedding());
+                //===========DEBUG==========//
 //            System.out.println(minLoadShedding);
 //            ll.add(minLoadShedding);
 //            minAntIndex = minLoadSheddingAntIndex;
@@ -85,7 +94,12 @@ public class ACO implements Run {
 //            System.out.println();
 //            prevLoadShedding = minLoadShedding;
 //            System.out.println("Visited Node Number : " + ants[minLoadSheddingAntIndex].getVisitedNodeNumber());
-            //========================//
+                //========================//
+            }
+            outI.close();
+            outL.close();
+        } catch (IOException e) {
+            System.err.println("File not found");
         }
 
         //===========DEBUG==========//

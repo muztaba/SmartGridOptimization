@@ -37,14 +37,7 @@ public class OurLocalSearch {
         }
         Collections.shuffle(listOutDegree);
         for (int v : listOutDegree) {
-            double capacity = graph.getCapacity(currentNode, v);
-            double flow = Math.abs(graph.getFlow(currentNode, v)); // outgoing flow represent as negative value
-            // ============  DEBUG ===============//
-            if (flow > capacity) {
-                throw new IllegalArgumentException("violate flow constraint");
-            }
-            // ====================================//
-            double remainFlow = capacity - flow;
+            double remainFlow = graph.getCapacity(currentNode, v);
             if (remainFlow > 0.0) {
                 double residual = graph.getResidual(currentNode);
                 double electricity = Math.min(remainFlow, residual) * random.nextDouble();
