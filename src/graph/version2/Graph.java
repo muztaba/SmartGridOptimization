@@ -115,18 +115,10 @@ public class Graph implements Serializable {
      * @return this object.
      */
     public Graph setFlow(int u, int v, final double flow) {
+        assert (flowMatrix[u][v][FLOW] != 0) : "This link has been used before";
         flowMatrix[u][v][FLOW] = -flow;
         flowMatrix[v][u][FLOW] = flow;
-        // ============== DEBUG ================//
-        if (flowMatrix[u][v][FLOW] == Double.NaN) {
-            System.out.println("***");
-            System.out.println(flow);
-        }
-        if (flowMatrix[v][u][FLOW] == Double.NaN) {
-            System.out.println("****");
-            System.out.println(flow);
-        }
-        //======================================//
+        validationCheck();
         return this;
     }
 
@@ -467,6 +459,26 @@ public class Graph implements Serializable {
     }
 
     // ========== Graph Constraint Check ========//
+
+    public double checkFlowConstraint(int u, int v, double flow) {
+        if (isSourceNode(u)) {
+            return 0;
+        }
+        double prev = flowMatrix[u][v][FLOW];
+        flowMatrix[u][v][FLOW] = -flow;
+        double[][] row = flowMatrix[u];
+        double totalFlow = 0.0;
+        for (int i = 0; i < row[0].length; i++) {
+            if (row[i][CAPACITY] >= Math.abs(row[i][FLOW])) {
+                totalFlow += row[i][FLOW];
+            } else {
+                throw new IllegalArgumentException("Capacity constraint violation"
+                        + "Capacity " + row[i][CAPACITY] + " Flow " + row[i][FLOW]);
+            }
+        }
+        flowMatrix[u][v][FLOW] = prev;
+        return (totalFlow < 0) ? totalFlow : 0;
+    }
 
     private boolean validationCheck(int node) {
         if (isSourceNode(node)) {

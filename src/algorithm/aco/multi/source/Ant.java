@@ -156,7 +156,7 @@ public class Ant {
                 return false;
             }
             int nextNode = nextNodeSelection();
-            // If the ant won't move to next node then put the ant power to the node's residual power.
+
             if (nextNode < 0) {
                 graph.addResidual(this.currentNode, this.power);
 //                System.out.println(">>>>>>>>>>No Next Node>>>>>>>>>>>>>>");
@@ -168,10 +168,10 @@ public class Ant {
             double linkCapacity = graph.getCapacity(this.currentNode, nextNode);
 //            double avgFlowOfLink = avgFlowOfLink(nextNode);
             //================ DEBUG ===============//
-//            System.out.println("linkCapacity " + linkCapacity + " avgFlowOfLink " + avgFlowOfLink + " power " + power);
+            System.out.println("linkCapacity " + linkCapacity + " power " + power);
             // ======================================= //
 //            double flow = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
-            double flow = Math.min(linkCapacity, this.power) * random.nextDouble();
+            double flow = this.power * random.nextDouble();
 
             if (power > flow) {
                 double residual = power - flow;
@@ -181,6 +181,12 @@ public class Ant {
             } else {
                 flow = power;
             }
+
+            double validFlow = graph.checkFlowConstraint(currentNode, nextNode, flow);
+            if (validFlow < 0) {
+                flow -= Math.abs(validFlow);
+            }
+            assert (flow == 0) : "Flow should not be '0'";
             graph.setFlow(this.currentNode, nextNode, flow);
 
             //======= DEBUG ======//
@@ -229,20 +235,24 @@ public class Ant {
      */
     private void operationOnDemandNode() {
         double loadShedding = graph.getLoadShedding(this.currentNode);
-        double generatePower = loadShedding * random.nextDouble();
+        double generatePower = Math.min(power, loadShedding) * random.nextDouble();
         graph.addPower(this.currentNode, generatePower);
         this.power -= generatePower;
     }
 
     private int nextNodeSelection() {
+        PriorityQueue<MaxProbNode> probNodes = new PriorityQueue<>();
         double denominator = calculateDenominator();
+
         if (denominator <= 0) {
             return -1;
         }
-        PriorityQueue<MaxProbNode> probNodes = new PriorityQueue<>();
 
         for (Graph.VertexInfo itr : graph.extractVertexInfo(this.currentNode)) {
             int V = itr.nodeNumber;
+            if (occupiedLink.contains(Pair.makePair(this.currentNode, V))) {
+                continue;
+            }
             double loadShedding = (itr.loadShedding == 0.0) ? 0.1 : itr.loadShedding;
 //            if (visited.contains(V)) {
 //                continue;
@@ -250,9 +260,6 @@ public class Ant {
 //            if (graph.isSourceNode(V)) {
 //                continue;
 //            }
-            if (occupiedLink.contains(Pair.makePair(this.currentNode, V))) {
-                continue;
-            }
 
             double pheromone = this.pheromone.get(currentNode, V);
             double nn = loadShedding / SCALING_FACTOR;
@@ -271,11 +278,10 @@ public class Ant {
         double sum = 0.0;
         for (Graph.VertexInfo itr : graph.extractVertexInfo(this.currentNode)) {
             int V = itr.nodeNumber;
-            double loadShedding = (itr.loadShedding == 0) ? 0.1 : itr.loadShedding;
-            if (visited.contains(V)) {
+            if (occupiedLink.contains(Pair.makePair(this.currentNode, V))) {
                 continue;
             }
-//            System.out.println(itr.nodeNumber + "  " + loadShedding);
+            double loadShedding = (itr.loadShedding == 0) ? 0.1 : itr.loadShedding;
             // Scale the load shedding.
             loadShedding /= SCALING_FACTOR;
             sum += Math.pow(loadShedding, BETA) * Math.pow(pheromone.get(currentNode, V), ALPHA);
