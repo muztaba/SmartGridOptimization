@@ -72,16 +72,6 @@ public class Graph implements Serializable {
         return listOutDegree;
     }
 
-    public double getFlow(int u, int v) {
-        double flow = flowMatrix[u][v][FLOW];
-        // ======== DEBUG =======//
-        if (flow > 0) {
-            throw new IllegalArgumentException("+ : This is incoming flow");
-        }
-        // =====================//
-        return flow;
-    }
-
     /**
      * This method return the how many degree or edges is used so far for the target vertex.
      *
@@ -96,7 +86,7 @@ public class Graph implements Serializable {
         // ===== Debug ======//
         if (unusedEdge < 0) {
             throw new IllegalArgumentException("Unused edge should not be negative Total edge : "
-            + totalEdge + " Used Edge " + usedEdge);
+                    + totalEdge + " Used Edge " + usedEdge);
         }
         //===================//
         return unusedEdge;
@@ -321,16 +311,19 @@ public class Graph implements Serializable {
     public double getCapacity(final int u, final int v) {
         Set<Pair<Integer, Double>> set = edges.get(u);
         if (set == null) {
+            System.err.println("Nope, There is a spanning tree");
             return -1;
         }
         for (Pair<Integer, Double> pair : set) {
             if (pair.first == v) {
                 assert (flowMatrix[u][v][CAPACITY] == pair.second) : "U " + u + " V " + v +
                         " Flow matrix " + flowMatrix[u][v][CAPACITY] + " Set " + pair.second;
-                return pair.second;
             }
         }
-        return -1;
+        double flow = Math.abs(flowMatrix[u][v][FLOW]);
+        assert (flowMatrix[u][v][CAPACITY] - flow >= 0) : " Capacity " + flowMatrix[u][v][CAPACITY] + " Flow " + flow;
+        return (flow == 0.0) ? flowMatrix[u][v][CAPACITY] :
+                flowMatrix[u][v][CAPACITY] - flow;
     }
 
     /**
