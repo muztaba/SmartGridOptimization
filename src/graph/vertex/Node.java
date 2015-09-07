@@ -69,7 +69,8 @@ public class Node implements Serializable {
      * @return an absolute double value of the load shedding.
      */
     public double getLoadShedding() {
-        return Math.abs(loadShedding);
+        assert (loadShedding < 0) : "Load shedding should be positive";
+        return loadShedding;
     }
     public double getPower() {
         return this.power;
