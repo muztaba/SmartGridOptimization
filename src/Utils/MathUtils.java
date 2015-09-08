@@ -13,4 +13,10 @@ public class MathUtils {
         return bd.doubleValue();
     }
 
+    public static double nextBigDigit(double val) {
+        double i = 1.0;
+        for (i = 1; i < val; i *= 10.0) {}
+        return i;
+    }
+
 }
