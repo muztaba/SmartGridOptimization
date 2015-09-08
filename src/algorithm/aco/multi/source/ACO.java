@@ -55,6 +55,7 @@ public class ACO implements Run {
                 //======== DEBUG ======//
 //            System.out.println(ants[0].getTotalLoadShedding());
 //                outI.println(_iteration);
+//                System.out.println(_iteration);
                 //=====================//
                 for (int antIndex = 0; antIndex < ants.length; antIndex++) {
                     ants[antIndex].initiate(pheromone);

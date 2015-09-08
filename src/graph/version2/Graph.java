@@ -69,6 +69,18 @@ public class Graph implements Serializable {
         } else {
             listOutDegree = new ArrayList<>(degreeMap.get(node).outDegreeList);
         }
+
+        {
+            Set<Integer> set = new HashSet<>();
+            for (int i = 0; i < flowMatrix[node].length; i++) {
+                if (flowMatrix[node][i][FLOW] < 0) {
+                    assert (!listOutDegree.contains(i)) : "Mismatch with listOutDegree";
+                    set.add(i);
+                }
+            }
+            assert (set.size() != listOutDegree.size()) : "Size mismatch with listOutDegree";
+        }
+
         return listOutDegree;
     }
 
@@ -125,6 +137,9 @@ public class Graph implements Serializable {
     public Graph addFlow(int u, int v, final double flow) {
         flowMatrix[u][v][FLOW] += -flow;
         flowMatrix[v][u][FLOW] += flow;
+
+        assert (Math.abs(flowMatrix[u][v][FLOW]) <= flowMatrix[u][v][CAPACITY]) : "Flow constraint violation";
+        assert (Math.abs(flowMatrix[v][u][FLOW]) <= flowMatrix[v][u][CAPACITY]) : "Flow constraint violation";
         return this;
     }
 
@@ -379,6 +394,7 @@ public class Graph implements Serializable {
      * @see Node addElectricity method.
      */
     public void addPower(int node, double power) {
+        assert (isSourceNode(node)) : "Can not add electricity to a Supply node";
         vertexes.get(node).addElectricity(power);
 //        validationCheck(node);
     }
@@ -465,7 +481,7 @@ public class Graph implements Serializable {
             return 0;
         }
         double prev = flowMatrix[u][v][FLOW];
-        flowMatrix[u][v][FLOW] = -flow;
+        flowMatrix[u][v][FLOW] += -flow;
         double[][] row = flowMatrix[u];
         double totalFlow = 0.0;
         for (int i = 0; i < row[0].length; i++) {
@@ -511,7 +527,7 @@ public class Graph implements Serializable {
 //                        + " residual + electricity " + (residual + electricity));
             }
         } else {
-            throw new IllegalArgumentException("Flow constraint violation, Flow : " + totalFlow);
+            throw new IllegalArgumentException("Flow constraint violation, Node " + node + " Flow : " + totalFlow);
         }
         return true;
     }

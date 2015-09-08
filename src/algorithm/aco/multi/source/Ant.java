@@ -1,6 +1,7 @@
 package algorithm.aco.multi.source;
 
 import Utils.CollectionUtils;
+import Utils.MathUtils;
 import Utils.Pair;
 import algorithm.OurLocalSearch;
 import algorithm.aco.pheromone.IPheromone;
@@ -38,8 +39,9 @@ public class Ant {
 
     public Ant(final Graph graph) {
         this.graph = graph;
-//        SCALING_FACTOR = graph.getMaxDemand();
-        SCALING_FACTOR = 10;
+        SCALING_FACTOR = MathUtils.nextBigDigit(graph.getMaxDemand());
+        System.out.println(graph.getMaxDemand());
+        System.out.println(SCALING_FACTOR);
         Set<Integer> sourceSet = graph.getSourceList();
         // source set converted to List.
         this.sourceList = CollectionUtils.toList(sourceSet);
@@ -53,7 +55,6 @@ public class Ant {
         this.pheromone = pheromone;
         shuffleSourceList();
 
-//        for (int i = 0; i < 10; i++) {
         for (int sourceNode : sourceList) {
             queue = new ArrayDeque<>();
             queue.add(sourceNode);
@@ -70,22 +71,21 @@ public class Ant {
         }
 //        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
 //        System.out.println("Residual " + graph.calculateTotalResidual());
-//        double prevLoadShedding = graph.calculateTotalLoadShedding();
-//        double prevResidual = graph.calculateTotalResidual();
+        double prevLoadShedding = graph.calculateTotalLoadShedding();
+        double prevResidual = graph.calculateTotalResidual();
         graph.validationCheck();
-//        OurLocalSearch localSearch = new OurLocalSearch();
-//        localSearch.initiate(graph, 200);
-//        graph.validationCheck();
-//        }
+        OurLocalSearch localSearch = new OurLocalSearch();
+        localSearch.initiate(graph, 200);
+        graph.validationCheck();
 
-        System.out.println(graph.vertexesNumber());
-        System.out.println("Visited " + visited.size());
-        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
-        System.out.println("Residual " + graph.calculateTotalResidual());
-        System.out.println();
+//        System.out.println(graph.vertexesNumber());
+//        System.out.println("Visited " + visited.size());
+//        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
+//        System.out.println("Residual " + graph.calculateTotalResidual());
+//        System.out.println();
 //        System.out.println("New Load Shedding " + (prevLoadShedding - graph.calculateTotalLoadShedding()));
 //        System.out.println("New Residual " + (prevResidual - graph.calculateTotalResidual()));
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         this.totalLoadShedding = graph.calculateTotalLoadShedding();
         this.totalResidual = graph.calculateTotalResidual();
     }

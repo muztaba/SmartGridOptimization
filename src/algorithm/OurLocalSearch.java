@@ -19,6 +19,8 @@ public class OurLocalSearch {
         this.graph = graph;
         for (int _iteration = 0; _iteration < iteration; _iteration++) {
             currentNode = random.nextInt(graph.vertexesNumber());
+            assert (graph.getResidual(currentNode) < 0) : "Residual must be positive";
+
             if (graph.getResidual(currentNode) > 0) {
                 //==============DEBUG ==================//
 //                System.out.println(currentNode);
@@ -40,10 +42,16 @@ public class OurLocalSearch {
             double remainFlow = graph.getCapacity(currentNode, v);
             if (remainFlow > 0.0) {
                 double residual = graph.getResidual(currentNode);
-                double electricity = Math.min(remainFlow, residual) * random.nextDouble();
-                graph.addPower(v, electricity);
-                graph.addFlow(currentNode, v, electricity);
-                graph.addResidual(currentNode, -electricity);
+//                System.out.println(residual);
+                double flow = Math.min(remainFlow, residual) * random.nextDouble();
+                double validFlow = graph.checkFlowConstraint(currentNode, v, flow);
+                if (validFlow < 0) {
+                    flow -= Math.abs(validFlow);
+                }
+                graph.addPower(v, flow);
+                graph.addFlow(currentNode, v, flow);
+                graph.addResidual(currentNode, -flow);
+//                graph.validationCheck();
             }
         }
         // ============  DEBUG ===============//
