@@ -73,16 +73,19 @@ public class Ant {
 //        double prevLoadShedding = graph.calculateTotalLoadShedding();
 //        double prevResidual = graph.calculateTotalResidual();
         graph.validationCheck();
-        OurLocalSearch localSearch = new OurLocalSearch();
-        localSearch.initiate(graph, 200);
-        graph.validationCheck();
+//        OurLocalSearch localSearch = new OurLocalSearch();
+//        localSearch.initiate(graph, 200);
+//        graph.validationCheck();
 //        }
 
-//        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
-//        System.out.println("Residual " + graph.calculateTotalResidual());
+        System.out.println(graph.vertexesNumber());
+        System.out.println("Visited " + visited.size());
+        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
+        System.out.println("Residual " + graph.calculateTotalResidual());
+        System.out.println();
 //        System.out.println("New Load Shedding " + (prevLoadShedding - graph.calculateTotalLoadShedding()));
 //        System.out.println("New Residual " + (prevResidual - graph.calculateTotalResidual()));
-//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         this.totalLoadShedding = graph.calculateTotalLoadShedding();
         this.totalResidual = graph.calculateTotalResidual();
     }
@@ -166,12 +169,12 @@ public class Ant {
             occupiedLink.add(Pair.makePair(nextNode, this.currentNode));
 
             double linkCapacity = graph.getCapacity(this.currentNode, nextNode);
-//            double avgFlowOfLink = avgFlowOfLink(nextNode);
+            double avgFlowOfLink = avgFlowOfLink(nextNode);
             //================ DEBUG ===============//
-            System.out.println("linkCapacity " + linkCapacity + " power " + power);
+//            System.out.println("linkCapacity " + linkCapacity + " power " + power);
             // ======================================= //
-//            double flow = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
-            double flow = this.power * random.nextDouble();
+            double flow = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
+//            double flow = Math.min(linkCapacity, power) * random.nextDouble();
 
             if (power > flow) {
                 double residual = power - flow;

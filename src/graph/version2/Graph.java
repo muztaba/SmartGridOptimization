@@ -118,7 +118,7 @@ public class Graph implements Serializable {
         assert (flowMatrix[u][v][FLOW] != 0) : "This link has been used before";
         flowMatrix[u][v][FLOW] = -flow;
         flowMatrix[v][u][FLOW] = flow;
-        validationCheck();
+//        validationCheck();
         return this;
     }
 

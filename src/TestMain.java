@@ -19,7 +19,7 @@ import java.util.List;
 public class TestMain {
     public static void main(String[] args) throws IOException {
 //        GraphGenerator graphGenerator = new GraphGenerator();
-//        List<Node> nodeList = graphGenerator.graphGenerator(20, 6000, 4000, 40);
+//        List<Node> nodeList = graphGenerator.graphGenerator(50, 6000, 4000, 40);
 //        printGraph(1, nodeList, graphGenerator.getLinkNumber());
 
 
@@ -41,7 +41,7 @@ public class TestMain {
 
 
         StopWatch.start();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 100; i++) {
             checkACOV2(graph);
         }
         StopWatch.elapsedTime();
