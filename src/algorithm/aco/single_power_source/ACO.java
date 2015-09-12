@@ -110,7 +110,6 @@ public class ACO implements Run {
         }
     }
 
-
     /**
      * After certain iteration pheromone trail will be updated. Ants made tour that has
      * saved into the bestTourSoFar object. Get the tours from that this object and

@@ -33,15 +33,13 @@ public class Ant {
     private double totalResidual;
 
 
-    public static final double ALPHA = 2;
-    public static final double BETA = 5;
+    public static final double ALPHA = 3;
+    public static final double BETA = 2;
     public final double SCALING_FACTOR;
 
     public Ant(final Graph graph) {
         this.graph = graph;
         SCALING_FACTOR = MathUtils.nextBigDigit(graph.getMaxDemand());
-        System.out.println(graph.getMaxDemand());
-        System.out.println(SCALING_FACTOR);
         Set<Integer> sourceSet = graph.getSourceList();
         // source set converted to List.
         this.sourceList = CollectionUtils.toList(sourceSet);
@@ -55,41 +53,32 @@ public class Ant {
         this.pheromone = pheromone;
         shuffleSourceList();
 
+        /* Console Output */
+        System.out.println("Start ACO Algorithm");
+
         for (int sourceNode : sourceList) {
             queue = new ArrayDeque<>();
             queue.add(sourceNode);
-
-//            //======= DEBUG =======//
-//            System.out.println(sourceNode);
-//            //=====================//
-
             while (!queue.isEmpty()) {
                 int _currentNode = queue.poll();
                 setupAnt(_currentNode);
                 moveAnt();
             }
         }
-//        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
-//        System.out.println("Residual " + graph.calculateTotalResidual());
         double prevLoadShedding = graph.calculateTotalLoadShedding();
         double prevResidual = graph.calculateTotalResidual();
         graph.validationCheck();
+
         OurLocalSearch localSearch = new OurLocalSearch();
+        /* Console Output */
+        System.out.println("Start Local Search");
         localSearch.initiate(graph, 200);
+
         graph.validationCheck();
 
-//        System.out.println(graph.vertexesNumber());
-//        System.out.println("Visited " + visited.size());
-//        System.out.println("Load Shedding " + graph.calculateTotalLoadShedding());
-//        System.out.println("Residual " + graph.calculateTotalResidual());
-//        System.out.println();
-//        System.out.println("New Load Shedding " + (prevLoadShedding - graph.calculateTotalLoadShedding()));
-//        System.out.println("New Residual " + (prevResidual - graph.calculateTotalResidual()));
-//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         this.totalLoadShedding = graph.calculateTotalLoadShedding();
         this.totalResidual = graph.calculateTotalResidual();
     }
-
     /**
      * When the ant is being setup at the first time on source node or a node that has
      * residual electricity this method get the electricity from the node and assign to
@@ -155,14 +144,12 @@ public class Ant {
             }
             // After giving power to a node if the ant's power will zero then the ant stop moving.
             if (this.power <= 0) {
-//                System.out.println(">>>>>>>>>>Power End>>>>>>>>>>>>>>");
                 return false;
             }
             int nextNode = nextNodeSelection();
 
             if (nextNode < 0) {
                 graph.addResidual(this.currentNode, this.power);
-//                System.out.println(">>>>>>>>>>No Next Node>>>>>>>>>>>>>>");
                 return false;
             }
             occupiedLink.add(Pair.makePair(this.currentNode, nextNode));
@@ -170,11 +157,7 @@ public class Ant {
 
             double linkCapacity = graph.getCapacity(this.currentNode, nextNode);
             double avgFlowOfLink = avgFlowOfLink(nextNode);
-            //================ DEBUG ===============//
-//            System.out.println("linkCapacity " + linkCapacity + " power " + power);
-            // ======================================= //
             double flow = Math.min(Math.min(linkCapacity, avgFlowOfLink), this.power);
-//            double flow = Math.min(linkCapacity, power) * random.nextDouble();
 
             if (power > flow) {
                 double residual = power - flow;
@@ -188,15 +171,14 @@ public class Ant {
             double validFlow = graph.checkFlowConstraint(currentNode, nextNode, flow);
             if (validFlow < 0) {
                 flow -= Math.abs(validFlow);
+                graph.addResidual(this.currentNode, Math.abs(validFlow));
             }
-            assert (flow == 0) : "Flow should not be '0'";
-            graph.setFlow(this.currentNode, nextNode, flow);
 
-            //======= DEBUG ======//
-//            visitedLinkOrder.add(Pair.makePair(currentNode, nextNode));
+            assert (flow == 0) : "Flow should not be '0'";
+
+            graph.setFlow(this.currentNode, nextNode, flow);
             graph.setDegreeMap(this.currentNode, nextNode);
             graph.setVisitedNumber(this.currentNode);
-            //====================//
             visitedLink.add(Pair.makePair(currentNode, nextNode));
             this.currentNode = nextNode;
         }

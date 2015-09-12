@@ -11,6 +11,7 @@ import graph.version2.Graph;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,9 +19,10 @@ import java.util.List;
  */
 public class TestMain {
     public static void main(String[] args) throws IOException {
-//        GraphGenerator graphGenerator = new GraphGenerator();
-//        List<Node> nodeList = graphGenerator.graphGenerator(50, 6000, 4000, 40);
-//        printGraph(1, nodeList, graphGenerator.getLinkNumber());
+//
+        GraphGenerator graphGenerator = new GraphGenerator();
+        List<Node> nodeList = graphGenerator.graphGenerator(50, 6000, 4000, 40);
+        printGraph(1, nodeList, graphGenerator.getLinkNumber());
 
 
         Graph graph = new Graph();
@@ -41,14 +43,16 @@ public class TestMain {
 
 
         StopWatch.start();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1; i++) {
             checkACOV2(graph);
         }
-        StopWatch.elapsedTime();
+        /* Console Output */
+        System.out.println("Elapsed Time " + StopWatch.elapsedTime());
+
     }
 
     private static void checkACOV2(Graph graph) {
-        Run run = new algorithm.aco.multi.source.ACO(10, 1, graph);
+        Run run = new algorithm.aco.multi.source.ACO(1, 1, graph);
         run.run();
     }
 
